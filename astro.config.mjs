@@ -6,9 +6,12 @@ import tailwind from '@astrojs/tailwind'
 export default defineConfig({
   site: process.env.CI ? 'https://area4.github.io' : 'http://localhost:4321',
   base: '/starlight-tailwind-template',
+  experimental: {
+    contentCollectionCache: true,
+  },
   integrations: [
     starlight({
-      title: 'Docs with Tailwind',
+      title: 'Starlight with Tailwind',
       social: {
         github: 'https://github.com/withastro/starlight',
       },
@@ -22,7 +25,7 @@ export default defineConfig({
           autogenerate: { directory: 'reference' },
         },
       ],
-      customCss: ['./src/tailwind.css'],
+      customCss: ['./src/styles/globals.css'],
     }),
     tailwind({ applyBaseStyles: false }),
   ],
