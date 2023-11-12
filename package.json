@@ -1,6 +1,5 @@
 {
   "name": "starlight-tailwind-template",
-  "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
@@ -15,8 +14,15 @@
     "@astrojs/starlight-tailwind": "^2.0.1",
     "@astrojs/tailwind": "^5.0.0",
     "astro": "^3.2.3",
+    "astro-embed": "^0.6.0",
     "sharp": "^0.32.5",
-    "tailwindcss": "^3.3.3",
+    "tailwindcss": "^3.3.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.1",
+    "prettier-plugin-tailwindcss": "^0.5.7",
     "typescript": "^5.2.2"
-  }
+  },
+  "packageManager": "pnpm@8.10.2"
 }
