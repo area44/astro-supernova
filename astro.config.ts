@@ -8,9 +8,9 @@ import rehypeMathJax from 'rehype-mathjax'
 export default defineConfig({
   site: process.env.CI ? 'https://area4.github.io' : 'http://localhost:4321',
   base: '/starlight-tailwind-template',
-  experimental: {
-    contentCollectionCache: true,
-  },
+  // experimental: {
+  //   contentCollectionCache: true,
+  // },
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeMathJax],
