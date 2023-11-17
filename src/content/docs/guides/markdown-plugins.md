@@ -1,6 +1,6 @@
 ---
-title: Rehype Plugins Testing
-description: Try new rehype plugins
+title: Markdown Plugins Testing
+description: Try new markdown plugins
 ---
 
 ## Mathematical expressions
