@@ -18,10 +18,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Starlight Tailwind',
-      customCss: [
-        './src/styles/globals.css',
-        './src/styles/mathjax.css',
-      ],
+      customCss: ['./src/styles/globals.css', './src/styles/mathjax.css'],
       social: {
         github: 'https://github.com/AREA44/starlight-tailwind-template',
       },
