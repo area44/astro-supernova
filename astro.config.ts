@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
 import tailwind from '@astrojs/tailwind'
 import remarkMath from 'remark-math'
-import rehypeMathJax from 'rehype-mathjax'
+import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,12 +13,12 @@ export default defineConfig({
   // },
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeMathJax],
+    rehypePlugins: [rehypeKatex],
   },
   integrations: [
     starlight({
       title: 'Starlight Tailwind',
-      customCss: ['./src/styles/globals.css', './src/styles/mathjax.css'],
+      customCss: ['./src/styles/globals.css', './src/styles/katex.min.css'],
       social: {
         github: 'https://github.com/AREA44/starlight-tailwind-template',
       },
