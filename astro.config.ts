@@ -17,7 +17,7 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: 'Starlight Tailwind',
+      title: 'Starlight Template',
       customCss: ['./src/styles/globals.css', './src/styles/katex.min.css'],
       social: {
         github: 'https://github.com/AREA44/starlight-template',
