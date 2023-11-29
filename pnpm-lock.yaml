@@ -9,11 +9,11 @@ dependencies:
     specifier: ^0.3.1
     version: 0.3.1(prettier-plugin-astro@0.12.2)(prettier@3.1.0)(typescript@5.3.2)
   '@astrojs/starlight':
-    specifier: ^0.13.0
-    version: 0.13.0(astro@3.6.0)
+    specifier: ^0.14.0
+    version: 0.14.0(astro@3.6.0)
   '@astrojs/starlight-tailwind':
     specifier: ^2.0.1
-    version: 2.0.1(@astrojs/starlight@0.13.0)(@astrojs/tailwind@5.0.2)(tailwindcss@3.3.5)
+    version: 2.0.1(@astrojs/starlight@0.14.0)(@astrojs/tailwind@5.0.2)(tailwindcss@3.3.5)
   '@astrojs/tailwind':
     specifier: ^5.0.2
     version: 5.0.2(astro@3.6.0)(tailwindcss@3.3.5)
@@ -237,20 +237,20 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@astrojs/starlight-tailwind@2.0.1(@astrojs/starlight@0.13.0)(@astrojs/tailwind@5.0.2)(tailwindcss@3.3.5):
+  /@astrojs/starlight-tailwind@2.0.1(@astrojs/starlight@0.14.0)(@astrojs/tailwind@5.0.2)(tailwindcss@3.3.5):
     resolution: {integrity: sha512-niMgFcR7NHcsBVy8UAN3F2gqhmoN5v83st5Hu4YzvUL+6SNwjQmIipXppXdN9+iVneRjPr6PLGzDfI+wnjSBWQ==}
     peerDependencies:
       '@astrojs/starlight': '>=0.9.0'
       '@astrojs/tailwind': ^5.0.0
       tailwindcss: ^3.3.3
     dependencies:
-      '@astrojs/starlight': 0.13.0(astro@3.6.0)
+      '@astrojs/starlight': 0.14.0(astro@3.6.0)
       '@astrojs/tailwind': 5.0.2(astro@3.6.0)(tailwindcss@3.3.5)
       tailwindcss: 3.3.5
     dev: false
 
-  /@astrojs/starlight@0.13.0(astro@3.6.0):
-    resolution: {integrity: sha512-3SVWGP9Qze3UkM5Wozpx+5v9dh75ZFPSHRqzeuXNtctn5nHjlzvOgIIQnuyyNhIEQMfml1lo83jL3Vsf7Qk7Iw==}
+  /@astrojs/starlight@0.14.0(astro@3.6.0):
+    resolution: {integrity: sha512-wrve52CIIymvntjf2QCfCFpYrmZTyD1qObkvLImeGDVAAyNdUnNlj6MU6SkqQg2fQkJcX9Kh4zkwepm79zYveQ==}
     peerDependencies:
       astro: ^3.2.0
     dependencies:
@@ -1406,7 +1406,7 @@ packages:
   /@types/sax@1.2.7:
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 18.18.13
     dev: false
 
   /@types/unist@2.0.10:
