@@ -1,13 +1,7 @@
 {
   "installCommand": "pnpm install",
-  "buildCommand": "astro build --base starlight-template",
+  "buildCommand": "astro build",
   "outputDirectory": "dist",
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/starlight-template"
-    }
-  ],
   "github": {
     "silent": true
   }
