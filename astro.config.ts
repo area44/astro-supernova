@@ -4,18 +4,10 @@ import tailwind from '@astrojs/tailwind'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 
-const VERCEL_PREVIEW_SITE =
-  process.env.VERCEL_ENV !== 'production' &&
-  process.env.VERCEL_URL &&
-  `https://${process.env.VERCEL_URL}`
-
-const site = VERCEL_PREVIEW_SITE || 'https://area4.github.io'
-const base = VERCEL_PREVIEW_SITE ? '' : '/starlight-template'
-
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.CI ? site : 'http://localhost:4321',
-  base: process.env.CI ? base : '',
+  site: process.env.CI ? 'https://area4.github.io' : 'http://localhost:4321',
+  base: '/starlight-template',
   // experimental: {
   //   contentCollectionCache: true,
   // },
