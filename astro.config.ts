@@ -7,14 +7,14 @@ import rehypeKatex from 'rehype-katex'
 const VERCEL_PREVIEW_SITE =
   process.env.VERCEL_ENV !== 'production' &&
   process.env.VERCEL_URL &&
-  `https://${process.env.VERCEL_URL}/starlight-template`
+  `https://${process.env.VERCEL_URL}`
 
 const site = VERCEL_PREVIEW_SITE || 'https://area4.github.io'
 
 // https://astro.build/config
 export default defineConfig({
   site: process.env.CI ? site : 'http://localhost:4321',
-  base: '/starlight-template',
+  // base: '/starlight-template',
   // experimental: {
   //   contentCollectionCache: true,
   // },
