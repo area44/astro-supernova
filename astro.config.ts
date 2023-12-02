@@ -10,11 +10,12 @@ const VERCEL_PREVIEW_SITE =
   `https://${process.env.VERCEL_URL}`
 
 const site = VERCEL_PREVIEW_SITE || 'https://area4.github.io'
+const base = VERCEL_PREVIEW_SITE ? '' : '/starlight-template'
 
 // https://astro.build/config
 export default defineConfig({
   site: process.env.CI ? site : 'http://localhost:4321',
-  base: VERCEL_PREVIEW_SITE ? '' : '/starlight-template',
+  base: process.env.CI ? base : '',
   // experimental: {
   //   contentCollectionCache: true,
   // },
