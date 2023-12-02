@@ -7,7 +7,6 @@ import rehypeKatex from 'rehype-katex'
 // https://astro.build/config
 export default defineConfig({
   site: process.env.CI ? 'https://area4.github.io' : 'http://localhost:4321',
-  base: '/starlight-template',
   // experimental: {
   //   contentCollectionCache: true,
   // },
