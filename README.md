@@ -18,6 +18,7 @@ This template offers the following features:
 - Built with Starlight, a modern frontend framework.
 - Utilizes Tailwind CSS for easy customization of styles.
 - Supports KaTeX for mathematical expressions.
+- Supports embedding YouTube videos.
 
 ## Want to learn more?
 

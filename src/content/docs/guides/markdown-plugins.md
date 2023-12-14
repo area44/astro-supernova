@@ -1,6 +1,6 @@
 ---
 title: Markdown Plugins Testing
-description: Try new markdown plugins
+description: Try Markdown plugins
 ---
 
 ## Mathematical expressions

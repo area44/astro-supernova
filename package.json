@@ -1,6 +1,6 @@
 {
   "name": "@are44/starlight-template",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "build": "astro check && astro build",
     "dev": "astro dev",
