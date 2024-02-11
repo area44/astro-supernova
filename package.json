@@ -9,11 +9,11 @@
     "start": "astro dev"
   },
   "dependencies": {
-    "@astrojs/check": "^0.4.1",
-    "@astrojs/starlight": "^0.17.2",
+    "@astrojs/check": "^0.5.2",
+    "@astrojs/starlight": "^0.18.0",
     "@astrojs/starlight-tailwind": "^2.0.1",
     "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.3.2",
+    "astro": "^4.3.5",
     "lite-youtube-embed": "^0.3.0",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
