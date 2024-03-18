@@ -24,10 +24,6 @@ export default defineConfig({
           label: 'Guides',
           autogenerate: { directory: 'guides' },
         },
-        {
-          label: 'Reference',
-          autogenerate: { directory: 'reference' },
-        },
       ],
     }),
     tailwind({ applyBaseStyles: false }),
