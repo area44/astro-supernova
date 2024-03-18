@@ -5,8 +5,8 @@
 ## Getting Started
 
 ```sh
-git clone https://github.com/AREA44/starlight-template
-cd starlight-template
+git clone https://github.com/AREA44/starlight-tips
+cd starlight-tips
 pnpm install
 pnpm dev
 ```
