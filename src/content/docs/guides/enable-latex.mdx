@@ -1,6 +1,6 @@
 ---
-title: Use LaTeX in Markdown
-description: Use LaTeX in Markdown
+title: Enable LaTeX
+description: Enable LaTeX
 ---
 
 import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
@@ -27,7 +27,7 @@ This guide lead you use LaTeX in Starlight projects.
       </TabItem>
     </Tabs>
 
-2.  Create `katex.min.css` in `src/styles` folder. After that copy all KaTeX fonts into `src/fonts/styles` folder.
+2.  Create [`katex.min.css`](https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css) in `src/styles` folder. After that copy all [KaTeX fonts](https://github.com/KaTeX/KaTeX/tree/main/fonts) into `src/fonts/styles` folder.
 
 3.  Add `remark-math` and `rehype-katex` in `astro.config.mjs`:
 

@@ -2,8 +2,8 @@
 title: Embedding YouTube videos
 description: Embedding YouTube videos in Starlight/Astro projects
 ---
-
 import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
+import YouTube from '@/components/YouTube.astro'
 
 This guide lead you embeding YouTube videos in Starlight/Astro projects.
 
@@ -86,15 +86,20 @@ This guide lead you embeding YouTube videos in Starlight/Astro projects.
     ```
 </Steps>
 
-Now, you can import it into your project inside any `.astro` or `.mdx` file. Example:
+Now, you can import it into your project inside any `.astro` or `.mdx` file. For example:
 
-```astro
----
-import { YouTube } from 'import YouTube from '../components/YouTube.astro';
----
+```mdx
+import YouTube from 'import YouTube from '@/components/YouTube.astro';
 
 <YouTube
-  id="xtTy5nKay_Y"
-  poster="https://images-assets.nasa.gov/image/0302063/0302063~orig.jpg"
+  id="_NIpfrGXwG8"
+  poster="https://i3.ytimg.com/vi/_NIpfrGXwG8/maxresdefault.jpg"
 />
 ```
+
+The code above generates the following on the page:
+
+<YouTube
+  id="_NIpfrGXwG8"
+  poster="https://i3.ytimg.com/vi/_NIpfrGXwG8/maxresdefault.jpg"
+/>
