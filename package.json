@@ -1,5 +1,5 @@
 {
-  "name": "@are44/starlight-tips",
+  "name": "@are44/playastro",
   "version": "0.1.0",
   "scripts": {
     "build": "astro check && astro build",

@@ -1,12 +1,12 @@
-# Starlight Tips
+# Playastro
 
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
 
 ## Getting Started
 
 ```sh
-git clone https://github.com/AREA44/starlight-tips
-cd starlight-tips
+git clone https://github.com/AREA44/playastro
+cd playastro
 pnpm install
 pnpm dev
 ```

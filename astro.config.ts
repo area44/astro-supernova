@@ -7,17 +7,17 @@ import rehypeKatex from 'rehype-katex'
 // https://astro.build/config
 export default defineConfig({
   site: process.env.CI ? 'https://area4.github.io' : 'http://localhost:4321',
-  base: '/starlight-tips',
+  base: '/playastro',
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
   },
   integrations: [
     starlight({
-      title: 'Starlight Tips',
+      title: 'Playastro',
       customCss: ['./src/styles/globals.css', './src/styles/katex.min.css'],
       social: {
-        github: 'https://github.com/AREA44/starlight-tips',
+        github: 'https://github.com/AREA44/playastro',
       },
       sidebar: [
         {
