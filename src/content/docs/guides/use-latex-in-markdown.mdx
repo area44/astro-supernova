@@ -3,55 +3,54 @@ title: Use LaTeX in Markdown
 description: Use LaTeX in Markdown
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
 
 This guide lead you use LaTeX in Starlight projects.
 
-Start by installing the [`remark-math`](https://github.com/remarkjs/remark-math) and [`rehype-katex`](https://github.com/remarkjs/remark-math/tree/main/packages/rehype-katex) package using your favorite package manager:
+<Steps>
+1.  Start by installing the [`remark-math`](https://github.com/remarkjs/remark-math) and [`rehype-katex`](https://github.com/remarkjs/remark-math/tree/main/packages/rehype-katex) package using your favorite package manager:
+    <Tabs>
+      <TabItem label="npm">
+        ```sh
+        npm install remark-math rehype-katex
+        ```
+      </TabItem>
+      <TabItem label="pnpm">
+        ```sh
+        pnpm install remark-math rehype-katex
+        ```
+      </TabItem>
+      <TabItem label="Yarn">
+        ```sh
+        yarn install remark-math rehype-katex
+        ```
+      </TabItem>
+    </Tabs>
 
-<Tabs>
-  <TabItem label="npm">
-    ```sh
-      npm install remark-math rehype-katex
-    ```
-  </TabItem>
-  <TabItem label="pnpm">
-    ```sh
-      pnpm install remark-math rehype-katex
-    ```
-  </TabItem>
-  <TabItem label="yarn">
-    ```sh
-      yarn install remark-math rehype-katex
-    ```
-  </TabItem>
-</Tabs>
+2.  Create `katex.min.css` in `src/styles` folder. After that copy all KaTeX fonts into `src/fonts/styles` folder.
 
-Create `katex.min.css` in `styles` folder. After that copy all KaTeX fonts into `fonts/styles` folder.
+3.  Add `remark-math` and `rehype-katex` in `astro.config.mjs`:
 
-Add `remark-math` and `rehype-katex` in Astro config:
+    ```diff js
+    // astro.config.mjs
+    import { defineConfig } from 'astro/config'
+    import starlight from '@astrojs/starlight'
+    +import remarkMath from 'remark-math'
+    +import rehypeKatex from 'rehype-katex'
 
-```ts
-...
-import { defineConfig } from 'astro/config'
-import starlight from '@astrojs/starlight'
-import remarkMath from 'remark-math'
-import rehypeKatex from 'rehype-katex'
-
-export default defineConfig({
-  ...
-  markdown: {
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
-  },
-  integrations: [
-    starlight({
-      customCss: [..., './src/styles/katex.min.css'],
-    ...
+    export default defineConfig({
+      markdown: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+      },
+      integrations: [
+        starlight({
+    +      customCss: [..., './src/styles/katex.min.css'],
+        })
+      ],
     })
-  ],
-})
-```
+    ```
+</Steps>
 
 That's all. Now you can use LaTeX in `.md` and `.mdx` file like this:
 

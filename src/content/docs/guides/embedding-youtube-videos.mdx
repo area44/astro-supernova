@@ -3,87 +3,88 @@ title: Embedding YouTube videos
 description: Embedding YouTube videos in Starlight/Astro projects
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
 
 This guide lead you embeding YouTube videos in Starlight/Astro projects.
 
-Start by installing the [`lite-youtube-embed`](https://github.com/paulirish/lite-youtube-embed) package using your favorite package manager:
-  
-<Tabs>
-  <TabItem label="npm">
-    ```sh
+<Steps>
+1.  Start by installing the [`lite-youtube-embed`](https://github.com/paulirish/lite-youtube-embed) package using your favorite package manager:
+    <Tabs>
+      <TabItem label="npm">
+      ```sh
       npm install lite-youtube-embed
-    ```
-  </TabItem>
-  <TabItem label="pnpm">
-    ```sh
+      ```
+      </TabItem>
+      <TabItem label="pnpm">
+      ```sh
       pnpm install lite-youtube-embed
-    ```
-  </TabItem>
-  <TabItem label="yarn">
-    ```sh
+      ```
+      </TabItem>
+      <TabItem label="Yarn">
+      ```sh
       yarn install lite-youtube-embed
+      ```
+      </TabItem>
+    </Tabs>
+2.  Create `YouTube.astro` in `src/components`:
+    
+    ```astro
+    // src/components/YouTube.astro
+    ---
+    // Thanks to astro-embed-youtube
+    // https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube
+
+    import 'lite-youtube-embed/src/lite-yt-embed.css'
+
+    export interface Props extends astroHTML.JSX.HTMLAttributes {
+      id: string
+      poster?: string
+      params?: string
+      playlabel?: string
+    }
+
+    const { id, poster, ...attrs } = Astro.props as Props
+
+    const urlPattern =
+      /(?=(\s*))\1(?:<a [^>]*?>)??(?=(\s*))\2(?:https?:\/\/)??(?:w{3}\.)??(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|shorts\/)??([A-Za-z0-9-_]{11})(?:[^\s<>]*)(?=(\s*))\4(?:<\/a>)??(?=(\s*))\5/
+
+    function urlMatcher(url: string): string | undefined {
+      const match = url.match(urlPattern)
+      return match?.[3]
+    }
+
+    const idRegExp = /^[A-Za-z0-9-_]+$/
+
+    function extractID(idOrUrl: string) {
+      if (idRegExp.test(idOrUrl)) return idOrUrl
+      return urlMatcher(idOrUrl)
+    }
+
+    const videoid = extractID(id)
+    const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`
+    ---
+
+    <lite-youtube
+      {videoid}
+      {...attrs}
+      style={`background-image: url('${posterURL}');`}></lite-youtube>
+
+    <script>
+      import 'lite-youtube-embed'
+    </script>
+
+    <style is:global>
+      lite-youtube > iframe {
+        all: unset !important;
+        width: 100% !important;
+        height: 100% !important;
+        position: absolute !important;
+        inset: 0 !important;
+        border: 0 !important;
+      }
+    </style>
     ```
-  </TabItem>
-</Tabs>
-
-Create `YouTube.astro` in components:
-  
-```astro
----
-// Thanks to astro-embed-youtube
-// https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube
-
-import 'lite-youtube-embed/src/lite-yt-embed.css'
-
-export interface Props extends astroHTML.JSX.HTMLAttributes {
-  id: string
-  poster?: string
-  params?: string
-  playlabel?: string
-}
-
-const { id, poster, ...attrs } = Astro.props as Props
-
-const urlPattern =
-  /(?=(\s*))\1(?:<a [^>]*?>)??(?=(\s*))\2(?:https?:\/\/)??(?:w{3}\.)??(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|shorts\/)??([A-Za-z0-9-_]{11})(?:[^\s<>]*)(?=(\s*))\4(?:<\/a>)??(?=(\s*))\5/
-
-function urlMatcher(url: string): string | undefined {
-  const match = url.match(urlPattern)
-  return match?.[3]
-}
-
-const idRegExp = /^[A-Za-z0-9-_]+$/
-
-function extractID(idOrUrl: string) {
-  if (idRegExp.test(idOrUrl)) return idOrUrl
-  return urlMatcher(idOrUrl)
-}
-
-const videoid = extractID(id)
-const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`
----
-
-<lite-youtube
-  {videoid}
-  {...attrs}
-  style={`background-image: url('${posterURL}');`}></lite-youtube>
-
-<script>
-  import 'lite-youtube-embed'
-</script>
-
-<style is:global>
-  lite-youtube > iframe {
-    all: unset !important;
-    width: 100% !important;
-    height: 100% !important;
-    position: absolute !important;
-    inset: 0 !important;
-    border: 0 !important;
-  }
-</style>
-```
+</Steps>
 
 Now, you can import it into your project inside any `.astro` or `.mdx` file. Example:
 
