@@ -12,29 +12,27 @@ This guide lead you use LaTeX in Starlight projects.
     <Tabs>
       <TabItem label="npm">
         ```sh
-        npm add remark-math rehype-katex
+        npm add katex rehype-katex remark-math
         ```
       </TabItem>
       <TabItem label="pnpm">
         ```sh
-        pnpm add remark-math rehype-katex
+        pnpm add katex rehype-katex remark-math
         ```
       </TabItem>
       <TabItem label="Yarn">
         ```sh
-        yarn add remark-math rehype-katex
+        yarn add katex rehype-katex remark-math
         ```
       </TabItem>
       <TabItem label="Bun">
         ```sh
-        bun add remark-math rehype-katex
+        bun add katex rehype-katex remark-math
         ```
       </TabItem>
     </Tabs>
 
-2.  Create [`katex.min.css`](https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css) in `src/styles` folder. After that copy all [KaTeX fonts](https://github.com/KaTeX/KaTeX/tree/main/fonts) into `src/fonts/styles` folder.
-
-3.  Add `remark-math` and `rehype-katex` in `astro.config.mjs`:
+2.  Add `katex`, `rehype-katex` and `remark-math` in `astro.config.mjs`:
 
     ```diff js
     // astro.config.mjs
@@ -50,7 +48,7 @@ This guide lead you use LaTeX in Starlight projects.
       },
       integrations: [
         starlight({
-    +      customCss: [..., './src/styles/katex.min.css'],
+    +      customCss: [..., './node_modules/katex/dist/katex.min.css'],
         })
       ],
     })

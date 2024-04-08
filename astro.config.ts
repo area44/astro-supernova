@@ -15,7 +15,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Playastro',
-      customCss: ['./src/styles/globals.css', './src/styles/katex.min.css'],
+      customCss: ['./src/styles/globals.css', './node_modules/katex/dist/katex.min.css'],
       social: {
         github: 'https://github.com/AREA44/playastro',
       },
