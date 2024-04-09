@@ -36,27 +36,27 @@ This guide lead you use LaTeX in Starlight projects.
 
 2.  Add `katex`, `rehype-katex` and `remark-math` in `astro.config.mjs`:
 
-        ```diff js
-        // astro.config.mjs
-        import { defineConfig } from 'astro/config'
-        import starlight from '@astrojs/starlight'
-        +import remarkMath from 'remark-math'
-        +import rehypeKatex from 'rehype-katex'
+    ```diff js
+    // astro.config.mjs
+    import { defineConfig } from 'astro/config'
+    import starlight from '@astrojs/starlight'
+    +import remarkMath from 'remark-math'
+    +import rehypeKatex from 'rehype-katex'
 
-        export default defineConfig({
-          markdown: {
-            remarkPlugins: [remarkMath],
-            rehypePlugins: [rehypeKatex],
-          },
-          integrations: [
-            starlight({
-        +      customCss: [..., 'katex/dist/katex.min.css'],
-            })
-          ],
+    export default defineConfig({
+      markdown: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+      },
+      integrations: [
+        starlight({
+    +      customCss: [..., 'katex/dist/katex.min.css'],
         })
-        ```
+      ],
+    })
+    ```
 
-    </Steps>
+</Steps>
 
 ## Examples
 
