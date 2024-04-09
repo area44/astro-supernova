@@ -14,12 +14,16 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: 'Playastro',
+      title: 'PlayAstro',
       customCss: ['./src/styles/globals.css', 'katex/dist/katex.min.css'],
       social: {
         github: 'https://github.com/AREA44/playastro',
       },
       sidebar: [
+        {
+          label: 'Home',
+          link: '/',
+        },
         {
           label: 'Guides',
           autogenerate: { directory: 'guides' },
