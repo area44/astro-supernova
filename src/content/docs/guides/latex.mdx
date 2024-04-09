@@ -1,6 +1,6 @@
 ---
-title: Enable LaTeX
-description: Enable LaTeX
+title: Enable LaTeX Support
+description: Enable LaTeX Support
 ---
 
 import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
@@ -48,7 +48,7 @@ This guide lead you use LaTeX in Starlight projects.
       },
       integrations: [
         starlight({
-    +      customCss: [..., './node_modules/katex/dist/katex.min.css'],
+    +      customCss: [..., 'katex/dist/katex.min.css'],
         })
       ],
     })
