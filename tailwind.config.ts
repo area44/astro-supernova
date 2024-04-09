@@ -10,6 +10,9 @@ const config: Config = {
         accent: colors.indigo,
         gray: colors.zinc,
       },
+      fontFamily: {
+        sans: ['Inter'],
+      },
     },
   },
   plugins: [starlightPlugin()],
