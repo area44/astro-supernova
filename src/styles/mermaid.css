@@ -1,0 +1,19 @@
+svg[id^='mermaid'] {
+  /* text in mermaid diagram partially hidden otherwise */
+  .node .label {
+    line-height: 1.2;
+  }
+
+  .flowchart-link {
+    stroke: var(--sl-color-white) !important;
+  }
+
+  .marker {
+    stroke: var(--sl-color-white);
+    fill: var(--sl-color-white) !important;
+  }
+
+  .node-labels {
+    fill: var(--sl-color-white);
+  }
+}
