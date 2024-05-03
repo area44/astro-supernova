@@ -12,24 +12,24 @@ This guide helps you add Mermaid Diagrams to Starlight.
 
 <Steps>
 
-1.  Start by installing the [`remark-mermaidjs`](https://github.com/remcohaszing/remark-mermaidjs) and [playwright](https://playwright.com):
+1.  Start by installing the [`rehype-mermaid`](https://github.com/remcohaszing/rehype-mermaid) and [`playwright`](https://playwright.com):
 
-    <PackageManagerCommand command="add remark-mermaidjs playwright playwright-chromium" />
+    <PackageManagerCommand command="add rehype-mermaid playwright playwright-chromium" />
 
 2.  Setup Astro config:
 
     ```js ins={3, 11}
     // astro.config.mjs
     import { defineConfig } from 'astro/config'
-    import remarkMermaidjs from 'remark-mermaidjs'
+    import rehypeMermaid from "rehype-mermaid"
 
     export default defineConfig({
       markdown: {
-        remarkPlugins: [remarkMermaidjs],
+        remarkPlugins: [rehypeMermaid],
       },
       integrations: [
         starlight({
-          customCss: [..., 'katex/dist/mermaid.css'],
+          customCss: ['./src/styles/mermaid.css',],
         })
       ],
     })
@@ -38,7 +38,7 @@ This guide helps you add Mermaid Diagrams to Starlight.
 3.  Custom some CSS for your diagrams:
 
     ```css
-    // mermaid.css
+    // styles/mermaid.css
     svg[id^="mermaid"] {
       /* text in mermaid diagram partially hidden otherwise */
       .node .label {

@@ -3,15 +3,15 @@ import starlight from '@astrojs/starlight'
 import tailwind from '@astrojs/tailwind'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
-import remarkMermaidjs from 'remark-mermaidjs'
+import rehypeMermaid from "rehype-mermaid"
 
 // https://astro.build/config
 export default defineConfig({
   site: process.env.CI ? 'https://area4.github.io' : 'http://localhost:4321',
   base: '/playastro',
   markdown: {
-    remarkPlugins: [remarkMath, remarkMermaidjs],
-    rehypePlugins: [rehypeKatex],
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex, rehypeMermaid],
   },
   integrations: [
     starlight({
