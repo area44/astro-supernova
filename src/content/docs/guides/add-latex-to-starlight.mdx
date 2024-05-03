@@ -1,27 +1,28 @@
 ---
-title: Enable LaTeX Support
-description: Enable LaTeX Support
+title: Add LaTeX to Starlight
+description: Add LaTeX to Starlight.
 ---
 
 import { Steps } from '@astrojs/starlight/components'
 import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
 
-This guide lead you use LaTeX in Starlight projects.
+This guide lead you use LaTeX in Starlight.
 
 ## Steps by steps
 
 <Steps>
+
 1.  Start by installing the [`remark-math`](https://github.com/remarkjs/remark-math) and [`rehype-katex`](https://github.com/remarkjs/remark-math/tree/main/packages/rehype-katex) package using your favorite package manager:
     <PackageManagerCommand command='add katex rehype-katex remark-math' />
 
 2.  Add `katex`, `rehype-katex` and `remark-math` in `astro.config.mjs`:
 
-    ```diff js
+    ```js ins={3-4, 14}
     // astro.config.mjs
     import { defineConfig } from 'astro/config'
     import starlight from '@astrojs/starlight'
-    +import remarkMath from 'remark-math'
-    +import rehypeKatex from 'rehype-katex'
+    import remarkMath from 'remark-math'
+    import rehypeKatex from 'rehype-katex'
 
     export default defineConfig({
       markdown: {
@@ -30,7 +31,7 @@ This guide lead you use LaTeX in Starlight projects.
       },
       integrations: [
         starlight({
-    +      customCss: [..., 'katex/dist/katex.min.css'],
+          customCss: [..., 'katex/dist/katex.min.css'],
         })
       ],
     })
@@ -38,9 +39,9 @@ This guide lead you use LaTeX in Starlight projects.
 
 </Steps>
 
-## Examples
+## Example
 
-Now you can use LaTeX in `.md` and `.mdx` file like this:
+Add this LaTeX code to `.md/mdx` file:
 
 ```md
 When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are

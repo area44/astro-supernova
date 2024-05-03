@@ -1,25 +1,26 @@
 ---
-title: Mermaid Diagrams in Markdown
-description: Mermaid Diagrams in Markdown.
+title: Add Mermaid Diagrams to Starlight
+description: Add Mermaid Diagrams to Starlight.
 ---
 
 import { Steps } from '@astrojs/starlight/components'
 import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
 
-This guide helps you add Mermaid Diagrams in Markdown for Starlight/Astro projects.
+This guide helps you add Mermaid Diagrams to Starlight.
 
 ## Steps by steps
 
 <Steps>
+
 1.  Start by installing the [`remark-mermaidjs`](https://github.com/remcohaszing/remark-mermaidjs) and [playwright](https://playwright.com):
     <PackageManagerCommand command='add remark-mermaidjs playwright playwright-chromium' />
 
 2.  Setup Astro config:
 
-    ```diff js
+    ```js ins={3, 11}
     // astro.config.mjs
     import { defineConfig } from 'astro/config'
-    +import remarkMermaidjs from 'remark-mermaidjs'
+    import remarkMermaidjs from 'remark-mermaidjs'
 
     export default defineConfig({
       markdown: {
@@ -27,7 +28,7 @@ This guide helps you add Mermaid Diagrams in Markdown for Starlight/Astro projec
       },
       integrations: [
         starlight({
-    +      customCss: [..., 'katex/dist/mermaid.css'],
+          customCss: [..., 'katex/dist/mermaid.css'],
         })
       ],
     })
@@ -60,7 +61,7 @@ This guide helps you add Mermaid Diagrams in Markdown for Starlight/Astro projec
 
 </Steps>
 
-## Examples
+## Example
 
 ```mermaid
 ---

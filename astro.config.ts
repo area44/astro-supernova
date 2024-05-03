@@ -16,11 +16,15 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'PlayAstro',
+      description: 'Play with Astro',
       customCss: [
         './src/styles/globals.css',
         'katex/dist/katex.min.css',
         './src/styles/mermaid.css',
       ],
+      components: {
+        Head: './src/components/Head.astro',
+      },
       social: {
         github: 'https://github.com/AREA44/playastro',
       },
