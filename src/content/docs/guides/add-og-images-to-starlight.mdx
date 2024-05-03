@@ -50,7 +50,7 @@ import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
 
     const ogImageUrl = new URL(
       `/og/${Astro.props.id.replace(/\.\w+$/, '.png')}`,
-      Astro.url,
+      Astro.site,
     )
     ---
 
