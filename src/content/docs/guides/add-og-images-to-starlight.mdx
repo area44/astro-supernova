@@ -10,12 +10,14 @@ import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
 
 <Steps>
 1.  Start by installing the [`astro-og-canvas`](https://github.com/delucis/astro-og-canvas) package:
+    
     <PackageManagerCommand command="add astro-og-canvas"/>
 
 2.  Create the image endpoint with this code:
+
     ```ts
     //src/pages/og/[...route].ts
-    
+
     import { getCollection } from 'astro:content'
     import { OGImageRoute } from 'astro-og-canvas'
 
@@ -39,6 +41,7 @@ import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
     ```
 
 3.  Override the `<Head/>` component:
+
     ```astro
     //src/components/Head.astro
     ---
@@ -59,21 +62,22 @@ import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
 
 4.  Configure Starlight in the `astro.config.ts` file:
 
-    ```ts ins={8-10}
-    //astro.config.ts
-    import { defineConfig } from 'astro/config'
-    import starlight from '@astrojs/starlight'
+        ```ts ins={8-10}
+        //astro.config.ts
+        import { defineConfig } from 'astro/config'
+        import starlight from '@astrojs/starlight'
 
-    export default defineConfig({
-      integrations: [
-        starlight({
-          components: {
-            Head: './src/components/Head.astro',
-          },
-        }),
-      ],
-    })
-    ```
+        export default defineConfig({
+          integrations: [
+            starlight({
+              components: {
+                Head: './src/components/Head.astro',
+              },
+            }),
+          ],
+        })
+        ```
+
 </Steps>
 
 Up to you to customize the image using the various options provided by [`astro-og-canvas`](https://github.com/delucis/astro-og-canvas/tree/latest/packages/astro-og-canvas#image-options).
