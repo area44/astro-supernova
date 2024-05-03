@@ -3,7 +3,8 @@ title: Embedding YouTube Videos
 description: Embedding YouTube videos in Starlight/Astro projects
 ---
 
-import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
+import { Steps } from '@astrojs/starlight/components'
+import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
 import YouTube from '@/components/YouTube.astro'
 
 This guide lead you embeding YouTube videos in Starlight/Astro projects.
@@ -12,36 +13,15 @@ This guide lead you embeding YouTube videos in Starlight/Astro projects.
 
 <Steps>
 1.  Start by installing the [`lite-youtube-embed`](https://github.com/paulirish/lite-youtube-embed) package using your favorite package manager:
-    <Tabs>
-      <TabItem label="npm">
-        ```sh
-        npm add lite-youtube-embed
-        ```
-      </TabItem>
-      <TabItem label="pnpm">
-        ```sh
-        pnpm add lite-youtube-embed
-        ```
-      </TabItem>
-      <TabItem label="Yarn">
-        ```sh
-        yarn add lite-youtube-embed
-        ```
-      </TabItem>
-      <TabItem label="Bun">
-        ```sh
-        bun add lite-youtube-embed
-        ```
-      </TabItem>
-    </Tabs>
+    <PackageManagerCommand command='add lite-youtube-embed' />
+
 2.  Create `YouTube.astro` in `src/components`:
-    
+
     ```astro
     // src/components/YouTube.astro
     ---
-    // Thanks to astro-embed-youtube
-    // https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube
-
+    // Source code from astro-embed-youtube: https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube
+    
     import 'lite-youtube-embed/src/lite-yt-embed.css'
 
     export interface Props extends astroHTML.JSX.HTMLAttributes {

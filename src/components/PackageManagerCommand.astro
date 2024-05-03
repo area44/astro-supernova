@@ -1,0 +1,20 @@
+---
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components'
+
+const { command } = Astro.props
+---
+
+<Tabs>
+  <TabItem label="npm" icon="seti:npm">
+    <Code code={`npm ${command}`} lang="bash" />
+  </TabItem>
+  <TabItem label="pnpm" icon="pnpm">
+    <Code code={`pnpm ${command}`} lang="bash" />
+  </TabItem>
+  <TabItem label="Yarn" icon="seti:yarn">
+    <Code code={`yarn ${command}`} lang="bash" />
+  </TabItem>
+  <TabItem label="Bun" icon="bun">
+    <Code code={`bun ${command}`} lang="bash" />
+  </TabItem>
+</Tabs>

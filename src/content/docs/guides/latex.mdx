@@ -3,7 +3,8 @@ title: Enable LaTeX Support
 description: Enable LaTeX Support
 ---
 
-import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
+import { Steps } from '@astrojs/starlight/components'
+import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
 
 This guide lead you use LaTeX in Starlight projects.
 
@@ -11,28 +12,7 @@ This guide lead you use LaTeX in Starlight projects.
 
 <Steps>
 1.  Start by installing the [`remark-math`](https://github.com/remarkjs/remark-math) and [`rehype-katex`](https://github.com/remarkjs/remark-math/tree/main/packages/rehype-katex) package using your favorite package manager:
-    <Tabs>
-      <TabItem label="npm">
-        ```sh
-        npm add katex rehype-katex remark-math
-        ```
-      </TabItem>
-      <TabItem label="pnpm">
-        ```sh
-        pnpm add katex rehype-katex remark-math
-        ```
-      </TabItem>
-      <TabItem label="Yarn">
-        ```sh
-        yarn add katex rehype-katex remark-math
-        ```
-      </TabItem>
-      <TabItem label="Bun">
-        ```sh
-        bun add katex rehype-katex remark-math
-        ```
-      </TabItem>
-    </Tabs>
+    <PackageManagerCommand command='add katex rehype-katex remark-math' />
 
 2.  Add `katex`, `rehype-katex` and `remark-math` in `astro.config.mjs`:
 

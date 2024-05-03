@@ -3,7 +3,8 @@ title: Mermaid Diagrams in Markdown
 description: Mermaid Diagrams in Markdown.
 ---
 
-import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
+import { Steps } from '@astrojs/starlight/components'
+import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
 
 This guide helps you add Mermaid Diagrams in Markdown for Starlight/Astro projects.
 
@@ -11,29 +12,8 @@ This guide helps you add Mermaid Diagrams in Markdown for Starlight/Astro projec
 
 <Steps>
 1.  Start by installing the [`remark-mermaidjs`](https://github.com/remcohaszing/remark-mermaidjs) and [playwright](https://playwright.com):
-    {/* prettier-ignore */}
-    <Tabs>
-      <TabItem label="npm">
-        ```sh
-        npm add remark-mermaidjs playwright playwright-chromium
-        ```
-      </TabItem>
-      <TabItem label="pnpm">
-        ```sh
-        pnpm add remark-mermaidjs playwright playwright-chromium
-        ```
-      </TabItem>
-      <TabItem label="Yarn">
-        ```sh
-        yarn add remark-mermaidjs playwright playwright-chromium
-        ```
-      </TabItem>
-      <TabItem label="Bun">
-        ```sh
-        bun add remark-mermaidjs playwright playwright-chromium
-        ```
-      </TabItem>
-    </Tabs>
+    <PackageManagerCommand command='add remark-mermaidjs playwright playwright-chromium' />
+
 2.  Setup Astro config:
 
     ```diff js
