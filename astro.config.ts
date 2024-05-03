@@ -3,7 +3,7 @@ import starlight from '@astrojs/starlight'
 import tailwind from '@astrojs/tailwind'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
-import rehypeMermaid from "rehype-mermaid"
+import rehypeMermaid from 'rehype-mermaid'
 
 // https://astro.build/config
 export default defineConfig({
