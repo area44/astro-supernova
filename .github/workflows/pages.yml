@@ -30,6 +30,9 @@ jobs:
 
       - name: Install dependencies
         run: bun install
+      
+      - name: Update playwright
+        run: bunx playwright install
 
       - name: Build with Astro
         run: bun run build
