@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
-    "@astrojs/starlight": "^0.23.1",
+    "@astrojs/starlight": "^0.23.2",
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.9.1",
+    "astro": "^4.9.2",
     "astro-og-canvas": "^0.5.0",
     "katex": "^0.16.10",
     "lite-youtube-embed": "^0.3.2",
@@ -26,9 +26,9 @@
   "devDependencies": {
     "playwright": "^1.44.1",
     "playwright-chromium": "^1.44.1",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.0",
     "prettier-plugin-astro": "^0.14.0",
-    "prettier-plugin-tailwindcss": "^0.5.14",
+    "prettier-plugin-tailwindcss": "^0.6.1",
     "typescript": "^5.4.5"
   }
 }
