@@ -38,6 +38,7 @@ export default defineConfig({
           autogenerate: { directory: 'guides' },
         },
       ],
+      credits: true,
     }),
     tailwind({ applyBaseStyles: false }),
   ],

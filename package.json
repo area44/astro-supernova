@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
-    "@astrojs/starlight": "^0.23.2",
+    "@astrojs/starlight": "^0.24.0",
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.9.2",
+    "astro": "^4.9.3",
     "astro-og-canvas": "^0.5.0",
     "katex": "^0.16.10",
     "lite-youtube-embed": "^0.3.2",
@@ -21,12 +21,12 @@
     "rehype-mermaid": "^2.1.0",
     "remark-math": "^6.0.0",
     "sharp": "^0.33.4",
-    "tailwindcss": "^3.4.3"
+    "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
     "playwright": "^1.44.1",
     "playwright-chromium": "^1.44.1",
-    "prettier": "^3.3.0",
+    "prettier": "^3.3.1",
     "prettier-plugin-astro": "^0.14.0",
     "prettier-plugin-tailwindcss": "^0.6.1",
     "typescript": "^5.4.5"
