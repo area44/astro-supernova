@@ -46,6 +46,9 @@ export default defineConfig({
       social: {
         github: 'https://github.com/AREA44/playastro',
       },
+      editLink: {
+        baseUrl: 'https://github.com/AREA44/playastro/blob/main/',
+      },
       sidebar: [
         {
           label: 'Home',
