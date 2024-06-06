@@ -7,13 +7,15 @@ import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeMermaid from 'rehype-mermaid'
 import rehypeExternalLinks from 'rehype-external-links'
+import { remarkModifiedTime } from "./plugins/remark-modified-time.mjs"
+
 
 // https://astro.build/config
 export default defineConfig({
   site: process.env.CI ? 'https://area44.github.io' : 'http://localhost:4321',
   base: '/playastro',
   markdown: {
-    remarkPlugins: [remarkMath],
+    remarkPlugins: [remarkMath, remarkModifiedTime,],
     rehypePlugins: [
       rehypeHeadingIds,
       [rehypeAutolinkHeadings, { behavior: 'append' }],
@@ -59,6 +61,7 @@ export default defineConfig({
           autogenerate: { directory: 'guides' },
         },
       ],
+      lastUpdated: true,
       credits: true,
     }),
     tailwind({ applyBaseStyles: false }),
