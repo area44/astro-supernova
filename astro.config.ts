@@ -18,7 +18,10 @@ export default defineConfig({
       [
         rehypeExternalLinks,
         {
-          content: { type: 'text', value: '↗' },
+          target: "_blank",
+          rel: ["nofollow", "noopener"],
+          content: { type: "text", value: "↗" },
+          contentProperties: { "aria-hidden": true, class: "no-select" },
         },
       ],
     ],

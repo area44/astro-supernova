@@ -12,7 +12,7 @@ This guides shows how to add icons to the end of each external link, so that vis
 
 <Steps>
 
-1.  Start by installing the [`rehype-external-links`](https://github.com/remarkjs/rehype-external-links) package using your favorite package manager:
+1.  Start by installing the [`rehype-external-links`](https://github.com/rehypejs/rehype-external-links) package using your favorite package manager:
 
     <PackageManagerCommand command="add rehype-external-links" />
 
@@ -38,6 +38,23 @@ This guides shows how to add icons to the end of each external link, so that vis
       },
     })
     ```
+    You can add rel (and target) to external links like this:
+    ```js
+    // ...
+    markdown: {
+      rehypePlugins: [
+        [
+          rehypeExternalLinks,
+          {
+            target: "_blank",
+            rel: ["nofollow", "noopener"],
+            content: { type: "text", value: "↗" },
+            contentProperties: { "aria-hidden": true, class: "no-select" },
+          },
+        ],
+      ]
+    },
+    ```
 
 </Steps>
 
@@ -56,3 +73,4 @@ The code above generates the following on the page:
 ## Resources
 
 1. [Add icons to external links](https://docs.astro.build/en/recipes/external-links)
+2. [rehype-external-links](https://www.npmjs.com/package/rehype-external-links)
