@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
 import tailwind from '@astrojs/tailwind'
+import { rehypeHeadingIds } from '@astrojs/markdown-remark'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeMermaid from 'rehype-mermaid'
@@ -13,15 +15,17 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [
+      rehypeHeadingIds,
+      [rehypeAutolinkHeadings, { behavior: 'append' }],
       rehypeKatex,
       rehypeMermaid,
       [
         rehypeExternalLinks,
         {
-          target: "_blank",
-          rel: ["nofollow", "noopener"],
-          content: { type: "text", value: "↗" },
-          contentProperties: { "aria-hidden": true, class: "no-select" },
+          target: '_blank',
+          rel: ['nofollow', 'noopener'],
+          content: { type: 'text', value: '↗' },
+          contentProperties: { 'aria-hidden': true, class: 'no-select' },
         },
       ],
     ],
@@ -32,6 +36,7 @@ export default defineConfig({
       description: 'Play with Astro',
       customCss: [
         './src/styles/globals.css',
+        './src/styles/headings.css',
         'katex/dist/katex.min.css',
         './src/styles/mermaid.css',
       ],

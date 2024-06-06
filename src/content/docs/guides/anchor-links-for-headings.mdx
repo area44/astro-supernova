@@ -1,0 +1,62 @@
+---
+title: Anchor Links for Headings
+description: Anchor Links for Headings.
+---
+
+import { Steps } from '@astrojs/starlight/components'
+import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
+
+This is guides how to add anchor links for headings in Starlight project.
+
+## Steps by steps
+
+<Steps>
+
+1.  Installing dependencies using your favorite package manager:
+
+    <PackageManagerCommand command="add rehype-autolink-headings @astrojs/markdown-remark" />
+
+2.  Import ` rehypeHeadingIds` and `rehypeAutolinkHeadings` in `astro.config.mjs`:
+
+    ```js ins={4-5, 15}
+    # astro.config.mjs
+
+    // ...
+    import { rehypeHeadingIds } from '@astrojs/markdown-remark'
+    import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+
+    export default defineConfig({
+      // ...
+      markdown: {
+        rehypePlugins: [rehypeHeadingIds, rehypeAutolinkHeadings],
+      },
+      integrations: [
+        starlight({
+          // ...
+          customCss: ['./src/styles/headings.css',],
+        })
+      ],
+    })
+    ```
+3.  Custom CSS for headings:
+    ```css
+    # src/styles/headings.css
+
+    .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) {
+      a {
+        text-decoration: none;
+        font-size: 1.2rem;
+        margin-left: 0.5rem;
+        color: transparent !important;
+      }
+
+      &:hover a {
+        text-shadow: 0 0 0 var(--sl-color-text-accent);
+      }
+
+      .icon.icon-link::after {
+        content: '🔗';
+      }
+    }
+    ```
+</Steps>
