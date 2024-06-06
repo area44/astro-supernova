@@ -6,7 +6,7 @@ description: Add LaTeX to Starlight.
 import { Steps } from '@astrojs/starlight/components'
 import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
 
-This guide lead you use LaTeX in Starlight.
+This guide leads you use LaTeX in Starlight.
 
 ## Steps by steps
 
@@ -18,20 +18,22 @@ This guide lead you use LaTeX in Starlight.
 
 2.  Add `katex`, `rehype-katex` and `remark-math` in `astro.config.mjs`:
 
-    ```js ins={3-4, 14}
-    // astro.config.mjs
-    import { defineConfig } from 'astro/config'
-    import starlight from '@astrojs/starlight'
+    ```js ins={4-5, 16}
+    # astro.config.mjs
+
+    // ...
     import remarkMath from 'remark-math'
     import rehypeKatex from 'rehype-katex'
 
     export default defineConfig({
+      // ...
       markdown: {
         remarkPlugins: [remarkMath],
         rehypePlugins: [rehypeKatex],
       },
       integrations: [
         starlight({
+          // ...
           customCss: [..., 'katex/dist/katex.min.css'],
         })
       ],
@@ -42,9 +44,9 @@ This guide lead you use LaTeX in Starlight.
 
 ## Example
 
-Add this LaTeX code to `.md/mdx` file:
+```mdx
+# src/content/docs/example.mdx
 
-```md
 When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
 $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 ```

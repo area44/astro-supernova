@@ -1,0 +1,58 @@
+---
+title: Add Icons to External Links
+description: Add Icons to External Links.
+---
+
+import { Steps } from '@astrojs/starlight/components'
+import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
+
+This guides shows how to add icons to the end of each external link, so that visitors will know they are leaving your site.
+
+## Steps by steps
+
+<Steps>
+
+1.  Start by installing the [`rehype-external-links`](https://github.com/remarkjs/rehype-external-links) package using your favorite package manager:
+
+    <PackageManagerCommand command="add rehype-external-links" />
+
+2.  Import the plugin into your `astro.config.mjs` file:
+
+    ```js ins={4, 10-15}
+    # astro.config.mjs
+
+    // ...
+    import remarkMath from 'rehype-external-links'
+
+    export default defineConfig({
+      // ...
+      markdown: {
+        rehypePlugins: [
+          [
+            rehypeExternalLinks,
+            {
+              content: { type: 'text', value: '↗' }
+            }
+          ],
+        ]
+      },
+    })
+    ```
+
+</Steps>
+
+## Example
+
+```mdx
+# src/content/docs/example.mdx
+
+[Google](https://gooogle.com)
+```
+
+The code above generates the following on the page:
+
+[Google](https://gooogle.com)
+
+## Resources
+
+1. [Add icons to external links](https://docs.astro.build/en/recipes/external-links)

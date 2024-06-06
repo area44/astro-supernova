@@ -1,10 +1,12 @@
 ---
-title: Add OG images to Starlight
-description: Add OG images to Starlight.
+title: Add OG Images to Starlight
+description: Add OG Images to Starlight.
 ---
 
 import { Steps } from '@astrojs/starlight/components'
 import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
+
+This guide will show one possible way to add OG images to Starlight.
 
 ## Steps by steps
 
@@ -16,7 +18,7 @@ import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
 2.  Create the image endpoint with this code:
 
     ```ts
-    //src/pages/og/[...route].ts
+    // src/pages/og/[...route].ts
 
     import { getCollection } from 'astro:content'
     import { OGImageRoute } from 'astro-og-canvas'
@@ -43,7 +45,7 @@ import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
 3.  Override the `<Head/>` component:
 
     ```astro
-    //src/components/Head.astro
+    // src/components/Head.astro
     ---
     import type { Props } from '@astrojs/starlight/props'
     import Default from '@astrojs/starlight/components/Head.astro'
@@ -60,23 +62,22 @@ import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
     <meta name="twitter:image" content={ogImageUrl} />
     ```
 
-4.  Configure Starlight in the `astro.config.ts` file:
+4.  Configure Starlight in the `astro.config.mjs` file:
 
-        ```ts ins={9}
-        //astro.config.ts
-        import { defineConfig } from 'astro/config'
-        import starlight from '@astrojs/starlight'
+    ```ts ins={8}
+    // astro.config.mjs
+    // ...
 
-        export default defineConfig({
-          integrations: [
-            starlight({
-              components: {
-                Head: './src/components/Head.astro',
-              },
-            }),
-          ],
-        })
-        ```
+    export default defineConfig({
+      integrations: [
+        starlight({
+          components: {
+            Head: './src/components/Head.astro',
+          },
+        }),
+      ],
+    })
+    ```
 
 </Steps>
 
@@ -84,4 +85,4 @@ Up to you to customize the image using the various options provided by [`astro-o
 
 ## Resources
 
-1. [Add Open Graph images to Starlight](https://hideoo.dev/notes/starlight-og-images) by HiDeoo.
+1. [Add Open Graph images to Starlight](https://hideoo.dev/notes/starlight-og-images)
