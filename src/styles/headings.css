@@ -1,8 +1,9 @@
 .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) {
   a {
     text-decoration: none;
-    font-size: 1.2rem;
-    margin-left: 0.5rem;
+    color: var(--sl-color-white);
+    line-height: var(--sl-line-height-headings);
+    font-weight: 600;
     color: transparent !important;
   }
 
