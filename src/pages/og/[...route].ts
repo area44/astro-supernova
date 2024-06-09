@@ -15,7 +15,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
       border: { width: 32, side: 'inline-start' },
       padding: 80,
       bgImage: {
-        path: `./src/pages/og/_background-image.png`,
+        path: './src/pages/og/_background-image.png',
       },
     }
   },

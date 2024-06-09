@@ -1,12 +1,12 @@
-import { defineConfig } from 'astro/config'
+import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import starlight from '@astrojs/starlight'
 import tailwind from '@astrojs/tailwind'
-import { rehypeHeadingIds } from '@astrojs/markdown-remark'
+import { defineConfig } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import remarkMath from 'remark-math'
+import rehypeExternalLinks from 'rehype-external-links'
 import rehypeKatex from 'rehype-katex'
 import rehypeMermaid from 'rehype-mermaid'
-import rehypeExternalLinks from 'rehype-external-links'
+import remarkMath from 'remark-math'
 
 // https://astro.build/config
 export default defineConfig({
