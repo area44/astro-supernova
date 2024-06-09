@@ -31,7 +31,7 @@ This guides shows how to add icons to the end of each external link, so that vis
           [
             rehypeExternalLinks,
             {
-              content: { type: 'text', value: '↗' }
+              content: { type: 'text', value: ' ↗' }
             }
           ],
         ]
@@ -48,8 +48,7 @@ This guides shows how to add icons to the end of each external link, so that vis
           {
             target: "_blank",
             rel: ["nofollow", "noopener"],
-            content: { type: "text", value: "↗" },
-            contentProperties: { "aria-hidden": true, class: "no-select" },
+            content: { type: "text", value: " ↗" },
           },
         ],
       ]
@@ -74,3 +73,4 @@ The code above generates the following on the page:
 
 1. [Add icons to external links](https://docs.astro.build/en/recipes/external-links)
 2. [rehype-external-links](https://www.npmjs.com/package/rehype-external-links)
+3. [Icons for external links](https://astro-digital-garden.stereobooster.com/recipes/icons-to-external-links)
