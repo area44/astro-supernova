@@ -11,7 +11,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 // https://astro.build/config
 export default defineConfig({
   site: process.env.CI ? 'https://area44.github.io' : 'http://localhost:4321',
-  base: '/supernova',
+  base: '/astro-supernova',
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [
@@ -44,10 +44,10 @@ export default defineConfig({
         Head: './src/components/Head.astro',
       },
       social: {
-        github: 'https://github.com/AREA44/supernova',
+        github: 'https://github.com/AREA44/astro-supernova',
       },
       editLink: {
-        baseUrl: 'https://github.com/AREA44/supernova/blob/main/',
+        baseUrl: 'https://github.com/AREA44/astro-supernova/blob/main/',
       },
       sidebar: [
         {

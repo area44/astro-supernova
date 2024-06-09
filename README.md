@@ -5,8 +5,8 @@
 ## Getting Started
 
 ```sh
-git clone https://github.com/AREA44/supernova
-cd supernova
+git clone https://github.com/AREA44/astro-supernova
+cd astro-supernova
 bun install
 bun run dev
 ```
