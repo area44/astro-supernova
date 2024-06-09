@@ -11,9 +11,9 @@ import rehypeExternalLinks from 'rehype-external-links'
 // https://astro.build/config
 export default defineConfig({
   site: process.env.CI ? 'https://area44.github.io' : 'http://localhost:4321',
-  base: '/playastro',
+  base: '/supernova',
   markdown: {
-    remarkPlugins: [remarkMath, remarkModifiedTime],
+    remarkPlugins: [remarkMath],
     rehypePlugins: [
       rehypeHeadingIds,
       [rehypeAutolinkHeadings, { behavior: 'append' }],
@@ -32,7 +32,7 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: 'PlayAstro',
+      title: 'Supernova',
       description: 'Play with Astro',
       customCss: [
         './src/styles/globals.css',
@@ -44,10 +44,10 @@ export default defineConfig({
         Head: './src/components/Head.astro',
       },
       social: {
-        github: 'https://github.com/AREA44/playastro',
+        github: 'https://github.com/AREA44/supernova',
       },
       editLink: {
-        baseUrl: 'https://github.com/AREA44/playastro/blob/main/',
+        baseUrl: 'https://github.com/AREA44/supernova/blob/main/',
       },
       sidebar: [
         {

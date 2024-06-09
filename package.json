@@ -1,5 +1,5 @@
 {
-  "name": "@are44/playastro",
+  "name": "@are44/supernova",
   "version": "0.1.0",
   "scripts": {
     "build": "astro check && astro build",
