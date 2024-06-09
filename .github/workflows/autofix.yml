@@ -22,8 +22,13 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Format with Prettier
-        run: bunx prettier -w . "!.github"
+      - name: Setup Biome CLI
+        uses: biomejs/setup-biome@v2
+        with:
+          version: latest
+
+      - name: Run Biome
+        run: biome ci .
 
       - name: Run autofix.ci
         uses: autofix-ci/action@v1.3
