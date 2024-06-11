@@ -4,7 +4,7 @@ import { Code, TabItem, Tabs } from '@astrojs/starlight/components'
 const { command } = Astro.props
 ---
 
-<Tabs>
+<Tabs syncKey="pkg">
   <TabItem label="npm" icon="seti:npm">
     <Code code={`npm ${command}`} lang="bash" />
   </TabItem>
