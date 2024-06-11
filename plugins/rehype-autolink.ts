@@ -1,6 +1,7 @@
 // This code is licensed under the MIT license.
 // For more details, see: https://github.com/biomejs/website/blob/main/plugins/rehype-autolink.ts
 
+import type { Nodes } from '@astrojs/starlight/expressive-code/hast'
 import type { RehypePlugins } from 'astro'
 import { toString as hastToString } from 'hast-util-to-string'
 import { h } from 'hastscript'
@@ -30,12 +31,12 @@ const anchorLinkSRLabel = (text: string) =>
 const autolinkConfig = {
   properties: { class: 'anchor-link' },
   behavior: 'after',
-  group: ({ tagName }) =>
+  group: ({ tagName }: { tagName: string }) =>
     h('div', {
       tabIndex: -1,
       class: `heading-wrapper level-${tagName}`,
     }),
-  content: (heading) => [
+  content: (heading: Nodes) => [
     anchorLinkIcon,
     anchorLinkSRLabel(hastToString(heading)),
   ],
