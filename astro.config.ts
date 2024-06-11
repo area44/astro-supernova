@@ -54,8 +54,8 @@ export default defineConfig({
           link: '/',
         },
         {
-          label: 'Guides',
-          autogenerate: { directory: 'guides' },
+          label: 'Recipes',
+          autogenerate: { directory: 'recipes' },
         },
       ],
       lastUpdated: true,
