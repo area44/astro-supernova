@@ -28,7 +28,7 @@ jobs:
           version: latest
 
       - name: Run Biome
-        run: biome format . --apply
+        run: biome format --write .
 
       - name: Run autofix.ci
         uses: autofix-ci/action@v1.3
