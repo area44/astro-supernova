@@ -12,25 +12,78 @@ This is guides how to add anchor links for headings in Starlight project.
 
 <Steps>
 
-1.  Installing dependencies using your favorite package manager:
+1.  Installing dependencies & devDependencies using your favorite package manager:
 
-    <PackageManagerCommand command="add rehype-autolink-headings @astrojs/markdown-remark" />
+    <PackageManagerCommand command="add rehype-autolink-headings rehype-slug hast-util-to-string hastscript html-escaper" />
+    
+    You may be need add `@types/html-escaper`:
 
-2.  Import ` rehypeHeadingIds` and `rehypeAutolinkHeadings` in `astro.config.mjs`:
+    <PackageManagerCommand command="add --dev @types/html-escaper" />
+
+2.  Create `rehype-autolink` plugins:
+
+    ```ts
+    # plugins/rehype-autolink.ts
+    import type { RehypePlugins } from "astro";
+    import { toString as hastToString } from "hast-util-to-string";
+    import { h } from "hastscript";
+    import { escape as htmlEscape } from "html-escaper";
+    import rehypeAutolinkHeadings from "rehype-autolink-headings";
+
+    const anchorLinkIcon = h(
+      "span",
+      { ariaHidden: "true", class: "anchor-icon" },
+      h(
+        "svg",
+        { width: 16, height: 16, viewBox: "0 0 24 24" },
+        h("path", {
+          fill: "currentcolor",
+          d: "m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z",
+        }),
+      ),
+    );
+
+    const anchorLinkSRLabel = (text: string) =>
+      h(
+        "span",
+        { "is:raw": true, class: "sr-only" },
+        `Section titled ${htmlEscape(text)}`,
+      );
+
+    const autolinkConfig = {
+      properties: { class: "anchor-link" },
+      behavior: "after",
+      group: ({ tagName }) =>
+        h("div", {
+          tabIndex: -1,
+          class: `heading-wrapper level-${tagName}`,
+        }),
+      content: (heading) => [
+        anchorLinkIcon,
+        anchorLinkSRLabel(hastToString(heading)),
+      ],
+    };
+
+    export const rehypeAutolink = (): RehypePlugins => [
+      [rehypeAutolinkHeadings, autolinkConfig],
+    ];
+    ```
+
+3.  Import `rehypeAutolink` and `rehypeSlug` in `astro.config.mjs`:
 
     ```js ins={4-5, 18}
     # astro.config.mjs
 
     // ...
-    import { rehypeHeadingIds } from '@astrojs/markdown-remark'
-    import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+    import { rehypeAutolink } from './plugins/rehype-autolink'
+    import rehypeSlug from 'rehype-slug'
 
     export default defineConfig({
       // ...
       markdown: {
         rehypePlugins: [
-          rehypeHeadingIds,
-          [rehypeAutolinkHeadings, { behavior: 'append' }],
+          rehypeSlug,
+          ...rehypeAutolink(),
         ],
       },
       integrations: [
@@ -41,25 +94,78 @@ This is guides how to add anchor links for headings in Starlight project.
       ],
     })
     ```
-3.  Custom CSS for headings:
+
+4.  Custom CSS for headings:
+
     ```css
     # src/styles/headings.css
+    .sl-markdown-content .heading-wrapper {
+      --icon-size: 0.75em;
+      --icon-spacing: 0.25em;
+      line-height: var(--sl-line-height-headings);
+    }
 
-    .sl-markdown-content :is(h1, h2, h3, h4, h5, h6) {
-      a {
-        text-decoration: none;
-        color: var(--sl-color-white);
-        line-height: var(--sl-line-height-headings);
-        font-weight: 600;
-        color: transparent !important;
+    .sl-markdown-content {
+      .level-h2 {
+        font-size: var(--sl-text-h2);
       }
 
-      &:hover a {
-        text-shadow: 0 0 0 var(--sl-color-text-accent);
+      .level-h3 {
+        font-size: var(--sl-text-h3);
       }
 
-      .icon.icon-link::after {
-        content: '🔗';
+      .level-h4 {
+        font-size: var(--sl-text-h4);
+      }
+
+      .level-h5 {
+        font-size: var(--sl-text-h5);
+      }
+    }
+
+    .sl-markdown-content .heading-wrapper> :first-child {
+      margin-inline-end: calc(var(--icon-size) + var(--icon-spacing));
+      display: inline;
+    }
+
+    .sl-markdown-content .heading-wrapper svg {
+      display: inline;
+      width: var(--icon-size);
+    }
+
+    .sl-markdown-content .anchor-link {
+      margin-inline-start: calc(-1 * (var(--icon-size)));
+      color: var(--sl-color-gray-3);
+
+      &:hover,
+      &:focus {
+        color: var(--sl-color-text-accent);
+      }
+    }
+
+    @media (hover: hover) {
+      .sl-markdown-content .anchor-link {
+        opacity: 0;
+      }
+    }
+
+    .sl-markdown-content .heading-wrapper:hover>.anchor-link,
+    .sl-markdown-content .anchor-link:focus {
+      opacity: 1;
+    }
+
+    @media (min-width: 95em) {
+      .sl-markdown-content .heading-wrapper {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        gap: var(--icon-spacing);
+        margin-inline-start: calc(-1 * (var(--icon-size) + var(--icon-spacing)));
+      }
+
+      .sl-markdown-content .heading-wrapper> :first-child,
+      .sl-markdown-content .anchor-link {
+        margin: 0;
       }
     }
     ```
@@ -67,4 +173,4 @@ This is guides how to add anchor links for headings in Starlight project.
 
 ## Resources
 
-1. [Anchors for headings](https://astro-digital-garden.stereobooster.com/recipes/anchors-for-headings/)
+1. `rehype-autolink` plugins from [biomejs/website](https://github.com/biomejs/website/blob/main/plugins/rehype-autolink.ts)
