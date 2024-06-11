@@ -1,7 +1,7 @@
 // This code is licensed under the MIT license.
 // For more details, see: https://github.com/biomejs/website/blob/main/plugins/rehype-autolink.ts
 
-import type { Nodes } from '@astrojs/starlight/expressive-code/hast'
+import type { Nodes } from 'hast'
 import type { RehypePlugins } from 'astro'
 import { toString as hastToString } from 'hast-util-to-string'
 import { h } from 'hastscript'
