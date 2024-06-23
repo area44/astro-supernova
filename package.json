@@ -11,10 +11,10 @@
   "dependencies": {
     "@astrojs/check": "^0.7.0",
     "@astrojs/markdown-remark": "^5.1.0",
-    "@astrojs/starlight": "^0.24.2",
+    "@astrojs/starlight": "^0.24.4",
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.10.2",
+    "astro": "^4.11.0",
     "astro-og-canvas": "^0.5.1",
     "hast-util-to-string": "^3.0.0",
     "hastscript": "^9.0.0",
@@ -31,10 +31,10 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.1",
+    "@biomejs/biome": "1.8.2",
     "@types/html-escaper": "^3.0.2",
     "playwright": "^1.44.1",
     "playwright-chromium": "^1.44.1",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   }
 }
