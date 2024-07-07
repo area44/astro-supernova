@@ -10,15 +10,15 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
-    "@astrojs/starlight": "^0.24.5",
+    "@astrojs/starlight": "^0.25.0",
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.11.3",
-    "astro-og-canvas": "^0.5.1",
+    "astro": "^4.11.5",
+    "astro-og-canvas": "^0.5.2",
     "hast-util-to-string": "^3.0.0",
     "hastscript": "^9.0.0",
     "html-escaper": "^3.0.3",
-    "katex": "^0.16.10",
+    "katex": "^0.16.11",
     "lite-youtube-embed": "^0.3.2",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-external-links": "^3.0.0",
@@ -32,8 +32,8 @@
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@types/html-escaper": "^3.0.2",
-    "playwright": "^1.45.0",
-    "playwright-chromium": "^1.45.0",
-    "typescript": "^5.5.2"
+    "playwright": "^1.45.1",
+    "playwright-chromium": "^1.45.1",
+    "typescript": "^5.5.3"
   }
 }
