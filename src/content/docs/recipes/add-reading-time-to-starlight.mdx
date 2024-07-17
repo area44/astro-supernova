@@ -1,0 +1,101 @@
+---
+title: Add Reading Time to Starlight
+description: Add Reading Time to Starlight.
+---
+
+import { Steps } from '@astrojs/starlight/components'
+import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
+
+This recipes will show one possible way to add reading time to Starlight.
+
+## Steps by steps
+
+1.  Start by installing all packages that need:
+
+    <PackageManagerCommand command="add reading-time mdast-util-to-string" />
+
+2.  Create reading time remark plugin:
+
+    ```js
+    // plugins/remark-reading-time.mjs
+    import getReadingTime from 'reading-time'
+    import { toString } from 'mdast-util-to-string'
+
+    export function remarkReadingTime() {
+      return function (tree, { data }) {
+        const textOnPage = toString(tree)
+        const readingTime = getReadingTime(textOnPage)
+        // readingTime.text will give us minutes read as a friendly string,
+        // i.e. "3 min read"
+        data.astro.frontmatter.minutesRead = readingTime.text
+      }
+    }
+    ```
+
+3.  Change Starlight's page title:
+
+    ```astro
+    // src/components/PageTitle.astro
+    ---
+    /*
+    * Implement the source code according to Astro Docs:
+    * https://github.com/withastro/docs/blob/main/src/components/starlight/PageTitle.astro
+    */
+    import type { Props } from '@astrojs/starlight/props'
+    const { data } = Astro.props.entry
+    const { entry } = Astro.props
+    const { remarkPluginFrontmatter } = await entry.render()
+    ---
+
+    <div class="wrapper">
+      <h1 id="_top">
+        <>
+          <span>{data.title}</span>
+        </>
+      </h1>
+      <p>{remarkPluginFrontmatter.minutesRead}</p>
+    </div>
+
+    <style>
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      h1 {
+        display: flex;
+        flex-wrap: wrap;
+        color: var(--sl-color-white);
+        font-size: var(--sl-text-h1);
+        font-weight: 600;
+        line-height: var(--sl-line-height-headings);
+      }
+    </style>
+    ```
+
+4.  Add the plugin to your config and override Starlight's page title:
+
+    ```js ins={3, 7, 14}
+    // astro.config.mjs
+    import { defineConfig } from 'astro/config'
+    import { remarkReadingTime } from './plugins/remark-reading-time.mjs'
+
+    export default defineConfig({
+      markdown: {
+        remarkPlugins: [remarkReadingTime],
+      },
+      ...
+      export default defineConfig({
+      integrations: [
+        starlight({
+          components: {
+            PageTitle: './src/components/PageTitle.astro',
+          },
+        }),
+      ],
+    })
+    ```
+
+## Resources
+
+1. [Add reading time](https://docs.astro.build/en/recipes/reading-time/)

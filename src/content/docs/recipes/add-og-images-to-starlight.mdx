@@ -11,9 +11,9 @@ This guide will show one possible way to add OG images to Starlight.
 ## Steps by steps
 
 <Steps>
-1.  Start by installing the [`astro-og-canvas`](https://github.com/delucis/astro-og-canvas) package:
+1.  Start by installing all packages that need:
     
-    <PackageManagerCommand command="add astro-og-canvas"/>
+    <PackageManagerCommand command="add astro-og-canvas canvaskit-wasm"/>
 
 2.  Create the image endpoint with this code:
 
@@ -25,7 +25,9 @@ This guide will show one possible way to add OG images to Starlight.
 
     const entries = await getCollection('docs')
 
-    const pages = Object.fromEntries(entries.map(({ data, id }) => [id, { data }]))
+    const pages = Object.fromEntries(
+      entries.map(({ data, id }) => [id, { data }]),
+    )
 
     export const { getStaticPaths, GET } = OGImageRoute({
       pages,

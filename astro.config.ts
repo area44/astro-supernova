@@ -7,13 +7,15 @@ import rehypeMermaid from 'rehype-mermaid'
 import rehypeSlug from 'rehype-slug'
 import remarkMath from 'remark-math'
 import { rehypeAutolink } from './plugins/rehype-autolink'
+import { remarkReadingTime } from './plugins/remark-reading-time'
+
 
 // https://astro.build/config
 export default defineConfig({
   site: process.env.CI ? 'https://area44.github.io' : 'http://localhost:4321',
   base: '/astro-supernova',
   markdown: {
-    remarkPlugins: [remarkMath],
+    remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [
       rehypeSlug,
       ...rehypeAutolink(),
@@ -41,6 +43,7 @@ export default defineConfig({
       ],
       components: {
         Head: './src/components/Head.astro',
+        PageTitle: './src/components/PageTitle.astro',
       },
       social: {
         github: 'https://github.com/AREA44/astro-supernova',
