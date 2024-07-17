@@ -9,7 +9,6 @@ import remarkMath from 'remark-math'
 import { rehypeAutolink } from './plugins/rehype-autolink'
 import { remarkReadingTime } from './plugins/remark-reading-time'
 
-
 // https://astro.build/config
 export default defineConfig({
   site: process.env.CI ? 'https://area44.github.io' : 'http://localhost:4321',
