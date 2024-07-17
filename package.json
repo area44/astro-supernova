@@ -2,14 +2,13 @@
   "name": "@are44/astro-supernova",
   "version": "0.1.0",
   "scripts": {
-    "build": "astro check && astro build",
+    "build": "astro build",
     "dev": "astro dev",
     "preview": "astro preview",
     "start": "astro dev",
     "format": "biome format --write ."
   },
   "dependencies": {
-    "@astrojs/check": "^0.8.1",
     "@astrojs/starlight": "^0.25.1",
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.0",

@@ -7,7 +7,7 @@ import rehypeMermaid from 'rehype-mermaid'
 import rehypeSlug from 'rehype-slug'
 import remarkMath from 'remark-math'
 import { rehypeAutolink } from './plugins/rehype-autolink'
-import { remarkReadingTime } from './plugins/remark-reading-time'
+import { remarkReadingTime } from './plugins/remark-reading-time.mjs'
 
 // https://astro.build/config
 export default defineConfig({
