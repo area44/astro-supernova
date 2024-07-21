@@ -33,9 +33,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install Playwright Browsers
-        run: npx playwright install chromium
-
       - name: Build with Astro
         run: pnpm build
 
