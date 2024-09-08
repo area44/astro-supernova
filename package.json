@@ -9,7 +9,7 @@
     "format": "biome format --write ."
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.27.0",
+    "@astrojs/starlight": "^0.27.1",
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.15.4",
