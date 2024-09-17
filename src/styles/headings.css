@@ -24,7 +24,7 @@
   }
 }
 
-.sl-markdown-content .heading-wrapper> :first-child {
+.sl-markdown-content .heading-wrapper > :first-child {
   margin-inline-end: calc(var(--icon-size) + var(--icon-spacing));
   display: inline;
 }
@@ -50,7 +50,7 @@
   }
 }
 
-.sl-markdown-content .heading-wrapper:hover>.anchor-link,
+.sl-markdown-content .heading-wrapper:hover > .anchor-link,
 .sl-markdown-content .anchor-link:focus {
   opacity: 1;
 }
@@ -65,7 +65,7 @@
     margin-inline-start: calc(-1 * (var(--icon-size) + var(--icon-spacing)));
   }
 
-  .sl-markdown-content .heading-wrapper> :first-child,
+  .sl-markdown-content .heading-wrapper > :first-child,
   .sl-markdown-content .anchor-link {
     margin: 0;
   }

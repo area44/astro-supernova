@@ -1,4 +1,4 @@
-svg[id^='mermaid'] {
+svg[id^="mermaid"] {
   /* text in mermaid diagram partially hidden otherwise */
   .node .label {
     line-height: 1.2;
