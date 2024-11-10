@@ -9,10 +9,10 @@
     "format": "biome format --write ."
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.28.5",
+    "@astrojs/starlight": "^0.29.0",
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.2",
-    "astro": "^4.16.8",
+    "astro": "^4.16.10",
     "astro-og-canvas": "^0.5.4",
     "canvaskit-wasm": "^0.39.1",
     "hast-util-to-string": "^3.0.1",
