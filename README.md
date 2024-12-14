@@ -7,8 +7,8 @@
 ```sh
 git clone https://github.com/AREA44/astro-supernova
 cd astro-supernova
-bun install
-bun run dev
+pnpm install
+pnpm run dev
 ```
 
 ## Want to learn more?

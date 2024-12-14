@@ -1,9 +1,9 @@
-import { getCollection } from 'astro:content'
-import { OGImageRoute } from 'astro-og-canvas'
+import { getCollection } from 'astro:content';
+import { OGImageRoute } from 'astro-og-canvas';
 
-const entries = await getCollection('docs')
+const entries = await getCollection('docs');
 
-const pages = Object.fromEntries(entries.map(({ data, id }) => [id, { data }]))
+const pages = Object.fromEntries(entries.map(({ data, id }) => [id, { data }]));
 
 export const { getStaticPaths, GET } = OGImageRoute({
   pages,
@@ -17,6 +17,6 @@ export const { getStaticPaths, GET } = OGImageRoute({
       bgImage: {
         path: './src/pages/og/_background-image.png',
       },
-    }
+    };
   },
-})
+});

@@ -1,6 +1,6 @@
-import starlightPlugin from '@astrojs/starlight-tailwind'
-import type { Config } from 'tailwindcss'
-import colors from 'tailwindcss/colors'
+import starlightPlugin from '@astrojs/starlight-tailwind';
+import type { Config } from 'tailwindcss';
+import colors from 'tailwindcss/colors';
 
 const config: Config = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -13,6 +13,6 @@ const config: Config = {
     },
   },
   plugins: [starlightPlugin()],
-}
+};
 
-export default config
+export default config;
