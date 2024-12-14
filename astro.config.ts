@@ -1,13 +1,14 @@
-import starlight from '@astrojs/starlight'
-import tailwind from '@astrojs/tailwind'
-import { defineConfig } from 'astro/config'
-import rehypeExternalLinks from 'rehype-external-links'
-import rehypeKatex from 'rehype-katex'
-import rehypeMermaid from 'rehype-mermaid'
-import rehypeSlug from 'rehype-slug'
-import remarkMath from 'remark-math'
-import { rehypeAutolink } from './plugins/rehype-autolink'
-import { remarkReadingTime } from './plugins/remark-reading-time.mjs'
+// @ts-check
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+import tailwind from '@astrojs/tailwind';
+import rehypeExternalLinks from 'rehype-external-links';
+import rehypeKatex from 'rehype-katex';
+import rehypeMermaid from 'rehype-mermaid';
+import rehypeSlug from 'rehype-slug';
+import remarkMath from 'remark-math';
+import { rehypeAutolink } from './plugins/rehype-autolink';
+import { remarkReadingTime } from './plugins/remark-reading-time.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -65,4 +66,4 @@ export default defineConfig({
     }),
     tailwind({ applyBaseStyles: false }),
   ],
-})
+});
