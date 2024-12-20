@@ -1,3 +1,16 @@
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
 [build]
   command = "pnpm dlx playwright install chromium && astro build"
   publish = "public"
+
+[[headers]]
+  for = "/*"
+    [headers.values]
+      X-Frame-Options = "DENY"
+
+[[headers]]
+  for = "/_astro/*"
+    [headers.values]
+      Cache-Control = "public, max-age=604800, immutable"
