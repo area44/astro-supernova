@@ -12,8 +12,7 @@ import { remarkReadingTime } from './plugins/remark-reading-time.mjs';
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.CI ? 'https://area44.github.io' : 'http://localhost:4321',
-  base: '/astro-supernova',
+  site: process.env.CI ? 'https://astro-supernova.netlify.app' : 'http://localhost:4321',
   markdown: {
     remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [
