@@ -3,7 +3,7 @@
 
 [build]
   command = "pnpm dlx playwright install chromium && astro build"
-  publish = "public"
+  publish = "dist"
 
 [[headers]]
   for = "/*"
