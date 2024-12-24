@@ -19,7 +19,7 @@ const site = NETLIFY_PREVIEW_SITE || 'https://astro-supernova.netlify.app';
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.CI ? site : 'http://localhost:4321',
+  site: site,
   markdown: {
     remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [
