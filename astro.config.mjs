@@ -12,15 +12,14 @@ import { rehypeAutolink } from './plugins/rehype-autolink';
 import { remarkReadingTime } from './plugins/remark-reading-time.mjs';
 
 /* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
-const NETLIFY_PREVIEW_SITE = process.env.CONTEXT !== 'production' && process.env.DEPLOY_PRIME_URL;
+const NETLIFY_PREVIEW_SITE =
+  process.env.CONTEXT !== 'production' && process.env.DEPLOY_PRIME_URL;
 
 const site = NETLIFY_PREVIEW_SITE || 'https://astro-supernova.netlify.app';
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.CI
-    ? site
-    : 'http://localhost:4321',
+  site: process.env.CI ? site : 'http://localhost:4321',
   markdown: {
     remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [
