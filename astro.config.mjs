@@ -1,4 +1,5 @@
 // @ts-check
+
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwind from '@astrojs/tailwind';
@@ -10,10 +11,15 @@ import remarkMath from 'remark-math';
 import { rehypeAutolink } from './plugins/rehype-autolink';
 import { remarkReadingTime } from './plugins/remark-reading-time.mjs';
 
+/* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
+const NETLIFY_PREVIEW_SITE =
+  process.env.CONTEXT !== 'production' && process.env.DEPLOY_PRIME_URL;
+
+const site = NETLIFY_PREVIEW_SITE || 'https://astro-supernova.netlify.app';
+
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.CI ? 'https://area44.github.io' : 'http://localhost:4321',
-  base: '/astro-supernova',
+  site: site,
   markdown: {
     remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [
