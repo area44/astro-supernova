@@ -1,8 +1,6 @@
 // @ts-check
-
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import tailwind from '@astrojs/tailwind';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeKatex from 'rehype-katex';
 import rehypeMermaid from 'rehype-mermaid';
@@ -70,6 +68,5 @@ export default defineConfig({
       lastUpdated: true,
       credits: true,
     }),
-    tailwind({ applyBaseStyles: false }),
   ],
 });
