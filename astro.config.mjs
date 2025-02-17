@@ -40,7 +40,6 @@ export default defineConfig({
       title: 'Supernova',
       description: 'Play with Astro',
       customCss: [
-        './src/styles/globals.css',
         './src/styles/headings.css',
         'katex/dist/katex.min.css',
         './src/styles/mermaid.css',
