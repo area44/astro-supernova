@@ -1,7 +1,7 @@
 ---
 import { Code, TabItem, Tabs } from '@astrojs/starlight/components';
 
-const { command } = Astro.props;
+const { command } = Astro.locals.starlightRoute;
 ---
 
 <Tabs syncKey="pkg">
