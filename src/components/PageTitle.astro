@@ -4,9 +4,9 @@
  * https://github.com/withastro/docs/blob/main/src/components/starlight/PageTitle.astro
  */
 
+import type { Props } from '@astrojs/starlight/props';
 import { render } from 'astro:content';
 import { Icon } from '@astrojs/starlight/components';
-import type { Props } from '@astrojs/starlight/props';
 
 const { entry } = Astro.props;
 const { data } = Astro.props.entry;
