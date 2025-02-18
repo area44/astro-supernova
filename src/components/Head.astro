@@ -1,4 +1,5 @@
 ---
+import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/Head.astro';
 
 const ogImageUrl = new URL(
@@ -7,7 +8,7 @@ const ogImageUrl = new URL(
 );
 ---
 
-<Default><slot /></Default>
+<Default {...Astro.props}/>
 
 <meta property="og:image" content={ogImageUrl} />
 <meta name="twitter:image" content={ogImageUrl} />
