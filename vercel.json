@@ -1,0 +1,8 @@
+{
+    "installCommand": "pnpm install",
+    "buildCommand": "pnpm dlx playwright install chromium && astro build",
+    "outputDirectory": "dist",
+    "github": {
+      "silent": true
+    }
+  }
