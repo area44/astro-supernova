@@ -4,12 +4,11 @@
  * https://github.com/withastro/docs/blob/main/src/components/starlight/PageTitle.astro
  */
 
-import type { Props } from '@astrojs/starlight/props';
 import { render } from 'astro:content';
 import { Icon } from '@astrojs/starlight/components';
 
-const { entry } = Astro.props;
-const { data } = Astro.props.entry;
+const { entry } = Astro.locals.starlightRoute;
+const { data } = Astro.locals.starlightRoute.entry;
 const { remarkPluginFrontmatter } = await render(entry);
 ---
 
