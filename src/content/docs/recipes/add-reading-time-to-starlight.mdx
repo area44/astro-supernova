@@ -44,10 +44,9 @@ This recipes will show one possible way to add reading time to Starlight.
 
     import { render } from 'astro:content';
     import { Icon } from '@astrojs/starlight/components';
-    import type { Props } from '@astrojs/starlight/props';
 
-    const { entry } = Astro.props;
-    const { data } = Astro.props.entry;
+    const { entry } = Astro.locals.starlightRoute;
+    const { data } = Astro.locals.starlightRoute.entry;
     const { remarkPluginFrontmatter } = await render(entry);
     ---
 
