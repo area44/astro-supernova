@@ -8,7 +8,7 @@
 git clone https://github.com/AREA44/astro-supernova
 cd astro-supernova
 pnpm install
-pnpm run dev
+pnpm dev
 ```
 
 ## Want to learn more?

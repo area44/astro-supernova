@@ -19,8 +19,6 @@
     "katex": "^0.16.21",
     "lite-youtube-embed": "^0.3.3",
     "mdast-util-to-string": "^4.0.0",
-    "playwright": "^1.51.0",
-    "playwright-chromium": "^1.51.0",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-external-links": "^3.0.0",
@@ -31,6 +29,7 @@
     "sharp": "^0.33.5"
   },
   "devDependencies": {
+    "@area44/biome-config": "^0.2.0",
     "@biomejs/biome": "1.9.4",
     "@types/html-escaper": "^3.0.4",
     "typescript": "^5.8.2"
