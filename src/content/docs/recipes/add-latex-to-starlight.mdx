@@ -3,27 +3,27 @@ title: Add LaTeX to Starlight
 description: Add LaTeX to Starlight.
 ---
 
-import { Steps } from '@astrojs/starlight/components'
-import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
+import { Steps } from "@astrojs/starlight/components";
+import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guide leads you use LaTeX in Starlight.
+This guide shows you how to use LaTeX in Starlight.
 
-## Steps by steps
+## Step-by-step Guide
 
 <Steps>
 
-1.  Start by installing the [`remark-math`](https://github.com/remarkjs/remark-math) and [`rehype-katex`](https://github.com/remarkjs/remark-math/tree/main/packages/rehype-katex) package using your favorite package manager:
+1.  Start by installing the [`remark-math`](https://github.com/remarkjs/remark-math) and [`rehype-katex`](https://github.com/rehypejs/rehype-katex) package using your favorite package manager:
 
     <PackageManagerCommand command="add katex rehype-katex remark-math" />
 
-2.  Add `katex`, `rehype-katex` and `remark-math` in `astro.config.mjs`:
+2.  Add `katex`, `rehype-katex`, and `remark-math` in `astro.config.mjs`:
 
     ```js ins={4-5, 16}
-    # astro.config.mjs
+    // astro.config.mjs
 
     // ...
-    import remarkMath from 'remark-math'
-    import rehypeKatex from 'rehype-katex'
+    import remarkMath from "remark-math";
+    import rehypeKatex from "rehype-katex";
 
     export default defineConfig({
       // ...
@@ -34,8 +34,8 @@ This guide leads you use LaTeX in Starlight.
       integrations: [
         starlight({
           // ...
-          customCss: ['katex/dist/katex.min.css'],
-        })
+          customCss: ["katex/dist/katex.min.css"],
+        }),
       ],
     })
     ```
@@ -45,7 +45,7 @@ This guide leads you use LaTeX in Starlight.
 ## Example
 
 ```mdx
-# src/content/docs/example.mdx
+// src/content/docs/example.mdx
 
 When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
 $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
@@ -55,3 +55,4 @@ The code above generates the following on the page:
 
 When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
 $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+

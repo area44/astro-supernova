@@ -3,7 +3,7 @@ name: Deploy Astro site to Pages
 
 on:
   pull_request:
-    branches: ['main']
+    branches: ["main"]
 
   workflow_dispatch:
 
@@ -13,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: false
 
 jobs:

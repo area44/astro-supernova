@@ -3,12 +3,12 @@ title: Add Mermaid Diagrams to Starlight
 description: Add Mermaid Diagrams to Starlight.
 ---
 
-import { Steps } from '@astrojs/starlight/components'
-import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
+import { Steps } from "@astrojs/starlight/components";
+import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
 This guide helps you add Mermaid Diagrams to Starlight.
 
-## Steps by steps
+## Step-by-step Guide
 
 <Steps>
 
@@ -16,26 +16,26 @@ This guide helps you add Mermaid Diagrams to Starlight.
 
     <PackageManagerCommand command="add rehype-mermaid playwright playwright-chromium" />
 
-2.  Setup Astro config:
+2.  Set up Astro configuration:
 
     ```js ins={4, 7-13}
-    # astro.config.mjs
+    // astro.config.mjs
 
     // ...
-    import rehypeMermaid from "rehype-mermaid"
+    import rehypeMermaid from "rehype-mermaid";
 
     export default defineConfig({
       markdown: {
         syntaxHighlight: {
-          type: 'shiki',
-          excludeLangs: ['mermaid', 'math'],
+          type: "shiki",
+          excludeLangs: ["mermaid", "math"],
         },
-        remarkPlugins: [rehypeMermaid],
+        rehypePlugins: [rehypeMermaid],
       },
       integrations: [
         starlight({
           // ...
-          customCss: ['./src/styles/mermaid.css',],
+          customCss: ["./src/styles/mermaid.css"],
         })
       ],
     })
@@ -45,7 +45,7 @@ This guide helps you add Mermaid Diagrams to Starlight.
 ## Example
 
 ````mdx
-# src/content/docs/example.mdx
+// src/content/docs/example.mdx
 
 ```mermaid
 graph TD

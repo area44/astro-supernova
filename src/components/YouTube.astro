@@ -1,6 +1,5 @@
 ---
-// Thanks to astro-embed-youtube
-// https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube
+// For more details, see: https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube
 
 import "lite-youtube-embed/src/lite-yt-embed.css";
 
@@ -35,10 +34,10 @@ const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
 <lite-youtube
   {videoid}
   {...attrs}
-  style={`background-image: url('${posterURL}');`}></lite-youtube>
+  style={`background-image: url("${posterURL}");`}></lite-youtube>
 
 <script>
-  import 'lite-youtube-embed'
+  import "lite-youtube-embed";
 </script>
 
 <style is:global>

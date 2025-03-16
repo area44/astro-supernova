@@ -1,4 +1,3 @@
-// This code is licensed under the MIT license.
 // For more details, see: https://github.com/biomejs/website/blob/main/plugins/rehype-autolink.ts
 
 import type { RehypePlugins } from "astro";
