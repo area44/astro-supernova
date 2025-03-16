@@ -2,6 +2,7 @@
 // For more details, see: https://github.com/biomejs/website/blob/main/plugins/rehype-autolink.ts
 
 import type { RehypePlugins } from "astro";
+import type { Element } from "hast";
 import { toString as hastToString } from "hast-util-to-string";
 import { h } from "hastscript";
 import { escape as htmlEscape } from "html-escaper";
@@ -30,12 +31,12 @@ const anchorLinkSRLabel = (text: string) =>
 const autolinkConfig = {
   properties: { class: "anchor-link" },
   behavior: "after",
-  group: ({ tagName }) =>
+  group: ({ tagName }: Partial<Element>) =>
     h("div", {
       tabIndex: -1,
       class: `heading-wrapper level-${tagName}`,
     }),
-  content: (heading) => [
+  content: (heading: Element) => [
     anchorLinkIcon,
     anchorLinkSRLabel(hastToString(heading)),
   ],

@@ -75,6 +75,9 @@ importers:
       '@biomejs/biome':
         specifier: 1.9.4
         version: 1.9.4
+      '@types/hast':
+        specifier: ^3.0.4
+        version: 3.0.4
       '@types/html-escaper':
         specifier: ^3.0.4
         version: 3.0.4
