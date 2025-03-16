@@ -20,9 +20,7 @@ This guide explains how to add anchor links to headings in your Starlight projec
 
     <PackageManagerCommand command="add --dev @types/hast @types/html-escaper" />
 
-2.  Create the `rehype-autolink` plugin:
-
-    Create a new file named `rehype-autolink.ts` in the `plugins` directory:
+2.  Create a new file named `rehype-autolink.ts` in the `plugins` directory:
 
     ```ts
     // plugins/rehype-autolink.ts
@@ -70,11 +68,9 @@ This guide explains how to add anchor links to headings in your Starlight projec
     ];
     ```
 
-3.  Configure Astro
+3.  Import and configure the plugin in `astro.config.mjs`:
 
-    Import and configure the plugin in `astro.config.mjs`:
-
-    ```js ins={4-5, 18}
+    ```js ins={3-4, 8, 12}
     // astro.config.mjs
 
     import { rehypeAutolink } from "./plugins/rehype-autolink";
@@ -92,9 +88,7 @@ This guide explains how to add anchor links to headings in your Starlight projec
     });
     ```
 
-4.  Style the Headings
-
-    Create a `headings.css` file in `src/styles/` and add the following styles:
+4.  Create a `headings.css` file in `src/styles/` and add the following styles:
 
     ```css
     // src/styles/headings.css
