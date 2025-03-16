@@ -12,13 +12,13 @@ This guide helps you add Mermaid Diagrams to Starlight.
 
 <Steps>
 
-1.  Start by installing the [`rehype-mermaid`](https://github.com/remcohaszing/rehype-mermaid):
+1.  Start by installing the [`rehype-mermaid`](https://github.com/remcohaszing/rehype-mermaid) and [`playwright`](https://playwright.com):
 
-    <PackageManagerCommand command="add rehype-mermaid" />
+    <PackageManagerCommand command="add rehype-mermaid playwright playwright-chromium" />
 
 2.  Setup Astro config:
 
-    ```js ins={4, 13}
+    ```js ins={4, 7-13}
     # astro.config.mjs
 
     // ...
@@ -27,8 +27,9 @@ This guide helps you add Mermaid Diagrams to Starlight.
     export default defineConfig({
       markdown: {
         syntaxHighlight: {
-        type: 'shiki',
-        excludeLangs: ['mermaid', 'math'],
+          type: 'shiki',
+          excludeLangs: ['mermaid', 'math'],
+        },
         remarkPlugins: [rehypeMermaid],
       },
       integrations: [
