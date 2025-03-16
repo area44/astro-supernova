@@ -3,71 +3,72 @@ title: Add Icons to External Links
 description: Add Icons to External Links.
 ---
 
-import { Steps } from '@astrojs/starlight/components'
-import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
+import { Steps } from "@astrojs/starlight/components";
+import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guides shows how to add icons to the end of each external link, so that visitors will know they are leaving your site.
+This guide shows how to add icons to the end of each external link, so that visitors will know they are leaving your site.
 
-## Steps by steps
+## Step-by-Step Guide
 
 <Steps>
 
-1.  Start by installing the [`rehype-external-links`](https://github.com/rehypejs/rehype-external-links) package using your favorite package manager:
+1. Install the [`rehype-external-links`](https://github.com/rehypejs/rehype-external-links) package as a dependency:
 
-    <PackageManagerCommand command="add rehype-external-links" />
+   <PackageManagerCommand command="add rehype-external-links" />
 
-2.  Import the plugin into your `astro.config.mjs` file:
+2. Import the plugin and configure it in your `astro.config.mjs` file:
 
-    ```js ins={4, 10-15}
-    # astro.config.mjs
+   ```js ins={2, 6-13}
+   // astro.config.mjs
+   import rehypeExternalLinks from "rehype-external-links";
 
-    // ...
-    import rehypeExternalLinks from 'rehype-external-links'
+   export default defineConfig({
+     markdown: {
+       rehypePlugins: [
+         [
+           rehypeExternalLinks,
+           {
+             content: { type: "text", value: " ↗" },
+           },
+         ],
+       ],
+     },
+   });
+   ```
 
-    export default defineConfig({
-      // ...
-      markdown: {
-        rehypePlugins: [
-          [
-            rehypeExternalLinks,
-            {
-              content: { type: 'text', value: ' ↗' }
-            }
-          ],
-        ]
-      },
-    })
-    ```
-    You can add rel (and target) to external links like this:
-    ```js
-    // ...
-    markdown: {
-      rehypePlugins: [
-        [
-          rehypeExternalLinks,
-          {
-            target: "_blank",
-            rel: ["nofollow", "noopener"],
-            content: { type: "text", value: " ↗" },
-          },
-        ],
-      ]
-    },
-    ```
+   **Optional: Add `target` and `rel` attributes**  
+   You can configure external links to open in a new tab with security attributes:
+
+   ```js
+   export default defineConfig({
+     markdown: {
+       rehypePlugins: [
+         [
+           rehypeExternalLinks,
+           {
+             target: "_blank",
+             rel: ["nofollow", "noopener"],
+             content: { type: "text", value: " ↗" },
+           },
+         ],
+       ],
+     },
+   });
+   ```
 
 </Steps>
 
 ## Example
 
 ```mdx
-# src/content/docs/example.mdx
+// src/content/docs/example.mdx
 
-[Google](https://gooogle.com)
+[Google](https://google.com)
 ```
 
-The code above generates the following on the page:
+This will generate the following HTML output:
 
-[Google](https://gooogle.com)
+[Google](https://google.com)
 
 ## Resources
 

@@ -69,9 +69,15 @@ importers:
         specifier: ^0.33.5
         version: 0.33.5
     devDependencies:
+      '@area44/biome-config':
+        specifier: ^0.2.0
+        version: 0.2.0
       '@biomejs/biome':
         specifier: 1.9.4
         version: 1.9.4
+      '@types/hast':
+        specifier: ^3.0.4
+        version: 3.0.4
       '@types/html-escaper':
         specifier: ^3.0.4
         version: 3.0.4
@@ -86,6 +92,9 @@ packages:
 
   '@antfu/utils@0.7.10':
     resolution: {integrity: sha512-+562v9k4aI80m1+VuMHehNJWLOFjBnXn3tdOitzD0il5b7smkSBal4+a3oKiQTbrwMmN/TBUMDvbdoWDehgOww==}
+
+  '@area44/biome-config@0.2.0':
+    resolution: {integrity: sha512-+tr2iWZ8mGt2ARG1bZfF35ERQbMpBNZlLk9afs6a+PY1qexqeEVwClWQz6ftpG20yvkSyoOgFgQU369oJbesMg==}
 
   '@astrojs/compiler@2.11.0':
     resolution: {integrity: sha512-zZOO7i+JhojO8qmlyR/URui6LyfHJY6m+L9nwyX5GiKD78YoRaZ5tzz6X0fkl+5bD3uwlDHayf6Oe8Fu36RKNg==}
@@ -2344,6 +2353,8 @@ snapshots:
       tinyexec: 0.3.2
 
   '@antfu/utils@0.7.10': {}
+
+  '@area44/biome-config@0.2.0': {}
 
   '@astrojs/compiler@2.11.0': {}
 

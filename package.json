@@ -31,7 +31,9 @@
     "sharp": "^0.33.5"
   },
   "devDependencies": {
+    "@area44/biome-config": "^0.2.0",
     "@biomejs/biome": "1.9.4",
+    "@types/hast": "^3.0.4",
     "@types/html-escaper": "^3.0.4",
     "typescript": "^5.8.2"
   },

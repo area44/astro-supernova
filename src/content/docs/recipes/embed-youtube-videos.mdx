@@ -3,13 +3,13 @@ title: Embed YouTube Videos
 description: Embed YouTube Videos.
 ---
 
-import { Steps } from '@astrojs/starlight/components'
-import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
-import YouTube from '@/components/YouTube.astro'
+import { Steps } from "@astrojs/starlight/components";
+import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
+import YouTube from "@/components/YouTube.astro";
 
-This guide leads you embed YouTube videos in Starlight/Astro.
+This guide leads you to embed YouTube videos in Starlight/Astro.
 
-## Steps by steps
+## Step-by-Step Guide
 
 <Steps>
 
@@ -22,9 +22,9 @@ This guide leads you embed YouTube videos in Starlight/Astro.
     ```astro
     // src/components/YouTube.astro
     ---
-    // Source code from astro-embed-youtube: https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube
+    // For more details, see: https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube
     
-    import 'lite-youtube-embed/src/lite-yt-embed.css'
+    import "lite-youtube-embed/src/lite-yt-embed.css"
 
     export interface Props extends astroHTML.JSX.HTMLAttributes {
       id: string
@@ -36,7 +36,7 @@ This guide leads you embed YouTube videos in Starlight/Astro.
     const { id, poster, ...attrs } = Astro.props as Props
 
     const urlPattern =
-      /(?=(\s*))\1(?:<a [^>]*?>)??(?=(\s*))\2(?:https?:\/\/)??(?:w{3}\.)??(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|shorts\/)??([A-Za-z0-9-_]{11})(?:[^\s<>]*)(?=(\s*))\4(?:<\/a>)??(?=(\s*))\5/
+      /(?=(\s*))\1(?:<a [^>]*?>)??(?=(\s*))\2(?:https?:\/\/)?(?:w{3}\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|shorts\/)?([A-Za-z0-9-_]{11})(?:[^\s<>]*)(?=(\s*))\4(?:<\/a>)??(?=(\s*))\5/
 
     function urlMatcher(url: string): string | undefined {
       const match = url.match(urlPattern)
@@ -57,10 +57,10 @@ This guide leads you embed YouTube videos in Starlight/Astro.
     <lite-youtube
       {videoid}
       {...attrs}
-      style={`background-image: url('${posterURL}');`}></lite-youtube>
+      style={`background-image: url("${posterURL}");`}></lite-youtube>
 
     <script>
-      import 'lite-youtube-embed'
+      import "lite-youtube-embed";
     </script>
 
     <style is:global>
@@ -82,7 +82,7 @@ This guide leads you embed YouTube videos in Starlight/Astro.
 Now, you can import it into your project inside any `.astro/mdx` file. For example:
 
 ```mdx
-import YouTube from 'import YouTube from '@/components/YouTube.astro';
+import YouTube from "@/components/YouTube.astro";
 
 <YouTube
   id="_NIpfrGXwG8"
@@ -96,3 +96,4 @@ The code above generates the following on the page:
   id="_NIpfrGXwG8"
   poster="https://i3.ytimg.com/vi/_NIpfrGXwG8/maxresdefault.jpg"
 />
+

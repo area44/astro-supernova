@@ -3,15 +3,15 @@ title: Add OG Images to Starlight
 description: Add OG Images to Starlight.
 ---
 
-import { Steps } from '@astrojs/starlight/components'
-import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
+import { Steps } from "@astrojs/starlight/components";
+import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
 This guide will show one possible way to add OG images to Starlight.
 
-## Steps by steps
+## Step-by-step Guide
 
 <Steps>
-1.  Start by installing all packages that need:
+1.  Start by installing the required packages:
     
     <PackageManagerCommand command="add astro-og-canvas canvaskit-wasm"/>
 
@@ -20,41 +20,41 @@ This guide will show one possible way to add OG images to Starlight.
     ```ts
     // src/pages/og/[...route].ts
 
-    import { getCollection } from 'astro:content'
-    import { OGImageRoute } from 'astro-og-canvas'
+    import { getCollection } from "astro:content";
+    import { OGImageRoute } from "astro-og-canvas";
 
-    const entries = await getCollection('docs')
+    const entries = await getCollection("docs");
 
-    const pages = Object.fromEntries(
-      entries.map(({ data, id }) => [id, { data }]),
-    )
+    const pages = Object.fromEntries(entries.map(({ data, id }) => [id, { data }]));
 
     export const { getStaticPaths, GET } = OGImageRoute({
       pages,
-      param: 'route',
+      param: "route",
       getImageOptions: (_path, page: (typeof pages)[number]) => {
         return {
           title: page.data.title,
           description: page.data.description,
-          border: { width: 32, side: 'inline-start' },
+          border: { width: 32, side: "inline-start" },
           padding: 80,
-          bgGradient: [[24, 24, 27]],
-        }
+          bgImage: {
+            path: "./src/pages/og/_background-image.png",
+          },
+        };
       },
-    })
+    });
     ```
 
-3.  Override the `<Head/>` component:
+3.  Modify the `<Head/>` component:
 
     ```astro
     // src/components/Head.astro
     ---
-    import Default from '@astrojs/starlight/components/Head.astro'
+    import Default from "@astrojs/starlight/components/Head.astro";
 
     const ogImageUrl = new URL(
-      `/og/${Astro.locals.starlightRoute.id.replace(/\.\w+$/, '.png')}`,
+      `/astro-supernova/og/${Astro.locals.starlightRoute.id.replace(/\.\w+$/, ".png")}`,
       Astro.site,
-    )
+    );
     ---
 
     <Default><slot /></Default>
@@ -73,7 +73,7 @@ This guide will show one possible way to add OG images to Starlight.
       integrations: [
         starlight({
           components: {
-            Head: './src/components/Head.astro',
+            Head: "./src/components/Head.astro",
           },
         }),
       ],

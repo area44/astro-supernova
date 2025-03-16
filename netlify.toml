@@ -2,7 +2,7 @@
   package = "@netlify/plugin-lighthouse"
 
 [build]
-  command = "pnpm dlx playwright install chromium && astro build"
+  command = "pnpm exec playwright install chromium && astro build"
 
 [[headers]]
   for = "/*"

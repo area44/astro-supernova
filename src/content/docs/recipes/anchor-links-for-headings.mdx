@@ -1,160 +1,124 @@
 ---
-title: Anchor Links for Headings
-description: Anchor Links for Headings.
+title: Add Anchor Links to Headings in Starlight
+description: Guide to adding anchor links to headings in a Starlight project.
 ---
 
-import { Steps } from '@astrojs/starlight/components'
-import PackageManagerCommand from '@/components/PackageManagerCommand.astro'
+import { Steps } from "@astrojs/starlight/components";
+import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This is guides how to add anchor links for headings in Starlight project.
+This guide explains how to add anchor links to headings in your Starlight project, making it easier for users to navigate and share specific sections.
 
-## Steps by steps
+## Step-by-step Guide
 
 <Steps>
 
-1.  Installing dependencies & devDependencies using your favorite package manager:
+1.  Install the necessary dependencies using your package manager:
 
     <PackageManagerCommand command="add rehype-autolink-headings rehype-slug hast-util-to-string hastscript html-escaper" />
-    
-    You may be need add `@types/html-escaper`:
 
-    <PackageManagerCommand command="add --dev @types/html-escaper" />
+    You may also need to add TypeScript definitions:
 
-2.  Create `rehype-autolink` plugins:
+    <PackageManagerCommand command="add --dev @types/hast @types/html-escaper" />
+
+2.  Create a new file named `rehype-autolink.ts` in the `plugins` directory:
 
     ```ts
-    # plugins/rehype-autolink.ts
-    // This code is licensed under the MIT license.
-    // For more details, see: https://github.com/withastro/docs/blob/main/plugins/rehype-autolink.ts
-    
-    import type { RehypePlugins } from 'astro'
-    import type { Nodes } from 'hast'
-    import { toString as hastToString } from 'hast-util-to-string'
-    import { h } from 'hastscript'
-    import { escape as htmlEscape } from 'html-escaper'
-    import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+    // plugins/rehype-autolink.ts
+    // For more details, see: https://github.com/biomejs/website/blob/main/plugins/rehype-autolink.ts
+
+    import type { RehypePlugins } from "astro";
+    import type { Element } from "hast";
+    import { toString as hastToString } from "hast-util-to-string";
+    import { h } from "hastscript";
+    import { escape as htmlEscape } from "html-escaper";
+    import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
     const anchorLinkIcon = h(
-      'span',
-      { ariaHidden: 'true', class: 'anchor-icon' },
+      "span",
+      { ariaHidden: "true", class: "anchor-icon" },
       h(
-        'svg',
-        { width: 16, height: 16, viewBox: '0 0 24 24' },
-        h('path', {
-          fill: 'currentcolor',
-          d: 'm12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z',
+        "svg",
+        { width: 16, height: 16, viewBox: "0 0 24 24" },
+        h("path", {
+          fill: "currentcolor",
+          d: "m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z",
         }),
       ),
-    )
+    );
 
     const anchorLinkSRLabel = (text: string) =>
-      h(
-        'span',
-        { 'is:raw': true, class: 'sr-only' },
-        `Section titled ${htmlEscape(text)}`,
-      )
+      h("span", { "is:raw": true, class: "sr-only" }, `Section titled ${htmlEscape(text)}`);
 
     const autolinkConfig = {
-      properties: { class: 'anchor-link' },
-      behavior: 'after',
-      group: ({ tagName }: { tagName: string }) =>
-        h('div', {
+      properties: { class: "anchor-link" },
+      behavior: "after",
+      group: ({ tagName }: Partial<Element>) =>
+        h("div", {
           tabIndex: -1,
           class: `heading-wrapper level-${tagName}`,
         }),
-      content: (heading: Nodes) => [
+      content: (heading: Element) => [
         anchorLinkIcon,
         anchorLinkSRLabel(hastToString(heading)),
       ],
-    }
+    };
 
     export const rehypeAutolink = (): RehypePlugins => [
       [rehypeAutolinkHeadings, autolinkConfig],
-    ]
-
+    ];
     ```
 
-3.  Import `rehypeAutolink` and `rehypeSlug` in `astro.config.mjs`:
+3.  Import and configure the plugin in `astro.config.mjs`:
 
-    ```js ins={4-5, 18}
-    # astro.config.mjs
+    ```js ins={3-4, 8, 12}
+    // astro.config.mjs
 
-    // ...
-    import { rehypeAutolink } from './plugins/rehype-autolink'
-    import rehypeSlug from 'rehype-slug'
+    import { rehypeAutolink } from "./plugins/rehype-autolink";
+    import rehypeSlug from "rehype-slug";
 
     export default defineConfig({
-      // ...
       markdown: {
-        rehypePlugins: [
-          rehypeSlug,
-          ...rehypeAutolink(),
-        ],
+        rehypePlugins: [rehypeSlug, ...rehypeAutolink()],
       },
       integrations: [
         starlight({
-          // ...
-          customCss: ['./src/styles/headings.css',],
-        })
+          customCss: ["./src/styles/headings.css"],
+        }),
       ],
-    })
+    });
     ```
 
-4.  Custom CSS for headings:
+4.  Create a `headings.css` file in `src/styles/` and add the following styles:
 
     ```css
-    # src/styles/headings.css
+    // src/styles/headings.css
     .sl-markdown-content .heading-wrapper {
       --icon-size: 0.75em;
       --icon-spacing: 0.25em;
       line-height: var(--sl-line-height-headings);
     }
 
-    .sl-markdown-content {
-      .level-h2 {
-        font-size: var(--sl-text-h2);
-      }
-
-      .level-h3 {
-        font-size: var(--sl-text-h3);
-      }
-
-      .level-h4 {
-        font-size: var(--sl-text-h4);
-      }
-
-      .level-h5 {
-        font-size: var(--sl-text-h5);
-      }
+    .sl-markdown-content .level-h2 {
+      font-size: var(--sl-text-h2);
     }
-
-    .sl-markdown-content .heading-wrapper> :first-child {
-      margin-inline-end: calc(var(--icon-size) + var(--icon-spacing));
-      display: inline;
+    .sl-markdown-content .level-h3 {
+      font-size: var(--sl-text-h3);
     }
-
-    .sl-markdown-content .heading-wrapper svg {
-      display: inline;
-      width: var(--icon-size);
+    .sl-markdown-content .level-h4 {
+      font-size: var(--sl-text-h4);
+    }
+    .sl-markdown-content .level-h5 {
+      font-size: var(--sl-text-h5);
     }
 
     .sl-markdown-content .anchor-link {
       margin-inline-start: calc(-1 * (var(--icon-size)));
       color: var(--sl-color-gray-3);
-
-      &:hover,
-      &:focus {
-        color: var(--sl-color-text-accent);
-      }
+      opacity: 0;
+      transition: opacity 0.2s ease;
     }
 
-    @media (hover: hover) {
-      .sl-markdown-content .anchor-link {
-        opacity: 0;
-      }
-    }
-
-    .sl-markdown-content .heading-wrapper:hover>.anchor-link,
+    .sl-markdown-content .heading-wrapper:hover > .anchor-link,
     .sl-markdown-content .anchor-link:focus {
       opacity: 1;
     }
@@ -167,13 +131,9 @@ This is guides how to add anchor links for headings in Starlight project.
         gap: var(--icon-spacing);
         margin-inline-start: calc(-1 * (var(--icon-size) + var(--icon-spacing)));
       }
-
-      .sl-markdown-content .heading-wrapper> :first-child,
-      .sl-markdown-content .anchor-link {
-        margin: 0;
-      }
     }
     ```
+
 </Steps>
 
 ## Resources
