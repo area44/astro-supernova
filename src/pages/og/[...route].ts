@@ -1,3 +1,5 @@
+// For details, see: https://hideoo.dev/notes/starlight-og-images
+
 import { getCollection } from "astro:content";
 import { OGImageRoute } from "astro-og-canvas";
 
