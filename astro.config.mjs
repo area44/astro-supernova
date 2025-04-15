@@ -48,9 +48,13 @@ export default defineConfig({
         Head: "./src/components/Head.astro",
         PageTitle: "./src/components/PageTitle.astro",
       },
-      social: {
-        github: "https://github.com/AREA44/astro-supernova",
-      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/AREA44/astro-supernova",
+        },
+      ],
       editLink: {
         baseUrl: "https://github.com/AREA44/astro-supernova/blob/main/",
       },
