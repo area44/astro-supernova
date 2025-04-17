@@ -42,7 +42,7 @@ export default defineConfig({
     starlight({
       title: "Supernova",
       description: "Play with Astro",
-      customCss: ["./src/styles/headings.css", "katex/dist/katex.min.css"],
+      customCss: ["katex/dist/katex.min.css"],
       components: {
         Head: "./src/components/Head.astro",
         PageTitle: "./src/components/PageTitle.astro",
