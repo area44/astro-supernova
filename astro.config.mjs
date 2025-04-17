@@ -1,12 +1,12 @@
 // @ts-check
-import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import { defineConfig } from "astro/config";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 import rehypeMermaid from "rehype-mermaid";
 import rehypeSlug from "rehype-slug";
 import remarkMath from "remark-math";
-import { rehypeAutolink } from "./plugins/rehype-autolink";
+import starlightLinksValidator from "starlight-links-validator";
 import { remarkReadingTime } from "./plugins/remark-reading-time.mjs";
 
 // https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables
@@ -26,7 +26,6 @@ export default defineConfig({
     remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [
       rehypeSlug,
-      ...rehypeAutolink(),
       rehypeKatex,
       rehypeMermaid,
       [
@@ -43,7 +42,7 @@ export default defineConfig({
     starlight({
       title: "Supernova",
       description: "Play with Astro",
-      customCss: ["./src/styles/headings.css", "katex/dist/katex.min.css"],
+      customCss: ["katex/dist/katex.min.css"],
       components: {
         Head: "./src/components/Head.astro",
         PageTitle: "./src/components/PageTitle.astro",
@@ -70,6 +69,7 @@ export default defineConfig({
       ],
       lastUpdated: true,
       credits: true,
+      plugins: [starlightLinksValidator()],
     }),
   ],
 });

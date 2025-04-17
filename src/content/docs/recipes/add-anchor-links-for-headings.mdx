@@ -1,12 +1,21 @@
 ---
 title: Add Anchor Links to Headings in Starlight
 description: Guide to adding anchor links to headings in a Starlight project.
+sidebar:
+  badge:
+    text: Deprecated
+    variant: caution
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guide explains how to add anchor links to headings in your Starlight project, making it easier for users to navigate and share specific sections.
+:::caution
+Since v0.34, Starlight has [built-in anchor link support](https://astro.build/blog/starlight-034/#heading-anchor-links), so this manual setup is no longer necessary.
+:::
+
+> This guide walks you through how to manually add anchor links to headings in your Starlight project. This is useful if you're working with a version before v0.34 or want more control over the behavior and styling.
+
 
 ## Step-by-step Guide
 
