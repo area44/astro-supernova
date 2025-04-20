@@ -10,13 +10,13 @@ importers:
     dependencies:
       '@astrojs/starlight':
         specifier: ^0.34.0
-        version: 0.34.0(astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
+        version: 0.34.0(astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
       astro:
-        specifier: ^5.7.3
-        version: 5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
+        specifier: ^5.7.4
+        version: 5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
       astro-og-canvas:
         specifier: ^0.7.0
-        version: 0.7.0(astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
+        version: 0.7.0(astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
       canvaskit-wasm:
         specifier: ^0.40.0
         version: 0.40.0
@@ -39,11 +39,11 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       playwright:
-        specifier: ^1.51.1
-        version: 1.51.1
+        specifier: ^1.52.0
+        version: 1.52.0
       playwright-chromium:
-        specifier: ^1.51.1
-        version: 1.51.1
+        specifier: ^1.52.0
+        version: 1.52.0
       reading-time:
         specifier: ^1.5.0
         version: 1.5.0
@@ -55,7 +55,7 @@ importers:
         version: 7.0.1
       rehype-mermaid:
         specifier: ^3.0.0
-        version: 3.0.0(playwright@1.51.1)
+        version: 3.0.0(playwright@1.52.0)
       rehype-slug:
         specifier: ^6.0.0
         version: 6.0.0
@@ -67,7 +67,7 @@ importers:
         version: 0.34.1
       starlight-links-validator:
         specifier: ^0.16.0
-        version: 0.16.0(@astrojs/starlight@0.34.0(astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)))
+        version: 0.16.0(@astrojs/starlight@0.34.0(astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)))
     devDependencies:
       '@area44/biome-config':
         specifier: ^0.4.1
@@ -999,8 +999,8 @@ packages:
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0 || ^5.0.0
 
-  astro@5.7.3:
-    resolution: {integrity: sha512-2b/OOS/A6GO4QP94x6oRzwTfXabFqE2rlUbbi42o6wZm9+zzcOc6VRFAq4lTOEI/iCrEVl3wTdBAC5X3h3Es+Q==}
+  astro@5.7.4:
+    resolution: {integrity: sha512-h+pndGOyoYbsBd0YvP7bL3gotUSlyltp8OLpcYg062w0n5c96wJ9xt/RmwwXzGbdcUjWFtw0c5z4zCA92NDmlA==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -2010,18 +2010,18 @@ packages:
   pkg-types@2.1.0:
     resolution: {integrity: sha512-wmJwA+8ihJixSoHKxZJRBQG1oY8Yr9pGLzRmSsNms0iNWyHHAlZCa7mmKiFR10YPZuz/2k169JiS/inOjBCZ2A==}
 
-  playwright-chromium@1.51.1:
-    resolution: {integrity: sha512-IQpN8lgv/fx++WRxT8ITZylDwYAamd3Fv5H9g2AWsicp0N829L1oXHziK/6l9h/TMxioSTqc4ifPiZLS8nITxw==}
+  playwright-chromium@1.52.0:
+    resolution: {integrity: sha512-ZTpzBzRFFRglyqRnAqdK5mFaw1P41qe8V2zSR+fA0eKPgGEEaH7r91ejXKijs3WhReatRcatHQe3ndMBMN1PLA==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright-core@1.51.1:
-    resolution: {integrity: sha512-/crRMj8+j/Nq5s8QcvegseuyeZPxpQCZb6HNk3Sos3BlZyAknRjoyJPFWkpNn8v0+P3WiwqFF8P+zQo4eqiNuw==}
+  playwright-core@1.52.0:
+    resolution: {integrity: sha512-l2osTgLXSMeuLZOML9qYODUQoPPnUsKsb5/P6LJ2e6uPKXUdPK5WYhN4z03G+YNbWmGDY4YENauNu4ZKczreHg==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.51.1:
-    resolution: {integrity: sha512-kkx+MB2KQRkyxjYPc3a0wLZZoDczmppyGJIvQ43l+aZihkaVvmu/21kiyaHeHjiFxjxNNFnUncKmcGIyOojsaw==}
+  playwright@1.52.0:
+    resolution: {integrity: sha512-JAwMNMBlxJ2oD1kce4KPtMkDeKGHQstdpFPcPH3maElAXon/QZeTvtsfXmTMRyO9TslfoYOXkSsvao2nE1ilTw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -2615,12 +2615,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.2.4(astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))':
+  '@astrojs/mdx@4.2.4(astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.1
       '@mdx-js/mdx': 3.1.0(acorn@8.14.1)
       acorn: 8.14.1
-      astro: 5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
       es-module-lexer: 1.6.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -2644,17 +2644,17 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.24.2
 
-  '@astrojs/starlight@0.34.0(astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))':
+  '@astrojs/starlight@0.34.0(astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.1
-      '@astrojs/mdx': 4.2.4(astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
+      '@astrojs/mdx': 4.2.4(astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
       '@astrojs/sitemap': 3.3.0
       '@pagefind/default-ui': 1.3.0
       '@types/hast': 3.0.4
       '@types/js-yaml': 4.0.9
       '@types/mdast': 4.0.4
-      astro: 5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
-      astro-expressive-code: 0.41.1(astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
+      astro: 5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro-expressive-code: 0.41.1(astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
       bcp-47: 2.1.0
       hast-util-from-html: 2.0.3
       hast-util-select: 6.0.4
@@ -3406,19 +3406,19 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-expressive-code@0.41.1(astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)):
+  astro-expressive-code@0.41.1(astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)):
     dependencies:
-      astro: 5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
       rehype-expressive-code: 0.41.1
 
-  astro-og-canvas@0.7.0(astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)):
+  astro-og-canvas@0.7.0(astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)):
     dependencies:
-      astro: 5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
       canvaskit-wasm: 0.39.1
       deterministic-object-hash: 2.0.2
       entities: 4.5.0
 
-  astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0):
+  astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0):
     dependencies:
       '@astrojs/compiler': 2.11.0
       '@astrojs/internal-helpers': 0.6.1
@@ -4559,12 +4559,12 @@ snapshots:
 
   mdn-data@2.12.2: {}
 
-  mermaid-isomorphic@3.0.4(playwright@1.51.1):
+  mermaid-isomorphic@3.0.4(playwright@1.52.0):
     dependencies:
       '@fortawesome/fontawesome-free': 6.7.2
       mermaid: 11.6.0
     optionalDependencies:
-      playwright: 1.51.1
+      playwright: 1.52.0
     transitivePeerDependencies:
       - supports-color
 
@@ -5001,15 +5001,15 @@ snapshots:
       exsolve: 1.0.4
       pathe: 2.0.3
 
-  playwright-chromium@1.51.1:
+  playwright-chromium@1.52.0:
     dependencies:
-      playwright-core: 1.51.1
+      playwright-core: 1.52.0
 
-  playwright-core@1.51.1: {}
+  playwright-core@1.52.0: {}
 
-  playwright@1.51.1:
+  playwright@1.52.0:
     dependencies:
-      playwright-core: 1.51.1
+      playwright-core: 1.52.0
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -5125,19 +5125,19 @@ snapshots:
       unist-util-visit-parents: 6.0.1
       vfile: 6.0.3
 
-  rehype-mermaid@3.0.0(playwright@1.51.1):
+  rehype-mermaid@3.0.0(playwright@1.52.0):
     dependencies:
       '@types/hast': 3.0.4
       hast-util-from-html-isomorphic: 2.0.0
       hast-util-to-text: 4.0.2
-      mermaid-isomorphic: 3.0.4(playwright@1.51.1)
+      mermaid-isomorphic: 3.0.4(playwright@1.52.0)
       mini-svg-data-uri: 1.4.4
       space-separated-tokens: 2.0.2
       unified: 11.0.5
       unist-util-visit-parents: 6.0.1
       vfile: 6.0.3
     optionalDependencies:
-      playwright: 1.51.1
+      playwright: 1.52.0
     transitivePeerDependencies:
       - supports-color
 
@@ -5404,9 +5404,9 @@ snapshots:
 
   space-separated-tokens@2.0.2: {}
 
-  starlight-links-validator@0.16.0(@astrojs/starlight@0.34.0(astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))):
+  starlight-links-validator@0.16.0(@astrojs/starlight@0.34.0(astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))):
     dependencies:
-      '@astrojs/starlight': 0.34.0(astro@5.7.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
+      '@astrojs/starlight': 0.34.0(astro@5.7.4(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
       '@types/picomatch': 3.0.2
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.3
