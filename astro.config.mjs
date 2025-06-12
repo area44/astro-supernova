@@ -4,10 +4,9 @@ import { defineConfig } from "astro/config";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 import rehypeMermaid from "rehype-mermaid";
-import rehypeSlug from "rehype-slug";
 import remarkMath from "remark-math";
 import starlightLinksValidator from "starlight-links-validator";
-import { remarkReadingTime } from "./plugins/remark-reading-time.mjs";
+import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 // https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables
 const site =
@@ -25,7 +24,6 @@ export default defineConfig({
     },
     remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [
-      rehypeSlug,
       rehypeKatex,
       rehypeMermaid,
       [
