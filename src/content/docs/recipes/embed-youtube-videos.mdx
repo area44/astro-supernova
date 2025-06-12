@@ -1,63 +1,65 @@
 ---
 title: Embed YouTube Videos
-description: Embed YouTube Videos.
+description: Learn how to embed YouTube videos in your Astro + Starlight project.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 import YouTube from "@/components/YouTube.astro";
 
-This guide leads you to embed YouTube videos in Starlight/Astro.
+:::caution
+Recommended use [`astro-embed`](https://github.com/delucis/astro-embed) for simple and extensible embedding of YouTube and other media.
+:::
+
+This guide shows how to embed lightweight YouTube videos using [`lite-youtube-embed`](https://github.com/paulirish/lite-youtube-embed) in Astro/Starlight.
 
 ## Step-by-Step Guide
 
 <Steps>
 
-1.  Start by installing the [`lite-youtube-embed`](https://github.com/paulirish/lite-youtube-embed) package using your favorite package manager:
+1. Install the dependency
+
+    Install the `lite-youtube-embed` package using your preferred package manager:
 
     <PackageManagerCommand command="add lite-youtube-embed" />
 
-2.  Create `YouTube.astro` in `src/components`:
+2. Create a `YouTube.astro` component
+
+    Create a file at `src/components/YouTube.astro`:
 
     ```astro
-    // src/components/YouTube.astro
     ---
-    // For more details, see: https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube
-    
-    import "lite-youtube-embed/src/lite-yt-embed.css"
+    import "lite-youtube-embed/src/lite-yt-embed.css";
 
     export interface Props extends astroHTML.JSX.HTMLAttributes {
-      id: string
-      poster?: string
-      params?: string
-      playlabel?: string
+      id: string;               // YouTube video ID or URL
+      poster?: string;          // Optional custom thumbnail
+      params?: string;          // Optional query parameters (?start=30 etc.)
+      playlabel?: string;       // Accessible label for play button
     }
 
-    const { id, poster, ...attrs } = Astro.props as Props
+    const { id, poster, params, playlabel, ...attrs } = Astro.props as Props;
 
-    const urlPattern =
-      /(?=(\s*))\1(?:<a [^>]*?>)??(?=(\s*))\2(?:https?:\/\/)?(?:w{3}\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|shorts\/)?([A-Za-z0-9-_]{11})(?:[^\s<>]*)(?=(\s*))\4(?:<\/a>)??(?=(\s*))\5/
+    const idRegExp = /^[A-Za-z0-9-_]{11}$/;
+    const urlPattern = /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9-_]{11})/;
 
-    function urlMatcher(url: string): string | undefined {
-      const match = url.match(urlPattern)
-      return match?.[3]
+    function extractVideoId(input: string): string | undefined {
+      if (idRegExp.test(input)) return input;
+      return input.match(urlPattern)?.[1];
     }
 
-    const idRegExp = /^[A-Za-z0-9-_]+$/
-
-    function extractID(idOrUrl: string) {
-      if (idRegExp.test(idOrUrl)) return idOrUrl
-      return urlMatcher(idOrUrl)
-    }
-
-    const videoid = extractID(id)
-    const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`
+    const videoId = extractVideoId(id);
+    const posterURL = poster || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
     ---
 
     <lite-youtube
-      {videoid}
+      videoid={videoId}
+      params={params}
+      playlabel={playlabel}
+      loading="lazy"
+      style={`background-image: url('${posterURL}');`}
       {...attrs}
-      style={`background-image: url("${posterURL}");`}></lite-youtube>
+    ></lite-youtube>
 
     <script>
       import "lite-youtube-embed";
@@ -77,12 +79,14 @@ This guide leads you to embed YouTube videos in Starlight/Astro.
 
 </Steps>
 
-## Example
+## Example Usage
 
-Now, you can import it into your project inside any `.astro/mdx` file. For example:
+You can now import and use the `<YouTube />` component in any `.astro` or `.mdx` file:
 
-```mdx
+```astro
+---
 import YouTube from "@/components/YouTube.astro";
+---
 
 <YouTube
   id="_NIpfrGXwG8"
@@ -90,10 +94,17 @@ import YouTube from "@/components/YouTube.astro";
 />
 ```
 
-The code above generates the following on the page:
+Or just pass a full YouTube URL:
+
+```astro
+<YouTube id="https://www.youtube.com/watch?v=_NIpfrGXwG8" />
+```
+
+## Output Preview
+
+The following will be rendered on your page:
 
 <YouTube
   id="_NIpfrGXwG8"
   poster="https://i3.ytimg.com/vi/_NIpfrGXwG8/maxresdefault.jpg"
 />
-

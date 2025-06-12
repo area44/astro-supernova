@@ -1,0 +1,75 @@
+---
+title: Add Mermaid Diagrams to Starlight
+description: Learn how to integrate Mermaid diagrams into your Starlight-powered Astro site.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
+
+:::caution
+For the best experience, we recommend using [`astro-mermaid`](https://github.com/joesaby/astro-mermaid) to render Mermaid diagrams in Astro.
+:::
+
+This guide helps you add Mermaid diagrams to your Starlight documentation site using `rehype-mermaid`.
+
+## Step-by-step Guide
+
+<Steps>
+
+1. Install dependencies
+
+   First, install [`rehype-mermaid`](https://github.com/remcohaszing/rehype-mermaid) and Playwright (required for rendering):
+
+   <PackageManagerCommand command="add rehype-mermaid playwright playwright-chromium" />
+
+2. Configure Astro
+
+   Update your `astro.config.mjs`:
+
+   ```js ins={5, 8-19}
+   // astro.config.mjs
+
+   import { defineConfig } from 'astro/config';
+   import starlight from '@astrojs/starlight';
+   import rehypeMermaid from 'rehype-mermaid';
+
+   export default defineConfig({
+     markdown: {
+       syntaxHighlight: {
+         type: 'shiki',
+         excludeLangs: ['mermaid', 'math'],
+       },
+       rehypePlugins: [rehypeMermaid],
+     },
+     integrations: [
+       starlight({
+         customCss: ['./src/styles/mermaid.css'],
+       }),
+     ],
+   });
+   ```
+
+</Steps>
+
+## Example
+
+Create a sample file like `src/content/docs/example.mdx` and include the following:
+
+````mdx
+```mermaid
+graph TD
+    A[Start] --> B{Is it working?}
+    B -->|Yes| C[Great!]
+    B -->|No| D[Debug]
+    D --> B
+```
+````
+
+The diagram above will render like this:
+
+![Mermaid Diagrams](./_images/mermaid-diagrams/example.png)
+
+## Resources
+
+- [astro-mermaid](https://github.com/joesaby/astro-mermaid)
+- [Mermaid Diagrams in Markdown with Astro](https://astro-digital-garden.stereobooster.com/recipes/mermaid-diagrams-in-markdown)
