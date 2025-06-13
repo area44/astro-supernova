@@ -1,0 +1,111 @@
+---
+title: Add Icons to External Links
+description: Guide to adding icons to external links to your Astro site.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
+
+This guide shows how to add an icon to the end of each external link, making it clear to users that the link will take them away from your site.
+
+## Step-by-Step Guide
+
+<Steps>
+
+1. Install the plugin  
+   Add the [`rehype-external-links`](https://github.com/rehypejs/rehype-external-links) package:
+
+   <PackageManagerCommand command="add rehype-external-links" />
+
+2. Configure Astro to use the plugin  
+    Open your `astro.config.mjs` and add the plugin to the Markdown config:
+
+    ```js ins={3, 6-15}
+    // astro.config.mjs
+    import { defineConfig } from 'astro/config';
+    import rehypeExternalLinks from 'rehype-external-links';
+
+    export default defineConfig({
+      markdown: {
+        rehypePlugins: [
+          [
+            rehypeExternalLinks,
+            {
+              content: { type: 'text', value: ' ↗' },
+            },
+          ],
+        ],
+      },
+    });
+    ```
+
+3. (Optional) Open external links in a new tab
+    You can also configure the plugin to add `target` and `rel` attributes for security and UX:
+
+    ```js
+    export default defineConfig({
+      markdown: {
+        rehypePlugins: [
+          [
+            rehypeExternalLinks,
+            {
+              target: '_blank',
+              rel: ['nofollow', 'noopener', 'noreferrer'],
+              content: { type: 'text', value: ' ↗' },
+            },
+          ],
+        ],
+      },
+    });
+    ```
+4. Customization Ideas
+    You can use an SVG icon instead of plain text:
+      ```js
+      content: {
+        type: 'element',
+        tagName: 'svg',
+        properties: {
+          xmlns: 'http://www.w3.org/2000/svg',
+          viewBox: '0 0 16 16',
+          width: 12,
+          height: 12,
+          fill: 'currentColor',
+          ariaHidden: 'true',
+          class: 'external-link-icon'
+        },
+        children: [
+          {
+            type: 'element',
+            tagName: 'path',
+            properties: {
+              d: 'M6 1a1 1 0 0 1 1-1h8v8a1 1 0 0 1-2 0V3.41L3.41 15 2 13.59 13.59 2H7a1 1 0 0 1-1-1z'
+            },
+            children: [],
+          },
+        ],
+      }
+      ```
+
+    And add custom styles for `.external-link-icon` in your global CSS.
+
+</Steps>
+
+## Example Usage
+
+Create or open a Markdown or MDX file, such as `src/content/docs/example.mdx`, and add this link:
+
+```mdx
+[Google](https://google.com)
+```
+
+When rendered, the output will look like this:
+
+[Google](https://google.com)
+
+A small arrow icon (`↗`) is automatically added after the link, indicating it's external.
+
+## Resources
+
+1. [Add icons to external links | Astro Docs](https://docs.astro.build/en/recipes/external-links)
+2. [rehype-external-links](https://www.npmjs.com/package/rehype-external-links)
+3. [Icons for external links | Astro Digital Garden](https://astro-digital-garden.stereobooster.com/recipes/icons-to-external-links)

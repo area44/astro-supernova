@@ -1,9 +1,9 @@
 // @ts-check
 import starlight from "@astrojs/starlight";
+import mermaid from "astro-mermaid";
 import { defineConfig } from "astro/config";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
-import rehypeMermaid from "rehype-mermaid";
 import remarkMath from "remark-math";
 import starlightLinksValidator from "starlight-links-validator";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
@@ -25,7 +25,6 @@ export default defineConfig({
     remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [
       rehypeKatex,
-      rehypeMermaid,
       [
         rehypeExternalLinks,
         {
@@ -37,6 +36,7 @@ export default defineConfig({
     ],
   },
   integrations: [
+    mermaid({}),
     starlight({
       title: "Supernova",
       description: "Play with Astro",

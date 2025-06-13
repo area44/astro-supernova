@@ -1,0 +1,70 @@
+---
+title: Add LaTeX to Starlight
+description: Add LaTeX rendering support to your Starlight site using KaTeX.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
+
+This guide shows you how to render LaTeX math formulas in your Starlight project using [`remark-math`](https://github.com/remarkjs/remark-math) and [`rehype-katex`](https://github.com/rehypejs/rehype-katex).
+
+## Step-by-step Guide
+
+<Steps>
+
+1. Install the required dependencies
+
+   <PackageManagerCommand command="add katex rehype-katex remark-math" />
+
+2. Configure Markdown plugins in `astro.config.mjs`
+
+    Open your `astro.config.mjs` file and configure both the remark and rehype plugins:
+
+    ```js ins={4-5, 15}
+    // astro.config.mjs
+
+    import { defineConfig } from 'astro/config';
+    import remarkMath from 'remark-math';
+    import rehypeKatex from 'rehype-katex';
+    import starlight from '@astrojs/starlight';
+
+    export default defineConfig({
+      markdown: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+      },
+      integrations: [
+        starlight({
+          customCss: ['katex/dist/katex.min.css'],
+        }),
+      ],
+    });
+    ```
+
+</Steps>
+
+## Example Usage
+
+Create a file like `src/content/docs/example.mdx` and add:
+
+```mdx
+When $a\ne0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
+
+$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+```
+
+The code above generates the following on the page:
+
+When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
+
+$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+
+## Resources
+
+1. [remark-math](https://github.com/remarkjs/remark-math)
+2. [rehype-katex](https://github.com/rehypejs/rehype-katex)
+3. [KaTeX documentation](https://katex.org/)
