@@ -58,40 +58,37 @@ This guide shows how to add an icon to the end of each external link, making it 
       },
     });
     ```
+4. Customization Ideas
+    You can use an SVG icon instead of plain text:
+      ```js
+      content: {
+        type: 'element',
+        tagName: 'svg',
+        properties: {
+          xmlns: 'http://www.w3.org/2000/svg',
+          viewBox: '0 0 16 16',
+          width: 12,
+          height: 12,
+          fill: 'currentColor',
+          ariaHidden: 'true',
+          class: 'external-link-icon'
+        },
+        children: [
+          {
+            type: 'element',
+            tagName: 'path',
+            properties: {
+              d: 'M6 1a1 1 0 0 1 1-1h8v8a1 1 0 0 1-2 0V3.41L3.41 15 2 13.59 13.59 2H7a1 1 0 0 1-1-1z'
+            },
+            children: [],
+          },
+        ],
+      }
+      ```
+
+    And add custom styles for `.external-link-icon` in your global CSS.
 
 </Steps>
-
-## Customization Ideas
-
-* Use an SVG icon instead of plain text:
-
-  ```js
-  content: {
-    type: 'element',
-    tagName: 'svg',
-    properties: {
-      xmlns: 'http://www.w3.org/2000/svg',
-      viewBox: '0 0 16 16',
-      width: 12,
-      height: 12,
-      fill: 'currentColor',
-      ariaHidden: 'true',
-      class: 'external-link-icon'
-    },
-    children: [
-      {
-        type: 'element',
-        tagName: 'path',
-        properties: {
-          d: 'M6 1a1 1 0 0 1 1-1h8v8a1 1 0 0 1-2 0V3.41L3.41 15 2 13.59 13.59 2H7a1 1 0 0 1-1-1z'
-        },
-        children: [],
-      },
-    ],
-  }
-  ```
-
-* Add custom styles for `.external-link-icon` in your global CSS.
 
 ## Example Usage
 
