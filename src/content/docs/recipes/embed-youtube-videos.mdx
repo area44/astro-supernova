@@ -1,13 +1,13 @@
 ---
 title: Embed YouTube Videos
-description: Learn how to embed YouTube videos in your Astro + Starlight project.
+description: Learn how to embed YouTube videos in your Astro project.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 import YouTube from "@/components/YouTube.astro";
 
-:::caution
+:::note
 Recommended use [`astro-embed`](https://github.com/delucis/astro-embed) for simple and extensible embedding of YouTube and other media.
 :::
 
@@ -100,11 +100,13 @@ Or just pass a full YouTube URL:
 <YouTube id="https://www.youtube.com/watch?v=_NIpfrGXwG8" />
 ```
 
-## Output Preview
-
 The following will be rendered on your page:
 
 <YouTube
   id="_NIpfrGXwG8"
   poster="https://i3.ytimg.com/vi/_NIpfrGXwG8/maxresdefault.jpg"
 />
+
+## Resources
+
+1. [astro-embed](https://github.com/delucis/astro-embed)
