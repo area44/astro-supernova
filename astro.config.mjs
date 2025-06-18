@@ -1,7 +1,7 @@
 // @ts-check
 import starlight from "@astrojs/starlight";
+import { defineConfig } from·"astro/config";
 import mermaid from "astro-mermaid";
-import { defineConfig } from "astro/config";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
