@@ -12,24 +12,24 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.34.4",
-    "astro": "^5.9.3",
-    "astro-mermaid": "^1.0.2",
+    "astro": "^5.10.0",
+    "astro-mermaid": "^1.0.3",
     "astro-og-canvas": "^0.7.0",
     "canvaskit-wasm": "^0.40.0",
     "katex": "^0.16.22",
     "lite-youtube-embed": "^0.3.3",
     "mdast-util-to-string": "^4.0.0",
-    "mermaid": "^11.6.0",
+    "mermaid": "^11.7.0",
     "reading-time": "^1.5.0",
     "rehype-external-links": "^3.0.0",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "sharp": "^0.34.2",
-    "starlight-links-validator": "^0.16.0"
+    "starlight-links-validator": "^0.17.0"
   },
   "devDependencies": {
     "@area44/biome-config": "^2.0.1",
-    "@biomejs/biome": "2.0.0",
+    "@biomejs/biome": "2.0.4",
     "typescript": "^5.8.3"
   },
   "packageManager": "pnpm@10.12.1"

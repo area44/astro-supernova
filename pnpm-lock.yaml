@@ -10,16 +10,16 @@ importers:
     dependencies:
       '@astrojs/starlight':
         specifier: ^0.34.4
-        version: 0.34.4(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
+        version: 0.34.4(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
       astro:
-        specifier: ^5.9.3
-        version: 5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
+        specifier: ^5.10.0
+        version: 5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
       astro-mermaid:
-        specifier: ^1.0.2
-        version: 1.0.2(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))(mermaid@11.6.0)
+        specifier: ^1.0.3
+        version: 1.0.3(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))(mermaid@11.7.0)
       astro-og-canvas:
         specifier: ^0.7.0
-        version: 0.7.0(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
+        version: 0.7.0(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
       canvaskit-wasm:
         specifier: ^0.40.0
         version: 0.40.0
@@ -33,8 +33,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       mermaid:
-        specifier: ^11.6.0
-        version: 11.6.0
+        specifier: ^11.7.0
+        version: 11.7.0
       reading-time:
         specifier: ^1.5.0
         version: 1.5.0
@@ -51,15 +51,15 @@ importers:
         specifier: ^0.34.2
         version: 0.34.2
       starlight-links-validator:
-        specifier: ^0.16.0
-        version: 0.16.0(@astrojs/starlight@0.34.4(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)))
+        specifier: ^0.17.0
+        version: 0.17.0(@astrojs/starlight@0.34.4(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)))
     devDependencies:
       '@area44/biome-config':
         specifier: ^2.0.1
         version: 2.0.1
       '@biomejs/biome':
-        specifier: 2.0.0
-        version: 2.0.0
+        specifier: 2.0.4
+        version: 2.0.4
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -134,55 +134,55 @@ packages:
     resolution: {integrity: sha512-H45s8fVLYjbhFH62dIJ3WtmJ6RSPt/3DRO0ZcT2SUiYiQyz3BLVb9ADEnLl91m74aQPS3AzzeajZHYOalWe3bg==}
     engines: {node: '>=6.9.0'}
 
-  '@biomejs/biome@2.0.0':
-    resolution: {integrity: sha512-BlUoXEOI/UQTDEj/pVfnkMo8SrZw3oOWBDrXYFT43V7HTkIUDkBRY53IC5Jx1QkZbaB+0ai1wJIfYwp9+qaJTQ==}
+  '@biomejs/biome@2.0.4':
+    resolution: {integrity: sha512-DNA++xe+E7UugTvI/HhzSFl6OwrVgU8SIV0Mb2fPtWPk2/oTr4eOSA5xy1JECrvgJeYxurmUBOS49qxv/OUkrQ==}
     engines: {node: '>=14.21.3'}
     hasBin: true
 
-  '@biomejs/cli-darwin-arm64@2.0.0':
-    resolution: {integrity: sha512-QvqWYtFFhhxdf8jMAdJzXW+Frc7X8XsnHQLY+TBM1fnT1TfeV/v9vsFI5L2J7GH6qN1+QEEJ19jHibCY2Ypplw==}
+  '@biomejs/cli-darwin-arm64@2.0.4':
+    resolution: {integrity: sha512-r5McIUMMiedwJ2rltuXhj0+w0W7IJLpkOS+OGCVZQQOOcrGY9gUSUmOo7O6Z7P0vlv5YYZkPbi+qR9MDDWRBSw==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [darwin]
 
-  '@biomejs/cli-darwin-x64@2.0.0':
-    resolution: {integrity: sha512-5JFhls1EfmuIH4QGFPlNpxJQFC6ic3X1ltcoLN+eSRRIPr6H/lUS1ttuD0Fj7rPgPhZqopK/jfH8UVj/1hIsQw==}
+  '@biomejs/cli-darwin-x64@2.0.4':
+    resolution: {integrity: sha512-aV5Zc/3E3aXFbrjK1IgCMEQc+6PCkBL+NS+vtjoNM2VPFeM5OL5Q82BI4YZyPnebj+k42BPIoYtz0jJ95PGRRg==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [darwin]
 
-  '@biomejs/cli-linux-arm64-musl@2.0.0':
-    resolution: {integrity: sha512-Bxsz8ki8+b3PytMnS5SgrGV+mbAWwIxI3ydChb/d1rURlJTMdxTTq5LTebUnlsUWAX6OvJuFeiVq9Gjn1YbCyA==}
+  '@biomejs/cli-linux-arm64-musl@2.0.4':
+    resolution: {integrity: sha512-cNukq2PthoOa7quqaKoEFz4Zd1pDPJGfTR5jVyk9Z9iFHEm6TI7+7eeIs3aYcEuuJPNFR9xhJ4Uj3E2iUWkV3A==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-arm64@2.0.0':
-    resolution: {integrity: sha512-BAH4QVi06TzAbVchXdJPsL0Z/P87jOfes15rI+p3EX9/EGTfIjaQ9lBVlHunxcmoptaA5y1Hdb9UYojIhmnjIw==}
+  '@biomejs/cli-linux-arm64@2.0.4':
+    resolution: {integrity: sha512-nlJhf7DyuajMj+S7Ygum59cbrHvI/nSRvedfJcEIx4X7SsiZjpRUiC5XtEn77kg7NIKq/KqG5roQIHkmjuFHCw==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64-musl@2.0.0':
-    resolution: {integrity: sha512-tiQ0ABxMJb9I6GlfNp0ulrTiQSFacJRJO8245FFwE3ty3bfsfxlU/miblzDIi+qNrgGsLq5wIZcVYGp4c+HXZA==}
+  '@biomejs/cli-linux-x64-musl@2.0.4':
+    resolution: {integrity: sha512-oWQALSbp8xF0t/wiHU2zdkZOpIHyaI9QxQv0Ytty9GAKsCGP6pczp8qyKD/P49iGJdDozHp5KiuQPxs33APhyA==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64@2.0.0':
-    resolution: {integrity: sha512-09PcOGYTtkopWRm6mZ/B6Mr6UHdkniUgIG/jLBv+2J8Z61ezRE+xQmpi3yNgUrFIAU4lPA9atg7mhvE/5Bo7Wg==}
+  '@biomejs/cli-linux-x64@2.0.4':
+    resolution: {integrity: sha512-jlzrNZ+OzN9wvp2RL3cl5Y4NiV7xSU+QV5A8bWXke1on3jKy7QbXajybSjVQ6aFw1gdrqkO/W8xV5HODhIMT4g==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-win32-arm64@2.0.0':
-    resolution: {integrity: sha512-vrTtuGu91xNTEQ5ZcMJBZuDlqr32DWU1r14UfePIGndF//s2WUAmer4FmgoPgruo76rprk37e8S2A2c0psXdxw==}
+  '@biomejs/cli-win32-arm64@2.0.4':
+    resolution: {integrity: sha512-/PbNhMJo9ONja7hOxLlifM/qgeHpRD9bF2flTz5KIrXnQqpuegaRuwP/HYdJ9TFkTKFjHkPLoE4onOz3HIT5CQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [win32]
 
-  '@biomejs/cli-win32-x64@2.0.0':
-    resolution: {integrity: sha512-2USVQ0hklNsph/KIR72ZdeptyXNnQ3JdzPn3NbjI4Sna34CnxeiYAaZcZzXPDl5PYNFBivV4xmvT3Z3rTmyDBg==}
+  '@biomejs/cli-win32-x64@2.0.4':
+    resolution: {integrity: sha512-dIM4SgO4/Rmsb4X7fwKtciQ682SZDSC1lm42uSM9gt8zNqBIeTaqsMc6eO1DpxYWMlAb/n2SML9+HUHmCib7NA==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
@@ -610,8 +610,8 @@ packages:
   '@mdx-js/mdx@3.1.0':
     resolution: {integrity: sha512-/QxEhPAvGwbQmy1Px8F899L5Uc2KZ6JtXwlCgJmjSTBedwOZkByYcBG4GceIGPXRDsmfxhHazuS+hlOShRLeDw==}
 
-  '@mermaid-js/parser@0.4.0':
-    resolution: {integrity: sha512-wla8XOWvQAwuqy+gxiZqY+c7FokraOTHRWMsbB4AgRx9Sy7zKslNyejy7E+a77qHfey5GXw/ik3IXv/NHMJgaA==}
+  '@mermaid-js/parser@0.5.0':
+    resolution: {integrity: sha512-AiaN7+VjXC+3BYE+GwNezkpjIcCI2qIMB/K4S2/vMWe0q/XJCBbx5+K7iteuz7VyltX9iAK4FmVTvGc9kjOV4w==}
 
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
@@ -981,8 +981,8 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0
 
-  astro-mermaid@1.0.2:
-    resolution: {integrity: sha512-cavcHMaDTqhuI3ba4okdCf5qEbntu1cE0cOauVxBgK/6mWX4LWIemVmk4UG8e2L/YuURvh/n/iDADgHQ8m5u6w==}
+  astro-mermaid@1.0.3:
+    resolution: {integrity: sha512-Xa8QN2NUWJLrFoueG1FO1XpzDu5LOiXH5dCpOTpiO/oqTHAN6N3iTUBTOchZHJZkVVPv1MT1FjxJ3TgmR6NlbA==}
     peerDependencies:
       astro: ^4.0.0 || ^5.0.0
       mermaid: ^10.0.0 || ^11.0.0
@@ -993,8 +993,8 @@ packages:
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0 || ^5.0.0
 
-  astro@5.9.3:
-    resolution: {integrity: sha512-VReZrpUa/3rfeiVvsQ1A2M3ujDPI+pDGIYOMtXPEZwut8tZoEyealXXLjitgCsJ+3dunKGZbg4Eak6i+r0vniw==}
+  astro@5.10.0:
+    resolution: {integrity: sha512-g/t54kVzQnFVijs+GbbbX/NBAFTl/3yNAEA/AQYq4FumLLVv7n4BIF+jKhcPGn9iFGyT1Cjvr7KB/qYyNvHEIg==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -1760,8 +1760,8 @@ packages:
   mdn-data@2.12.2:
     resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
 
-  mermaid@11.6.0:
-    resolution: {integrity: sha512-PE8hGUy1LDlWIHWBP05SFdqUHGmRcCcK4IzpOKPE35eOw+G9zZgcnMpyunJVUEOgb//KBORPjysKndw8bFLuRg==}
+  mermaid@11.7.0:
+    resolution: {integrity: sha512-/1/5R0rt0Z1Ak0CuznAnCF3HtQgayRXUz6SguzOwN4L+DuCobz0UxnQ+ZdTSZ3AugKVVh78tiVmsHpHWV25TCw==}
 
   micromark-core-commonmark@2.0.3:
     resolution: {integrity: sha512-RDBrHEMSxVFLg6xvnXmb1Ayr2WzLAWjeSATAoxwKYJV94TeNavgoIdA0a9ytzDSVzBy2YKFK+emCPOEibLeCrg==}
@@ -2187,8 +2187,8 @@ packages:
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
 
-  starlight-links-validator@0.16.0:
-    resolution: {integrity: sha512-wInToor19C7UxhesPuxTBIhB1LH1wzNQHD4HaumfcB+yFhg5u80yQEnkZDrABHrUEEEwFm//NoZbWhnUj1m2ug==}
+  starlight-links-validator@0.17.0:
+    resolution: {integrity: sha512-D+j0W7Z6CVSxPlt8jskBcApqaAU16JmuxE4c483Xj2sWJteiz0wW2xvk0cG3o/cW1q9x44Ezc668OnUi3a5LAA==}
     engines: {node: '>=18.17.1'}
     peerDependencies:
       '@astrojs/starlight': '>=0.32.0'
@@ -2592,12 +2592,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.2.4(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))':
+  '@astrojs/mdx@4.2.4(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.1
       '@mdx-js/mdx': 3.1.0(acorn@8.14.1)
       acorn: 8.14.1
-      astro: 5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
       es-module-lexer: 1.6.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -2625,17 +2625,17 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.24.2
 
-  '@astrojs/starlight@0.34.4(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))':
+  '@astrojs/starlight@0.34.4(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.2
-      '@astrojs/mdx': 4.2.4(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
+      '@astrojs/mdx': 4.2.4(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
       '@astrojs/sitemap': 3.3.0
       '@pagefind/default-ui': 1.3.0
       '@types/hast': 3.0.4
       '@types/js-yaml': 4.0.9
       '@types/mdast': 4.0.4
-      astro: 5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
-      astro-expressive-code: 0.41.1(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
+      astro: 5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro-expressive-code: 0.41.1(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
       bcp-47: 2.1.0
       hast-util-from-html: 2.0.3
       hast-util-select: 6.0.4
@@ -2687,39 +2687,39 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
-  '@biomejs/biome@2.0.0':
+  '@biomejs/biome@2.0.4':
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 2.0.0
-      '@biomejs/cli-darwin-x64': 2.0.0
-      '@biomejs/cli-linux-arm64': 2.0.0
-      '@biomejs/cli-linux-arm64-musl': 2.0.0
-      '@biomejs/cli-linux-x64': 2.0.0
-      '@biomejs/cli-linux-x64-musl': 2.0.0
-      '@biomejs/cli-win32-arm64': 2.0.0
-      '@biomejs/cli-win32-x64': 2.0.0
+      '@biomejs/cli-darwin-arm64': 2.0.4
+      '@biomejs/cli-darwin-x64': 2.0.4
+      '@biomejs/cli-linux-arm64': 2.0.4
+      '@biomejs/cli-linux-arm64-musl': 2.0.4
+      '@biomejs/cli-linux-x64': 2.0.4
+      '@biomejs/cli-linux-x64-musl': 2.0.4
+      '@biomejs/cli-win32-arm64': 2.0.4
+      '@biomejs/cli-win32-x64': 2.0.4
 
-  '@biomejs/cli-darwin-arm64@2.0.0':
+  '@biomejs/cli-darwin-arm64@2.0.4':
     optional: true
 
-  '@biomejs/cli-darwin-x64@2.0.0':
+  '@biomejs/cli-darwin-x64@2.0.4':
     optional: true
 
-  '@biomejs/cli-linux-arm64-musl@2.0.0':
+  '@biomejs/cli-linux-arm64-musl@2.0.4':
     optional: true
 
-  '@biomejs/cli-linux-arm64@2.0.0':
+  '@biomejs/cli-linux-arm64@2.0.4':
     optional: true
 
-  '@biomejs/cli-linux-x64-musl@2.0.0':
+  '@biomejs/cli-linux-x64-musl@2.0.4':
     optional: true
 
-  '@biomejs/cli-linux-x64@2.0.0':
+  '@biomejs/cli-linux-x64@2.0.4':
     optional: true
 
-  '@biomejs/cli-win32-arm64@2.0.0':
+  '@biomejs/cli-win32-arm64@2.0.4':
     optional: true
 
-  '@biomejs/cli-win32-x64@2.0.0':
+  '@biomejs/cli-win32-x64@2.0.4':
     optional: true
 
   '@braintree/sanitize-url@7.1.1': {}
@@ -3059,7 +3059,7 @@ snapshots:
       - acorn
       - supports-color
 
-  '@mermaid-js/parser@0.4.0':
+  '@mermaid-js/parser@0.5.0':
     dependencies:
       langium: 3.3.1
 
@@ -3390,26 +3390,26 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-expressive-code@0.41.1(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)):
+  astro-expressive-code@0.41.1(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)):
     dependencies:
-      astro: 5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
       rehype-expressive-code: 0.41.1
 
-  astro-mermaid@1.0.2(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))(mermaid@11.6.0):
+  astro-mermaid@1.0.3(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))(mermaid@11.7.0):
     dependencies:
-      astro: 5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
       mdast-util-to-string: 4.0.0
-      mermaid: 11.6.0
+      mermaid: 11.7.0
       unist-util-visit: 5.0.0
 
-  astro-og-canvas@0.7.0(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)):
+  astro-og-canvas@0.7.0(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)):
     dependencies:
-      astro: 5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
+      astro: 5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0)
       canvaskit-wasm: 0.39.1
       deterministic-object-hash: 2.0.2
       entities: 4.5.0
 
-  astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0):
+  astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0):
     dependencies:
       '@astrojs/compiler': 2.12.2
       '@astrojs/internal-helpers': 0.6.1
@@ -4550,11 +4550,11 @@ snapshots:
 
   mdn-data@2.12.2: {}
 
-  mermaid@11.6.0:
+  mermaid@11.7.0:
     dependencies:
       '@braintree/sanitize-url': 7.1.1
       '@iconify/utils': 2.3.0
-      '@mermaid-js/parser': 0.4.0
+      '@mermaid-js/parser': 0.5.0
       '@types/d3': 7.4.3
       cytoscape: 3.31.2
       cytoscape-cose-bilkent: 4.1.0(cytoscape@3.31.2)
@@ -5349,9 +5349,9 @@ snapshots:
 
   space-separated-tokens@2.0.2: {}
 
-  starlight-links-validator@0.16.0(@astrojs/starlight@0.34.4(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))):
+  starlight-links-validator@0.17.0(@astrojs/starlight@0.34.4(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))):
     dependencies:
-      '@astrojs/starlight': 0.34.4(astro@5.9.3(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
+      '@astrojs/starlight': 0.34.4(astro@5.10.0(jiti@2.4.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.0))
       '@types/picomatch': 3.0.2
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.3
