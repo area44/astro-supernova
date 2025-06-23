@@ -8,3 +8,4 @@ on:
 jobs:
   autofix:
     uses: area44/workflow-hub/.github/workflows/autofix.yml@main
+    
