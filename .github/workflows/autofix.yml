@@ -3,30 +3,8 @@ name: autofix.ci
 on:
   pull_request:
   push:
-    branches: ["main"]
-permissions:
-  contents: read
+    branches: ['main']
 
 jobs:
   autofix:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
-
-      - name: Install PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Setup Biome CLI
-        uses: biomejs/setup-biome@v2
-        with:
-          version: latest
-
-      - name: Run Biome
-        run: biome ci .
-
-      - name: Run autofix.ci
-        uses: autofix-ci/action@v1.3
+    uses: area44/workflow-hub/.github/workflows/autofix.yml@v0.1.0
