@@ -6,5 +6,5 @@ on:
   pull_request:
 
 jobs:
-  autofix:
+  astro:
     uses: area44/workflow-hub/.github/workflows/astro.yml@main
