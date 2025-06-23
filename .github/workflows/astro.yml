@@ -9,4 +9,4 @@ jobs:
   deploy:
     uses: area44/workflow-hub/.github/workflows/astro.yml@main
     with:
-      run_build: false
+      run_deploy: false
