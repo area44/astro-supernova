@@ -8,5 +8,3 @@ on:
 jobs:
   deploy:
     uses: area44/workflow-hub/.github/workflows/astro.yml@v0.2.0
-    with:
-      run_deploy: false
