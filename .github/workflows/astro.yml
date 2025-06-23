@@ -1,0 +1,10 @@
+name: Deploy Astro site to Pages
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  autofix:
+    uses: area44/workflow-hub/.github/workflows/astro.yml@v0.2.0

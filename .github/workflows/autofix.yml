@@ -1,10 +1,10 @@
 name: autofix.ci
 
 on:
-  pull_request:
   push:
     branches: ["main"]
+  pull_request:
 
 jobs:
   autofix:
-    uses: area44/workflow-hub/.github/workflows/autofix.yml@v0.1.0
+    uses: area44/workflow-hub/.github/workflows/autofix.yml@v0.2.0
