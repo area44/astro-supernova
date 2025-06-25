@@ -7,4 +7,4 @@ on:
 
 jobs:
   deploy:
-    uses: area44/actions-lib/actions/astro.yml@latest
+    uses: area44/actions-lib/.github/workflows/astro.yml@latest
