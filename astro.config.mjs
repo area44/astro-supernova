@@ -9,11 +9,13 @@ import starlightLinksValidator from "starlight-links-validator";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 // https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables
-const site = process.env.NETLIFY
-  ? process.env.CONTEXT === "production"
-    ? "https://astro-supernova.netlify.app"
-    : process.env.DEPLOY_PRIME_URL || process.env.URL
-  : (process.env.SITE ?? "http://localhost:4321");
+const site =
+  process.env.SITE ||
+  (process.env.NETLIFY
+    ? process.env.CONTEXT === "production"
+      ? "https://astro-supernova.netlify.app"
+      : process.env.DEPLOY_PRIME_URL || process.env.URL
+    : "http://localhost:4321");
 
 const base = process.env.BASE || "/";
 
