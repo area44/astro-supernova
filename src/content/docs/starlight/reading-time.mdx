@@ -1,54 +1,57 @@
 ---
 title: Add Reading Time
-description: Guide to adding Reading Time to your Starlight-powered Astro site.
+description: Guide to adding reading time to your Starlight-powered Astro site.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This recipe will show one possible way to add reading time to Starlight.
+This recipe shows one way to display an estimated reading time for each page in Starlight.
 
 ## Step-by-step Guide
 
-1.  Start by installing the required packages:
+<Steps>
 
-    <PackageManagerCommand command="add reading-time mdast-util-to-string unified @types/mdast" />
+1. Install the required packages:
 
-2.  Create a reading time remark plugin:
+   <PackageManagerCommand command="add reading-time mdast-util-to-string unified @types/mdast" />
 
-    ```ts
-    // plugins/remark-reading-time.ts
-    import type { Root } from "mdast";
-    import { toString as mdToString } from "mdast-util-to-string";
-    import getReadingTime from "reading-time";
-    import type { Plugin } from "unified";
+2. Create a `remark` plugin to calculate reading time.  
+   Save the file as `src/plugins/remark-reading-time.ts`:
 
-    interface AstroRemarkData {
-      astro: {
-        frontmatter: Record<string, unknown>;
-      };
-    }
+   ```ts
+   // src/plugins/remark-reading-time.ts
+   import type { Root } from "mdast";
+   import { toString as mdToString } from "mdast-util-to-string";
+   import getReadingTime from "reading-time";
+   import type { Plugin } from "unified";
 
-    export const remarkReadingTime: Plugin<[], Root> = () => {
-      return (tree: Root, file) => {
-        const data = file.data as Partial<AstroRemarkData>;
-        if (!data.astro) data.astro = { frontmatter: {} };
-        if (!data.astro.frontmatter) data.astro.frontmatter = {};
+   interface AstroRemarkData {
+     astro: {
+       frontmatter: Record<string, unknown>;
+     };
+   }
 
-        const textOnPage = mdToString(tree);
+   export const remarkReadingTime: Plugin<[], Root> = () => {
+     return (tree: Root, file) => {
+       const data = file.data as Partial<AstroRemarkData>;
+       if (!data.astro) data.astro = { frontmatter: {} };
+       if (!data.astro.frontmatter) data.astro.frontmatter = {};
 
-        const readingTime = getReadingTime(textOnPage);
+       const textOnPage = mdToString(tree);
+       const readingTime = getReadingTime(textOnPage);
 
-        data.astro.frontmatter.minutesRead = readingTime.text;
-      };
-    };
-    ```
+       data.astro.frontmatter.minutesRead = readingTime.text; // e.g. "3 min read"
+     };
+   };
+````
 
-3.  Modify Starlight's PageTitle component:
+3. Override Starlight’s `PageTitle` component to display reading time:
+   Create `src/components/PageTitle.astro`:
 
-    ```astro
-    // src/components/PageTitle.astro
-    ---
+   ```astro
+   // src/components/PageTitle.astro
+   ---
     /*
     * Implement the source code according to Astro Docs:
     * https://github.com/withastro/docs/blob/main/src/components/starlight/PageTitle.astro
@@ -95,12 +98,13 @@ This recipe will show one possible way to add reading time to Starlight.
     </style>
     ```
 
-4.  Add the plugin to your config and override Starlight's PageTitle component:
+4. Add the plugin to your config and tell Starlight to use your custom `PageTitle`:
 
-    ```js ins={3, 7, 12}
+    ```js ins={4, 8, 13}
     // astro.config.mjs
-
-    import { remarkReadingTime } from "./plugins/remark-reading-time";
+    import { defineConfig } from "astro/config";
+    import starlight from "@astrojs/starlight";
+    import { remarkReadingTime } from "./src/plugins/remark-reading-time";
 
     export default defineConfig({
       markdown: {
@@ -115,6 +119,8 @@ This recipe will show one possible way to add reading time to Starlight.
       ],
     });
     ```
+
+</Steps>
 
 ## Resources
 
