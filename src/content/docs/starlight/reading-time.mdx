@@ -12,27 +12,36 @@ This recipe will show one possible way to add reading time to Starlight.
 
 1.  Start by installing the required packages:
 
-    <PackageManagerCommand command="add reading-time mdast-util-to-string" />
+    <PackageManagerCommand command="add reading-time mdast-util-to-string unified @types/mdast" />
 
 2.  Create a reading time remark plugin:
 
-    ```js
-    // plugins/remark-reading-time.mjs
-
-    import getReadingTime from "reading-time";
+    ```ts
+    // plugins/remark-reading-time.ts
+    import type { Root } from "mdast";
     import { toString as mdToString } from "mdast-util-to-string";
+    import getReadingTime from "reading-time";
+    import type { Plugin } from "unified";
 
-    export const remarkReadingTime =
-      () =>
-      (tree, { data }) => {
-        if (!data.astro) data.astro = {};
+    interface AstroRemarkData {
+      astro: {
+        frontmatter: Record<string, unknown>;
+      };
+    }
+
+    export const remarkReadingTime: Plugin<[], Root> = () => {
+      return (tree: Root, file) => {
+        const data = file.data as Partial<AstroRemarkData>;
+        if (!data.astro) data.astro = { frontmatter: {} };
         if (!data.astro.frontmatter) data.astro.frontmatter = {};
 
         const textOnPage = mdToString(tree);
+
         const readingTime = getReadingTime(textOnPage);
 
         data.astro.frontmatter.minutesRead = readingTime.text;
       };
+    };
     ```
 
 3.  Modify Starlight's PageTitle component:
@@ -91,7 +100,7 @@ This recipe will show one possible way to add reading time to Starlight.
     ```js ins={3, 7, 12}
     // astro.config.mjs
 
-    import { remarkReadingTime } from "./plugins/remark-reading-time.mjs";
+    import { remarkReadingTime } from "./plugins/remark-reading-time";
 
     export default defineConfig({
       markdown: {

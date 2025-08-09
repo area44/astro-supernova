@@ -1,66 +1,40 @@
 ---
 title: Add Icons to External Links
-description: Guide to adding icons to external links to your Astro site.
+description: Guide to adding icons to external links in your Astro site.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guide shows how to add an icon to the end of each external link, making it clear to users that the link will take them away from your site.
+This guide shows how to append an icon to the end of each external link, making it clear to users that the link will take them away from your site.
 
 ## Step-by-Step Guide
 
 <Steps>
 
 1. Install the plugin  
-   Add the [`rehype-external-links`](https://github.com/rehypejs/rehype-external-links) package:
+   Add the [`rehype-external-links`](https://github.com/rehypejs/rehype-external-links) and [`@types/hast`](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/hast) packages:
 
-   <PackageManagerCommand command="add rehype-external-links" />
+   <PackageManagerCommand command="add rehype-external-links @types/hast" />
 
-2. Configure Astro to use the plugin  
-    Open your `astro.config.mjs` and add the plugin to the Markdown config:
+2. Create a custom `rehype-external-links` wrapper plugin  
 
-    ```js ins={3, 6-15}
-    // astro.config.mjs
-    import { defineConfig } from 'astro/config';
-    import rehypeExternalLinks from 'rehype-external-links';
+    ```ts
+    // src/plugins/rehype-external-links.ts
+    import type { Element } from "hast";
+    import rehypeExternalLinksPlugin from "rehype-external-links";
 
-    export default defineConfig({
-      markdown: {
-        rehypePlugins: [
-          [
-            rehypeExternalLinks,
-            {
-              content: { type: 'text', value: ' ↗' },
-            },
-          ],
-        ],
-      },
-    });
-    ```
+    interface ExternalLinksOptions {
+      target?: string;
+      rel?: string[];
+      content?: Element;
+    }
 
-3. (Optional) Open external links in a new tab
-    You can also configure the plugin to add `target` and `rel` attributes for security and UX:
-
-    ```js
-    export default defineConfig({
-      markdown: {
-        rehypePlugins: [
-          [
-            rehypeExternalLinks,
-            {
-              target: '_blank',
-              rel: ['nofollow', 'noopener', 'noreferrer'],
-              content: { type: 'text', value: ' ↗' },
-            },
-          ],
-        ],
-      },
-    });
-    ```
-    You can use an SVG icon instead of plain text:
-      ```js
-      content: {
+    export function rehypeExternalLinks(): [
+      typeof rehypeExternalLinksPlugin,
+      ExternalLinksOptions,
+    ] {
+      const svgIcon: Element = {
         type: "element",
         tagName: "svg",
         properties: {
@@ -80,6 +54,7 @@ This guide shows how to add an icon to the end of each external link, making it 
             properties: {
               d: "M1.5 3.5V14.5H12.5V10H14V15C14 15.5523 13.5523 16 13 16H1C0.447716 16 0 15.5523 0 15V3C0 2.44772 0.447715 2 1 2H6V3.5H1.5Z",
             },
+            children: [],
           },
           {
             type: "element",
@@ -87,6 +62,7 @@ This guide shows how to add an icon to the end of each external link, making it 
             properties: {
               d: "M15.9217 1.17828L7.01473 10.0853L5.95407 9.02462L14.8611 0.117624L15.9217 1.17828Z",
             },
+            children: [],
           },
           {
             type: "element",
@@ -94,6 +70,7 @@ This guide shows how to add an icon to the end of each external link, making it 
             properties: {
               d: "M7.5 0H16V1.5H7.5V0Z",
             },
+            children: [],
           },
           {
             type: "element",
@@ -101,14 +78,40 @@ This guide shows how to add an icon to the end of each external link, making it 
             properties: {
               d: "M16 0L16 8.5L14.5 8.5L14.5 -6.55671e-08L16 0Z",
             },
+            children: [],
           },
         ],
-      },
-      ```
+      };
 
-    And add custom styles for `.external-link-icon` in your global CSS:
+      const options: ExternalLinksOptions = {
+        target: "_blank",
+        rel: ["nofollow", "noopener", "noreferrer"],
+        content: svgIcon,
+      };
+
+      return [rehypeExternalLinksPlugin, options];
+    }
+    ```
+
+3. Configure Astro to use the plugin  
+   Open your `astro.config.mjs` and add the plugin to the Markdown config:
+
+    ```js ins={3, 7}
+    // astro.config.mjs
+    import { defineConfig } from 'astro/config';
+    import { rehypeExternalLinks } from "./src/plugins/rehype-external-links";
+
+    export default defineConfig({
+      markdown: {
+        rehypePlugins: [rehypeExternalLinks()],
+      },
+    });
+    ```
+
+4. Add custom styles for the external link icon in your global CSS:
     ```css
-    .external-link-icon {
+    /* Prevent style conflicts by targeting only external link icons */
+    a[href^="http"] .external-link-icon {
       display: inline-block;
       width: 0.75em;
       height: 0.75em;
@@ -122,20 +125,20 @@ This guide shows how to add an icon to the end of each external link, making it 
 
 ## Example Usage
 
-Create or open a Markdown or MDX file, such as `src/content/docs/example.mdx`, and add this link:
+Create or open a Markdown or MDX file, such as `src/content/docs/example.mdx`, and add:
 
 ```mdx
+[Google](https://google.com)  
+[Internal Link](/docs/getting-started)
+````
+
+When rendered, the external link will include a small arrow icon at the end, while internal links remain unchanged:
+
 [Google](https://google.com)
-```
-
-When rendered, the output will look like this:
-
-[Google](https://google.com)
-
-A small arrow icon (`↗`) is automatically added after the link, indicating it's external.
+[Internal Link](/)
 
 ## Resources
 
 1. [Add icons to external links - Astro Docs](https://docs.astro.build/en/recipes/external-links)
-2. [rehype-external-links](https://www.npmjs.com/package/rehype-external-links)
+2. [rehype-external-links on npm](https://www.npmjs.com/package/rehype-external-links)
 3. [Icons for external links - Astro Digital Garden](https://astro-digital-garden.stereobooster.com/recipes/icons-to-external-links)
