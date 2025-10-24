@@ -15,7 +15,7 @@ const site = process.env.NETLIFY
     : process.env.DEPLOY_PRIME_URL || process.env.URL
   : (process.env.SITE ?? "http://localhost:4321");
 
-const base = process.env.BASE || "/";
+const base = process.env.base || "/";
 
 // https://astro.build/config
 export default defineConfig({
