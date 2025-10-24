@@ -13,9 +13,9 @@ const site = process.env.NETLIFY
   ? process.env.CONTEXT === "production"
     ? "https://astro-supernova.netlify.app"
     : process.env.DEPLOY_PRIME_URL || process.env.URL
-  : (process.env.site ?? "http://localhost:4321");
+  : (process.env.SITE ?? "http://localhost:4321");
 
-const base = process.env.base || "/";
+const base = process.env.BASE || "/";
 
 // https://astro.build/config
 export default defineConfig({
