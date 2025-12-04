@@ -44,37 +44,45 @@ This guide will show one possible way to add OG images to Starlight.
     });
     ```
 
-3.  Modify the `<Head/>` component:
+3.  Customize `head` route data:
 
-    ```astro
-    // src/components/Head.astro
+    ```ts
+    // src/routeData.ts
     ---
-    import Default from "@astrojs/starlight/components/Head.astro";
+    import { defineRouteMiddleware } from "@astrojs/starlight/route-data"
 
-    const ogImageUrl = new URL(
-      `/astro-supernova/og/${Astro.locals.starlightRoute.id.replace(/\.\w+$/, ".png")}`,
-      Astro.site,
-    );
-    ---
+    export const onRequest = defineRouteMiddleware((context) => {
+      // Get the URL of the generated image for the current page using its ID and
+      // append the `.png` file extension.
+      const ogImageUrl = new URL(
+        `/og/${context.locals.starlightRoute.id || "index"}.png`,
+        context.site,
+      )
 
-    <Default><slot /></Default>
+      // Get the array of all tags to include in the `<head>` of the current page.
+      const { head } = context.locals.starlightRoute
 
-    <meta property="og:image" content={ogImageUrl} />
-    <meta name="twitter:image" content={ogImageUrl} />
+      // Add the `<meta/>` tags for the Open Graph images.
+      head.push({
+        tag: "meta",
+        attrs: { property: "og:image", content: ogImageUrl.href },
+      })
+      head.push({
+        tag: "meta",
+        attrs: { name: "twitter:image", content: ogImageUrl.href },
+      })
+    })
     ```
 
 4.  Configure Starlight in the `astro.config.mjs` file:
 
-    ```ts ins={8}
+    ```ts ins={6}
     // astro.config.mjs
-    // ...
 
     export default defineConfig({
       integrations: [
         starlight({
-          components: {
-            Head: "./src/components/Head.astro",
-          },
+          routeMiddleware: "./src/routeData.ts",
         }),
       ],
     })
