@@ -32,7 +32,6 @@ export default defineConfig({
   integrations: [
     mermaid(),
     starlight({
-      
       title: "Supernova",
       description: "Play with Astro",
       customCss: ["./src/styles/global.css", "katex/dist/katex.min.css"],
