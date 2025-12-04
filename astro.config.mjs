@@ -37,7 +37,6 @@ export default defineConfig({
       description: "Play with Astro",
       customCss: ["./src/styles/global.css", "katex/dist/katex.min.css"],
       components: {
-        Head: "./src/components/Head.astro",
         PageTitle: "./src/components/PageTitle.astro",
       },
       social: [
