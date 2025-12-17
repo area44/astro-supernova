@@ -18,28 +18,28 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
 
 2. Configure Markdown plugins in `astro.config.mjs`
 
-    Open your `astro.config.mjs` file and configure both the remark and rehype plugins:
+   Open your `astro.config.mjs` file and configure both the remark and rehype plugins:
 
-    ```js ins={4-5, 15}
-    // astro.config.mjs
+   ```js ins={4-5, 15}
+   // astro.config.mjs
 
-    import { defineConfig } from 'astro/config';
-    import remarkMath from 'remark-math';
-    import rehypeKatex from 'rehype-katex';
-    import starlight from '@astrojs/starlight';
+   import { defineConfig } from 'astro/config';
+   import remarkMath from 'remark-math';
+   import rehypeKatex from 'rehype-katex';
+   import starlight from '@astrojs/starlight';
 
-    export default defineConfig({
-      markdown: {
-        remarkPlugins: [remarkMath],
-        rehypePlugins: [rehypeKatex],
-      },
-      integrations: [
-        starlight({
-          customCss: ['katex/dist/katex.min.css'],
-        }),
-      ],
-    });
-    ```
+   export default defineConfig({
+     markdown: {
+       remarkPlugins: [remarkMath],
+       rehypePlugins: [rehypeKatex],
+     },
+     integrations: [
+       starlight({
+         customCss: ['katex/dist/katex.min.css'],
+       }),
+     ],
+   });
+   ```
 
 </Steps>
 

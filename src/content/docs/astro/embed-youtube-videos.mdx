@@ -19,63 +19,63 @@ This guide shows how to embed lightweight YouTube videos using [`lite-youtube-em
 
 1. Install the dependency
 
-    Install the `lite-youtube-embed` package using your preferred package manager:
+   Install the `lite-youtube-embed` package using your preferred package manager:
 
-    <PackageManagerCommand command="add lite-youtube-embed" />
+   <PackageManagerCommand command="add lite-youtube-embed" />
 
 2. Create a `YouTube.astro` component
 
-    Create a file at `src/components/YouTube.astro`:
+   Create a file at `src/components/YouTube.astro`:
 
-    ```astro
-    ---
-    import "lite-youtube-embed/src/lite-yt-embed.css";
+   ```astro
+   ---
+   import "lite-youtube-embed/src/lite-yt-embed.css";
 
-    export interface Props extends astroHTML.JSX.HTMLAttributes {
-      id: string;               // YouTube video ID or URL
-      poster?: string;          // Optional custom thumbnail
-      params?: string;          // Optional query parameters (?start=30 etc.)
-      playlabel?: string;       // Accessible label for play button
-    }
+   export interface Props extends astroHTML.JSX.HTMLAttributes {
+     id: string;               // YouTube video ID or URL
+     poster?: string;          // Optional custom thumbnail
+     params?: string;          // Optional query parameters (?start=30 etc.)
+     playlabel?: string;       // Accessible label for play button
+   }
 
-    const { id, poster, params, playlabel, ...attrs } = Astro.props as Props;
+   const { id, poster, params, playlabel, ...attrs } = Astro.props as Props;
 
-    const idRegExp = /^[A-Za-z0-9-_]{11}$/;
-    const urlPattern = /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9-_]{11})/;
+   const idRegExp = /^[A-Za-z0-9-_]{11}$/;
+   const urlPattern = /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9-_]{11})/;
 
-    function extractVideoId(input: string): string | undefined {
-      if (idRegExp.test(input)) return input;
-      return input.match(urlPattern)?.[1];
-    }
+   function extractVideoId(input: string): string | undefined {
+     if (idRegExp.test(input)) return input;
+     return input.match(urlPattern)?.[1];
+   }
 
-    const videoId = extractVideoId(id);
-    const posterURL = poster || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-    ---
+   const videoId = extractVideoId(id);
+   const posterURL = poster || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+   ---
 
-    <lite-youtube
-      videoid={videoId}
-      params={params}
-      playlabel={playlabel}
-      loading="lazy"
-      style={`background-image: url('${posterURL}');`}
-      {...attrs}
-    ></lite-youtube>
+   <lite-youtube
+     videoid={videoId}
+     params={params}
+     playlabel={playlabel}
+     loading="lazy"
+     style={`background-image: url('${posterURL}');`}
+     {...attrs}
+   ></lite-youtube>
 
-    <script>
-      import "lite-youtube-embed";
-    </script>
+   <script>
+     import "lite-youtube-embed";
+   </script>
 
-    <style is:global>
-      lite-youtube > iframe {
-        all: unset !important;
-        width: 100% !important;
-        height: 100% !important;
-        position: absolute !important;
-        inset: 0 !important;
-        border: 0 !important;
-      }
-    </style>
-    ```
+   <style is:global>
+     lite-youtube > iframe {
+       all: unset !important;
+       width: 100% !important;
+       height: 100% !important;
+       position: absolute !important;
+       inset: 0 !important;
+       border: 0 !important;
+     }
+   </style>
+   ```
 
 </Steps>
 
