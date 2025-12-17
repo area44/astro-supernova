@@ -96,29 +96,29 @@ This recipe shows one way to display an estimated reading time for each page in 
         color: var(--sl-color-gray-3);
       }
     </style>
-    ```
+   ```
 
 4. Add the plugin to your config and tell Starlight to use your custom `PageTitle`:
 
-    ```js ins={4, 8, 13}
-    // astro.config.mjs
-    import { defineConfig } from "astro/config";
-    import starlight from "@astrojs/starlight";
-    import { remarkReadingTime } from "./src/plugins/remark-reading-time";
+   ```js ins={4, 8, 13}
+   // astro.config.mjs
+   import { defineConfig } from "astro/config";
+   import starlight from "@astrojs/starlight";
+   import { remarkReadingTime } from "./src/plugins/remark-reading-time";
 
-    export default defineConfig({
-      markdown: {
-        remarkPlugins: [remarkReadingTime],
-      },
-      integrations: [
-        starlight({
-          components: {
-            PageTitle: "./src/components/PageTitle.astro",
-          },
-        }),
-      ],
-    });
-    ```
+   export default defineConfig({
+     markdown: {
+       remarkPlugins: [remarkReadingTime],
+     },
+     integrations: [
+       starlight({
+         components: {
+           PageTitle: "./src/components/PageTitle.astro",
+         },
+       }),
+     ],
+   });
+   ```
 
 </Steps>
 
