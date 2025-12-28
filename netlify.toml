@@ -1,15 +1,15 @@
 [[plugins]]
-  package = "@netlify/plugin-lighthouse"
+package = "@netlify/plugin-lighthouse"
 
 [build]
-  command = "astro build"
+command = "astro build"
 
 [[headers]]
-  for = "/*"
-    [headers.values]
-      X-Frame-Options = "DENY"
+for = "/*"
+[headers.values]
+X-Frame-Options = "DENY"
 
 [[headers]]
-  for = "/_astro/*"
-    [headers.values]
-      Cache-Control = "public, max-age=604800, immutable"
+for = "/_astro/*"
+[headers.values]
+Cache-Control = "public, max-age=604800, immutable"
