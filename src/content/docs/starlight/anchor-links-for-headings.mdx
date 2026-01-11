@@ -65,15 +65,10 @@ This guide walks you through how to manually add anchor links to headings in you
           tabIndex: -1,
           class: `heading-wrapper level-${tagName}`,
         }),
-      content: (heading: Element) => [
-        anchorLinkIcon,
-        anchorLinkSRLabel(hastToString(heading)),
-      ],
+      content: (heading: Element) => [anchorLinkIcon, anchorLinkSRLabel(hastToString(heading))],
     };
 
-    export const rehypeAutolink = (): RehypePlugins => [
-      [rehypeAutolinkHeadings, autolinkConfig],
-    ];
+    export const rehypeAutolink = (): RehypePlugins => [[rehypeAutolinkHeadings, autolinkConfig]];
     ```
 
 3.  Import and configure the plugin in `astro.config.mjs`:

@@ -30,10 +30,7 @@ This guide shows how to append an icon to the end of each external link, making 
      content?: Element;
    }
 
-   export function rehypeExternalLinks(): [
-     typeof rehypeExternalLinksPlugin,
-     ExternalLinksOptions,
-   ] {
+   export function rehypeExternalLinks(): [typeof rehypeExternalLinksPlugin, ExternalLinksOptions] {
      const svgIcon: Element = {
        type: "element",
        tagName: "svg",
@@ -98,7 +95,7 @@ This guide shows how to append an icon to the end of each external link, making 
 
    ```js ins={3, 7}
    // astro.config.mjs
-   import { defineConfig } from 'astro/config';
+   import { defineConfig } from "astro/config";
    import { rehypeExternalLinks } from "./src/plugins/rehype-external-links";
 
    export default defineConfig({

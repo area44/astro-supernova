@@ -23,10 +23,10 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
    ```js ins={4-5, 15}
    // astro.config.mjs
 
-   import { defineConfig } from 'astro/config';
-   import remarkMath from 'remark-math';
-   import rehypeKatex from 'rehype-katex';
-   import starlight from '@astrojs/starlight';
+   import { defineConfig } from "astro/config";
+   import remarkMath from "remark-math";
+   import rehypeKatex from "rehype-katex";
+   import starlight from "@astrojs/starlight";
 
    export default defineConfig({
      markdown: {
@@ -35,7 +35,7 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
      },
      integrations: [
        starlight({
-         customCss: ['katex/dist/katex.min.css'],
+         customCss: ["katex/dist/katex.min.css"],
        }),
      ],
    });
