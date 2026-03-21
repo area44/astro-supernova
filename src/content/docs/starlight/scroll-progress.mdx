@@ -1,0 +1,88 @@
+---
+title: Add Scroll Progress Bar
+description: Guide to adding a scroll progress bar to your Starlight-powered Astro site.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+
+This recipe shows how to display a fixed scroll progress bar at the top of every page in Starlight.
+
+## Step-by-step Guide
+
+<Steps>
+
+1. Create a new Astro component `src/components/ScrollProgress.astro`.
+   This component calculates the scroll percentage and updates a bar's width.
+
+   ```astro
+   ---
+   // src/components/ScrollProgress.astro
+   ---
+
+   <div id="scroll-progress" class="scroll-progress"></div>
+
+   <script>
+     function updateScrollProgress() {
+       const progressLine = document.getElementById("scroll-progress");
+       if (!progressLine) return;
+
+       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+       const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+       progressLine.style.width = scrolled + "%";
+     }
+
+     window.addEventListener("scroll", updateScrollProgress);
+     updateScrollProgress();
+
+     document.addEventListener('astro:after-swap', updateScrollProgress);
+   </script>
+
+   <style>
+     .scroll-progress {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 0%;
+       height: 3px;
+       background-color: var(--sl-color-accent-high);
+       z-index: 1000;
+       transition: width 0.1s ease-out;
+       pointer-events: none;
+     }
+   </style>
+   ```
+
+2. Create a new component `src/components/Header.astro` to override the default Starlight Header:
+
+   ```astro
+   ---
+   // src/components/Header.astro
+   import type { Props } from "@astrojs/starlight/props";
+   import Default from "@astrojs/starlight/components/Header.astro";
+   import ScrollProgress from "./ScrollProgress.astro";
+   ---
+
+   <ScrollProgress />
+   <Default {...Astro.props} />
+   ```
+
+3. Tell Starlight to use your custom Header in your config:
+
+   ```js ins={7}
+   // astro.config.mjs
+   import { defineConfig } from "astro/config";
+   import starlight from "@astrojs/starlight";
+
+   export default defineConfig({
+     integrations: [
+       starlight({
+         components: {
+           Header: "./src/components/Header.astro",
+         },
+       }),
+     ],
+   });
+   ```
+
+</Steps>
