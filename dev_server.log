@@ -1,0 +1,23 @@
+
+> @are44/astro-supernova@0.1.0 dev /app
+> astro dev
+
+17:29:45 [astro-mermaid] Setting up Mermaid integration
+17:29:45 [astro-mermaid] Existing rehype plugins:
+17:29:45 [astro-mermaid] Skipping ELK support
+[vite] connected.
+17:29:46 [types] Generated 1ms
+[vite] connected.
+17:29:47 [content] Syncing content
+17:29:47 [content] Synced content
+17:29:47 [vite] Re-optimizing dependencies because vite config has changed
+ astro  v6.0.4 ready in 3697 ms
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+17:29:47 watching for file changes...
+17:30:11 [200] /starlight/mermaid-diagrams/ 1214ms
+17:30:12 [200] /_image 120ms
+17:30:13 [vite] ✨ new dependencies optimized: astro/runtime/client/dev-toolbar/entrypoint.js
+17:30:13 [vite] ✨ optimized dependencies changed. reloading
+17:30:13 [200] /starlight/mermaid-diagrams/ 63ms
+ ELIFECYCLE  Command failed with exit code 143.
