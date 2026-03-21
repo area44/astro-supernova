@@ -1,22 +1,49 @@
 <div id="scroll-progress" class="scroll-progress"></div>
 
 <script>
+  let progressLine: HTMLElement | null = null;
+  let ticking = false;
+
+  /**
+   * Updates the width of the scroll progress bar based on current scroll position.
+   * Optimized with requestAnimationFrame to ensure smooth performance and
+   * minimize main thread blocking.
+   */
   function updateScrollProgress() {
-    const progressLine = document.getElementById("scroll-progress");
+    if (!progressLine) {
+      progressLine = document.getElementById("scroll-progress");
+    }
     if (!progressLine) return;
 
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const winScroll = window.scrollY;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-    progressLine.style.width = scrolled + "%";
+
+    progressLine.style.width = `${scrolled}%`;
+    ticking = false;
   }
 
-  window.addEventListener("scroll", updateScrollProgress);
+  /**
+   * Scroll event handler that throttles updates using requestAnimationFrame.
+   */
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateScrollProgress);
+      ticking = true;
+    }
+  }
+
+  // Register scroll listener with passive: true to improve scrolling performance
+  window.addEventListener("scroll", onScroll, { passive: true });
+
   // Initial call to set progress on load
   updateScrollProgress();
 
-  // Handle Astro page transitions if necessary (though Starlight might not use them by default)
-  document.addEventListener('astro:after-swap', updateScrollProgress);
+  // Handle Astro page transitions: reset cached element and update progress
+  document.addEventListener('astro:after-swap', () => {
+    progressLine = null;
+    updateScrollProgress();
+  });
 </script>
 
 <style>
