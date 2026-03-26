@@ -29,8 +29,11 @@ const makeId = (label: string) =>
   "__tab-" + label.toLowerCase().replaceAll(/\s+/g, "-");
 
 /** Get the icon for a group. */
-const getIcon = (index: number) =>
-  (["rocket", "open-book", "information", "puzzle"] as const)[index];
+const getIcon = (label: string) => {
+  if (label.toLowerCase().includes("astro")) return "astro";
+  if (label.toLowerCase().includes("starlight")) return "starlight";
+  return "open-book";
+};
 
 /** Determine if an array of sidebar items contains the current page.  */
 const isCurrent = (sidebar: SidebarEntry[]): boolean =>
@@ -55,7 +58,7 @@ const isInitial = (entries: SidebarEntry[], index: number) =>
             initial={isInitial(entries, index)}
             class="tab-item"
           >
-            <Icon class="icon" name={getIcon(index)} /> {label}
+            <Icon class="icon" name={getIcon(label)} /> {label}
           </TabListItem>
         ))
       }

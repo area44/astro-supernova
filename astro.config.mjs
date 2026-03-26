@@ -6,10 +6,9 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import starlightLinksValidator from "starlight-links-validator";
 
-import { astroSidebar } from "./astro.sidebar";
+import { astroSidebar, starlightSidebar } from "./config/sidebar";
 import { rehypeExternalLinks } from "./src/plugins/rehype-external-links";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
-import { starlightSidebar } from "./starlight.sidebar";
 
 // https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables
 const site = process.env.NETLIFY
