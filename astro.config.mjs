@@ -42,6 +42,7 @@ export default defineConfig({
       components: {
         Header: "./src/components/Header.astro",
         PageTitle: "./src/components/PageTitle.astro",
+        Sidebar: "./src/components/Sidebar.astro",
       },
       social: [
         {
@@ -53,14 +54,7 @@ export default defineConfig({
       editLink: {
         baseUrl: "https://github.com/AREA44/astro-supernova/blob/main/",
       },
-      sidebar: [
-        {
-          label: "Home",
-          link: "/",
-        },
-        ...astroSidebar,
-        ...starlightSidebar,
-      ],
+      sidebar: [...astroSidebar, ...starlightSidebar],
       lastUpdated: true,
       credits: true,
       plugins: [starlightLinksValidator()],
