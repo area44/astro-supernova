@@ -1,6 +1,6 @@
 ---
-title: Split Your Starlight Sidebar into Tabs
-description: A detailed step-by-step guide to implementing a tabbed sidebar switcher with official icons.
+title: Split Sidebar into Tabs
+description: A detailed step-by-step guide to implementing a tabbed sidebar switcher.
 ---
 
 import { Steps } from "@astrojs/starlight/components";
@@ -13,11 +13,9 @@ By default, Starlight provides a vertical sidebar. For larger documentation site
 
 <Steps>
 
-1.  **Centralize Navigation Labels**
+1.  Centralize Navigation Labels
 
     Create a file to manage your navigation labels. This helps with localization and centralized management of tab titles.
-
-    **File:** `src/content/nav/en.ts`
 
     ```ts
     // src/content/nav/en.ts
@@ -27,11 +25,9 @@ By default, Starlight provides a vertical sidebar. For larger documentation site
     } as const;
     ```
 
-2.  **Modularize Sidebar Configuration**
+2.  Modularize Sidebar Configuration
 
     Create a dedicated configuration file for your sidebar. This file will export separate arrays for each tab, combined into a single configuration for Starlight.
-
-    **File:** `config/sidebar.ts`
 
     ```ts
     // config/sidebar.ts
@@ -63,11 +59,9 @@ By default, Starlight provides a vertical sidebar. For larger documentation site
     ] satisfies StarlightUserConfig["sidebar"];
     ```
 
-3.  **Implement Tab Components**
+3.  Implement Tab Components
 
     Create the following components in `src/components/tabs/` to handle the UI and logic of the switcher.
-
-    **`TabbedContent.astro`** (Manages state and switching):
 
     ```astro
     // src/components/tabs/TabbedContent.astro
@@ -93,8 +87,6 @@ By default, Starlight provides a vertical sidebar. For larger documentation site
     </script>
     ```
 
-    **`TabListItem.astro`** (The tab link):
-
     ```astro
     // src/components/tabs/TabListItem.astro
     ---
@@ -112,8 +104,6 @@ By default, Starlight provides a vertical sidebar. For larger documentation site
     </li>
     ```
 
-    **`TabPanel.astro`** (Wraps the sidebar content):
-
     ```astro
     // src/components/tabs/TabPanel.astro
     ---
@@ -128,11 +118,9 @@ By default, Starlight provides a vertical sidebar. For larger documentation site
     </div>
     ```
 
-4.  **Create the Custom Sidebar Component**
+4.  Create the Custom Sidebar Component
 
     This component overrides Starlight's default Sidebar. It uses the components from the previous step and assigns icons like "astro" and "starlight".
-
-    **File:** `src/components/Sidebar.astro`
 
     ```astro
     // src/components/Sidebar.astro
@@ -169,13 +157,11 @@ By default, Starlight provides a vertical sidebar. For larger documentation site
     </SidebarPersister>
     ```
 
-5.  **Configure Astro**
+5.  Configure Astro
 
     Finally, register your custom component and import the modular sidebar configs.
 
-    **File:** `astro.config.mjs`
-
-    ```js
+    ```js ins={10,12}
     // astro.config.mjs
     import starlight from "@astrojs/starlight";
     import { defineConfig } from "astro/config";
