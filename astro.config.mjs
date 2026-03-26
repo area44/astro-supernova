@@ -6,8 +6,10 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import starlightLinksValidator from "starlight-links-validator";
 
+import { astroSidebar } from "./astro.sidebar";
 import { rehypeExternalLinks } from "./src/plugins/rehype-external-links";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
+import { starlightSidebar } from "./starlight.sidebar";
 
 // https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables
 const site = process.env.NETLIFY
@@ -56,14 +58,8 @@ export default defineConfig({
           label: "Home",
           link: "/",
         },
-        {
-          label: "Astro Recipes",
-          autogenerate: { directory: "astro" },
-        },
-        {
-          label: "Starlight Recipes",
-          autogenerate: { directory: "starlight" },
-        },
+        ...astroSidebar,
+        ...starlightSidebar,
       ],
       lastUpdated: true,
       credits: true,
