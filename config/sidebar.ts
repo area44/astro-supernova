@@ -25,4 +25,7 @@ export const starlightSidebar = [
   group("starlight.recipes", {
     autogenerate: { directory: "starlight" },
   }),
+  group("guides", {
+    autogenerate: { directory: "guides" },
+  }),
 ] satisfies StarlightUserConfig["sidebar"];

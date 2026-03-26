@@ -33,6 +33,17 @@ Recipes are the core content of this site.
   - "Resources" or "Next steps" section at the end.
 - **Media**: Store images in `src/content/docs/starlight/_images/` (or equivalent for astro).
 
+### Blog Posts
+
+Blog posts provide a more narrative and conversational alternative to recipes.
+
+- **Location**: `src/content/docs/blog/`.
+- **Style**:
+  - Use a conversational tone.
+  - Use `<YouTube />` and `<Mermaid />` components for visual interest.
+  - Frontmatter must include `title`, `description`, and `publishDate`.
+- **Tone**: Professional yet personal, unlike the purely objective and procedural recipes.
+
 ### Client-side Scripts
 
 When adding client-side scripts to Astro components:

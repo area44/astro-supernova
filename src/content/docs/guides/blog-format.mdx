@@ -1,0 +1,38 @@
+---
+title: "Blog Format Style"
+description: "Guidelines and format for writing blog posts in Supernova."
+---
+
+import { Steps } from "@astrojs/starlight/components";
+
+Supernova supports both technical recipes and narrative blog posts. While recipes focus on a objective "how-to" approach, blog posts allow for a more conversational and subjective exploration of topics.
+
+## Formatting Guidelines
+
+Blog posts should be stored in `src/content/docs/blog/` and follow these key principles:
+
+- **Tone**: Professional, conversational, and personal.
+- **Visuals**: Use diagrams and video embeds to break up text and explain complex ideas.
+- **Headers**: Use clear and descriptive headings.
+- **Engagement**: Share personal insights and "lessons learned" during the development process.
+
+## Step-by-Step Guide
+
+<Steps>
+
+1.  **Select a Topic**: Choose a theme or narrative that would be better suited for a blog format than a recipe.
+2.  **Location**: Create a new `.mdx` file in `src/content/docs/blog/`.
+3.  **Define Frontmatter**:
+    - Set the `title`, `description`, and `publishDate`.
+4.  **Enrich Content**:
+    - Use the `<YouTube />` component to embed relevant video content.
+    - Use `<Mermaid />` for diagrams.
+    - Use standard Starlight components as needed.
+5.  **Review**: Ensure the post reads as a cohesive narrative.
+
+</Steps>
+
+## Resources
+
+- [Starlight MDX Guide](https://starlight.astro.build/guides/authoring-content/)
+- [Astro Markdown & MDX](https://docs.astro.build/en/guides/markdown-content/)

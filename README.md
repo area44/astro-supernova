@@ -53,6 +53,17 @@ Supernova follows a specific structure for adding new documentation "recipes":
     - **Resources**: Include a "Next steps" or "Resources" section at the end.
 4.  **Navigation**: If you add a new directory or want to change labels, update `src/content/nav/en.ts` and `config/sidebar.ts`.
 
+## Writing Blog Posts
+
+If you'd like to contribute a more narrative or news-oriented piece:
+
+1.  **Location**: Place your post in `src/content/docs/blog/`.
+2.  **Frontmatter**: Ensure you include `title`, `description`, and `publishDate`.
+3.  **Style**:
+    - Blog posts should have a more conversational and subjective tone compared to recipes.
+    - Use the `<YouTube />` and `<Mermaid />` components to enrich the narrative.
+    - Use clear headings and lists to maintain readability.
+
 ## Want to learn more?
 
 To learn more about the underlying technologies, visit:
