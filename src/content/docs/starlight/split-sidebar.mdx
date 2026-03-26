@@ -1,0 +1,187 @@
+---
+title: Split Sidebar into Tabs
+description: A detailed step-by-step guide to implementing a tabbed sidebar switcher.
+---
+
+import { Steps } from "@astrojs/starlight/components";
+
+This recipe provides a comprehensive walkthrough for implementing a tabbed sidebar switcher in Starlight, similar to the one used in the official Astro Documentation.
+
+By default, Starlight provides a vertical sidebar. For larger documentation sites, a tabbed interface can help organize content into top-level categories, making navigation more intuitive.
+
+## Step-by-Step Guide
+
+<Steps>
+
+1.  Centralize Navigation Labels
+
+    Create a file to manage your navigation labels. This helps with localization and centralized management of tab titles.
+
+    ```ts
+    // src/content/nav/en.ts
+    export default {
+      "astro.recipes": "Astro Recipes",
+      "starlight.recipes": "Starlight Recipes",
+    } as const;
+    ```
+
+2.  Modularize Sidebar Configuration
+
+    Create a dedicated configuration file for your sidebar. This file will export separate arrays for each tab, combined into a single configuration for Starlight. Example:
+
+    ```ts
+    // config/sidebar.ts
+    import type { StarlightUserConfig } from "@astrojs/starlight/types";
+    import enLabels from "../src/content/nav/en";
+
+    type NavKey = keyof typeof enLabels;
+
+    /**
+     * Helper to create a sidebar group with localized labels.
+     */
+    export function group(key: NavKey, group: any): any {
+      return {
+        label: enLabels[key],
+        ...group,
+      };
+    }
+
+    export const astroSidebar = [
+      group("astro.recipes", {
+        autogenerate: { directory: "astro" },
+      }),
+    ] satisfies StarlightUserConfig["sidebar"];
+
+    export const starlightSidebar = [
+      group("starlight.recipes", {
+        autogenerate: { directory: "starlight" },
+      }),
+    ] satisfies StarlightUserConfig["sidebar"];
+    ```
+
+3.  Implement Tab Components
+
+    Create the following components in `src/components/tabs/` to handle the UI and logic of the switcher.
+
+    ```astro
+    // src/components/tabs/TabbedContent.astro
+    ---
+    export interface Props {
+      class?: string;
+    }
+    ---
+    <tabbed-content class={Astro.props.class}>
+      <ul class="tab-list">
+        <slot name="tab-list" />
+      </ul>
+      <div class="panels">
+        <slot />
+      </div>
+    </tabbed-content>
+
+    <script>
+      class Tabs extends HTMLElement {
+        // ... (Refer to full source in the custom component step)
+      }
+      customElements.define("tabbed-content", Tabs);
+    </script>
+    ```
+
+    ```astro
+    // src/components/tabs/TabListItem.astro
+    ---
+    import type { HTMLAttributes } from 'astro/types';
+    export interface Props {
+      id: string;
+      initial?: boolean;
+      class?: string;
+    }
+    const { id, initial } = Astro.props;
+    const linkAttributes: HTMLAttributes<'a'> = initial ? { 'data-initial': 'true' } : {};
+    ---
+    <li class:list={Astro.props.class}>
+      <a href={'#' + id} {...linkAttributes}><slot /></a>
+    </li>
+    ```
+
+    ```astro
+    // src/components/tabs/TabPanel.astro
+    ---
+    export interface Props {
+      id: string;
+      initial?: boolean;
+    }
+    const { id, initial } = Astro.props;
+    ---
+    <div id={id} data-initial={initial ? "true" : undefined}>
+      <slot />
+    </div>
+    ```
+
+4.  Create the Custom Sidebar Component
+
+    This component overrides Starlight's default Sidebar. It uses the components from the previous step and assigns icons like "astro" and "starlight".
+
+    ```astro
+    // src/components/Sidebar.astro
+    ---
+    import { Icon } from "@astrojs/starlight/components";
+    import SidebarPersister from "@astrojs/starlight/components/SidebarPersister.astro";
+    import SidebarSublist from "@astrojs/starlight/components/SidebarSublist.astro";
+    import TabbedContent from "./tabs/TabbedContent.astro";
+    import TabListItem from "./tabs/TabListItem.astro";
+    import TabPanel from "./tabs/TabPanel.astro";
+
+    const { sidebar } = Astro.locals.starlightRoute;
+    // ... logic for active tab selection and icons ...
+    ---
+    <SidebarPersister>
+      <TabbedContent class="tabbed-sidebar">
+        <Fragment slot="tab-list">
+          {sidebar.map((group: any, index: number) => (
+            <TabListItem
+              id={makeId(group.label)}
+              initial={anyTabIsCurrent ? isCurrent(group.entries) : index === 0}
+              class="tab-item"
+            >
+              <Icon name={getIcon(group.label)} /> {group.label}
+            </TabListItem>
+          ))}
+        </Fragment>
+        {sidebar.map((group: any, index: number) => (
+          <TabPanel id={makeId(group.label)} initial={isInitial}>
+            <SidebarSublist sublist={group.entries} />
+          </TabPanel>
+        ))}
+      </TabbedContent>
+    </SidebarPersister>
+    ```
+
+5.  Configure Astro
+
+    Finally, register your custom component and import the modular sidebar configs.
+
+    ```js ins={10,12}
+    // astro.config.mjs
+    import starlight from "@astrojs/starlight";
+    import { defineConfig } from "astro/config";
+    import { astroSidebar, starlightSidebar } from "./config/sidebar";
+
+    export default defineConfig({
+      integrations: [
+        starlight({
+          components: {
+            Sidebar: "./src/components/Sidebar.astro",
+          },
+          sidebar: [...astroSidebar, ...starlightSidebar],
+        }),
+      ],
+    });
+    ```
+
+</Steps>
+
+## Resources
+
+1.  [Astro Documentation Sidebar Config](https://github.com/withastro/docs/blob/main/astro.sidebar.ts)
+2.  [Starlight Sidebar Customization](https://starlight.astro.build/guides/sidebar/#custom-components)

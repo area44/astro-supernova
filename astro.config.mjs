@@ -6,6 +6,7 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import starlightLinksValidator from "starlight-links-validator";
 
+import { astroSidebar, starlightSidebar } from "./config/sidebar";
 import { rehypeExternalLinks } from "./src/plugins/rehype-external-links";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
 
@@ -40,6 +41,7 @@ export default defineConfig({
       components: {
         Header: "./src/components/Header.astro",
         PageTitle: "./src/components/PageTitle.astro",
+        Sidebar: "./src/components/Sidebar.astro",
       },
       social: [
         {
@@ -51,20 +53,7 @@ export default defineConfig({
       editLink: {
         baseUrl: "https://github.com/AREA44/astro-supernova/blob/main/",
       },
-      sidebar: [
-        {
-          label: "Home",
-          link: "/",
-        },
-        {
-          label: "Astro Recipes",
-          autogenerate: { directory: "astro" },
-        },
-        {
-          label: "Starlight Recipes",
-          autogenerate: { directory: "starlight" },
-        },
-      ],
+      sidebar: [...astroSidebar, ...starlightSidebar],
       lastUpdated: true,
       credits: true,
       plugins: [starlightLinksValidator()],
