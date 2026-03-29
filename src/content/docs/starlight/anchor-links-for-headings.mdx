@@ -20,7 +20,7 @@ This guide walks you through how to manually add anchor links to headings in you
 
 <Steps>
 
-1.  Install the necessary dependencies using your package manager:
+1.  **Install the necessary dependencies using your package manager**
 
     <PackageManagerCommand command="add rehype-autolink-headings rehype-slug hast-util-to-string hastscript html-escaper" />
 
@@ -28,7 +28,7 @@ This guide walks you through how to manually add anchor links to headings in you
 
     <PackageManagerCommand command="add --dev @types/hast @types/html-escaper" />
 
-2.  Create a new file named `rehype-autolink.ts` in the `plugins` directory:
+2.  **Create a new file named `rehype-autolink.ts` in the `plugins` directory**
 
     ```ts
     // plugins/rehype-autolink.ts
@@ -71,7 +71,7 @@ This guide walks you through how to manually add anchor links to headings in you
     export const rehypeAutolink = (): RehypePlugins => [[rehypeAutolinkHeadings, autolinkConfig]];
     ```
 
-3.  Import and configure the plugin in `astro.config.mjs`:
+3.  **Import and configure the plugin in `astro.config.mjs`**
 
     ```js ins={3-4, 8, 12}
     // astro.config.mjs
@@ -91,7 +91,7 @@ This guide walks you through how to manually add anchor links to headings in you
     });
     ```
 
-4.  Create a `headings.css` file in `src/styles/` and add the following styles:
+4.  **Create a `headings.css` file in `src/styles/` and add the following styles**
 
     ```css
     // src/styles/headings.css

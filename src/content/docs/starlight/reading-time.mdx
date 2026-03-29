@@ -12,11 +12,12 @@ This recipe shows one way to display an estimated reading time for each page in 
 
 <Steps>
 
-1. Install the required packages:
+1. **Install the required packages**
 
    <PackageManagerCommand command="add reading-time mdast-util-to-string unified @types/mdast" />
 
-2. Create a `remark` plugin to calculate reading time.  
+2. **Create a `remark` plugin to calculate reading time**
+
    Save the file as `src/plugins/remark-reading-time.ts`:
 
    ```ts
@@ -46,7 +47,8 @@ This recipe shows one way to display an estimated reading time for each page in 
    };
    ```
 
-3. Override Starlight’s `PageTitle` component to display reading time:
+3. **Override Starlight’s `PageTitle` component to display reading time**
+
    Create `src/components/PageTitle.astro`:
 
    ```astro
@@ -98,7 +100,7 @@ This recipe shows one way to display an estimated reading time for each page in 
     </style>
    ```
 
-4. Add the plugin to your config and tell Starlight to use your custom `PageTitle`:
+4. **Add the plugin to your config and tell Starlight to use your custom `PageTitle`**
 
    ```js ins={4, 8, 13}
    // astro.config.mjs
