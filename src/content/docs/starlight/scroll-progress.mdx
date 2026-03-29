@@ -11,7 +11,8 @@ This recipe shows how to display a fixed scroll progress bar at the top of every
 
 <Steps>
 
-1. Create a new Astro component `src/components/ScrollProgress.astro`.
+1. **Create a new Astro component `src/components/ScrollProgress.astro`**
+   
    This component calculates the scroll percentage and updates a bar's width.
 
    ```astro
@@ -53,7 +54,7 @@ This recipe shows how to display a fixed scroll progress bar at the top of every
    </style>
    ```
 
-2. Create a new component `src/components/Header.astro` to override the default Starlight Header:
+2. **Create a new component `src/components/Header.astro` to override the default Starlight Header**
 
    ```astro
    ---
@@ -67,7 +68,7 @@ This recipe shows how to display a fixed scroll progress bar at the top of every
    <Default {...Astro.props} />
    ```
 
-3. Tell Starlight to use your custom Header in your config:
+3. **Tell Starlight to use your custom Header in your config**
 
    ```js ins={9}
    // astro.config.mjs

@@ -12,12 +12,13 @@ This guide shows how to append an icon to the end of each external link, making 
 
 <Steps>
 
-1. Install the plugin  
+1. **Install the plugin**
+
    Add the [`rehype-external-links`](https://github.com/rehypejs/rehype-external-links) and [`@types/hast`](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/hast) packages:
 
    <PackageManagerCommand command="add rehype-external-links @types/hast" />
 
-2. Create a custom `rehype-external-links` wrapper plugin
+2. **Create a custom `rehype-external-links` wrapper plugin**
 
    ```ts
    // src/plugins/rehype-external-links.ts
@@ -90,7 +91,8 @@ This guide shows how to append an icon to the end of each external link, making 
    }
    ```
 
-3. Configure Astro to use the plugin  
+3. **Configure Astro to use the plugin**
+
    Open your `astro.config.mjs` and add the plugin to the Markdown config:
 
    ```js ins={3, 7}
@@ -105,7 +107,8 @@ This guide shows how to append an icon to the end of each external link, making 
    });
    ```
 
-4. Add custom styles for the external link icon in your global CSS:
+4. **Add custom styles for the external link icon in your global CSS**
+   
    ```css
    /* Prevent style conflicts by targeting only external link icons */
    a[href^="http"] .external-link-icon {

@@ -11,11 +11,11 @@ This guide will show one possible way to add OG images to Starlight.
 ## Step-by-step Guide
 
 <Steps>
-1.  Start by installing the required packages:
+1.  **Start by installing the required packages**
     
     <PackageManagerCommand command="add astro-og-canvas canvaskit-wasm"/>
 
-2.  Create the image endpoint with this code:
+2.  **Create the image endpoint with this code**
 
     ```ts
     // src/pages/og/[...route].ts
@@ -44,7 +44,7 @@ This guide will show one possible way to add OG images to Starlight.
     });
     ```
 
-3.  Customize `head` route data:
+3.  **Customize `head` route data**
 
     ```ts
     // src/routeData.ts
@@ -74,7 +74,7 @@ This guide will show one possible way to add OG images to Starlight.
     })
     ```
 
-4.  Configure Starlight in the `astro.config.mjs` file:
+4.  **Configure Starlight in the `astro.config.mjs` file**
 
     ```ts ins={6}
     // astro.config.mjs
