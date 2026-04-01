@@ -39,7 +39,7 @@ Supernova follows a specific structure for adding new documentation "recipes":
     - **Introduction**: Briefly explain what the recipe achieves.
     - **Step-by-Step Guide**: Use the Starlight `<Steps>` component.
     - **Resources**: Include a "Next steps" or "Resources" section at the end.
-4.  **Navigation**: If you add a new directory or want to change labels, update `src/content/nav/en.ts` and `config/sidebar.ts`.
+4.  **Navigation**: If you add a new directory or want to change labels, update `config/sidebar.ts`.
 
 ## Want to learn more?
 

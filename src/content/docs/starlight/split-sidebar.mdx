@@ -13,26 +13,18 @@ By default, Starlight provides a vertical sidebar. For larger documentation site
 
 <Steps>
 
-1.  **Centralize Navigation Labels**
+1.  **Configure Sidebar Labels**
 
-    Create a file to manage your navigation labels. This helps with localization and centralized management of tab titles.
-
-    ```ts
-    // src/content/nav/en.ts
-    export default {
-      "astro.recipes": "Astro Recipes",
-      "starlight.recipes": "Starlight Recipes",
-    } as const;
-    ```
-
-2.  **Modularize Sidebar Configuration**
-
-    Create a dedicated configuration file for your sidebar. This file will export separate arrays for each tab, combined into a single configuration for Starlight. Example:
+    Create a dedicated configuration file for your sidebar. This file will export separate arrays for each tab, combined into a single configuration for Starlight. Define your labels within a constant in this file.
 
     ```ts
     // config/sidebar.ts
     import type { StarlightUserConfig } from "@astrojs/starlight/types";
-    import enLabels from "../src/content/nav/en";
+
+    const enLabels = {
+      "astro.recipes": "Astro Recipes",
+      "starlight.recipes": "Starlight Recipes",
+    } as const;
 
     type NavKey = keyof typeof enLabels;
 
@@ -59,118 +51,69 @@ By default, Starlight provides a vertical sidebar. For larger documentation site
     ] satisfies StarlightUserConfig["sidebar"];
     ```
 
-3.  **Implement Tab Components**
+2.  **Create Custom Tab Components**
 
-    Create the following components in `src/components/tabs/` to handle the UI and logic of the switcher.
+    Implement the necessary components for the tabbed interface. These components handle the layout, tab selection, and accessibility.
 
     ```astro
     // src/components/tabs/TabbedContent.astro
     ---
-    import TabListItem from './TabListItem.astro';
-
     export interface Props {
-      tabs?: { label: string; id: string; initial?: boolean }[];
-      styled?: boolean;
       class?: string;
     }
-
-    const { tabs, styled } = Astro.props as Props;
     ---
 
-    <tabbed-content>
-      <ul class:list={['tab-list', Astro.props.class, { 'tab-list--styled': styled }]}>
-        <slot name="tab-list">
-          {
-            tabs?.map((tab) => (
-              <TabListItem id={tab.id} initial={tab.initial}>
-                {tab.label}
-              </TabListItem>
-            ))
-          }
-        </slot>
+    <tabbed-content class={Astro.props.class}>
+      <ul role="tablist" class="tab-list">
+        <slot name="tab-list" />
       </ul>
-
-      <div class:list={['panels', Astro.props.class, { 'panels--styled': styled }]}>
-        <slot />
-      </div>
+      <slot />
     </tabbed-content>
-
-    <style>
-      .tab-list {
-        list-style: none;
-        padding: 0;
-      }
-      .tab-list--styled {
-        display: flex;
-        margin-top: -1px;
-        overflow-x: auto;
-        overflow-y: hidden;
-      }
-      @media (min-width: 72em) {
-        .tab-list--styled {
-          justify-content: space-between;
-          margin-top: 0;
-          padding: 1px;
-        }
-      }
-
-      .panels--styled {
-        padding-left: 1px;
-        padding-right: 1px;
-      }
-    </style>
 
     <script>
       class Tabs extends HTMLElement {
-        readonly id = Math.floor(Math.random() * 10e10).toString(32);
-        count = 0;
         TabStore: Set<HTMLElement>[] = [];
         PanelStore: Set<HTMLElement>[] = [];
 
         constructor() {
           super();
 
-          const panels = this.querySelectorAll<HTMLElement>('.panels > [id]');
-          const tablist = this.querySelector('.tab-list')!;
-          const tabs = tablist.querySelectorAll('a');
-
-          tablist.setAttribute('role', 'tablist');
-
-          let initialTab = 0;
+          const tabs = this.querySelectorAll<HTMLElement>('[role="tab"]');
+          const panels = this.querySelectorAll<HTMLElement>('[role="tabpanel"]');
 
           Array.prototype.forEach.call(tabs, (tab: HTMLElement, i: number) => {
-            tab.setAttribute('role', 'tab');
-            tab.setAttribute('id', this.id + 'tab' + this.count++);
-            tab.setAttribute('tabindex', '-1');
-            tab.parentElement?.setAttribute('role', 'presentation');
-            if (!this.TabStore[i]) this.TabStore.push(new Set());
-            this.TabStore[i].add(tab);
-            if ('initial' in tab.dataset && tab.dataset.initial !== 'false') initialTab = i;
-
-            const onClick = (e: MouseEvent) => {
+            tab.addEventListener('click', (e) => {
               e.preventDefault();
-              const currentTab = tablist.querySelector('[aria-selected]');
-              if (e.currentTarget !== currentTab) {
-                this.switchTab(e.currentTarget as HTMLElement, i);
-              }
-            };
-            tab.addEventListener('click', onClick);
-            tab.addEventListener('auxclick', onClick);
+              this.switchTab(tab, i);
+            });
 
             tab.addEventListener('keydown', (e) => {
-              const index: number = Array.prototype.indexOf.call(tabs, e.currentTarget);
+              const index = Array.prototype.indexOf.call(tabs, e.currentTarget);
               const dir =
-                e.key === 'ArrowLeft'
-                  ? index - 1
-                  : e.key === 'ArrowRight'
-                    ? index + 1
-                    : e.key === 'Home'
-                      ? 0
-                      : e.key === 'End'
-                        ? tabs.length - 1
-                        : null;
+                e.key === 'ArrowLeft' ? index - 1 : e.key === 'ArrowRight' ? index + 1 : null;
               if (dir !== null) {
                 e.preventDefault();
+                if (tabs[dir]) this.switchTab(tabs[dir], dir);
+              }
+            });
+
+            if (!this.TabStore[i]) this.TabStore.push(new Set());
+            this.TabStore[i].add(tab);
+          });
+
+          // Initialization logic for panels and initial tab selection
+          let initialTab = 0;
+          Array.prototype.forEach.call(tabs, (tab: HTMLElement, i: number) => {
+            if (tab.dataset.initial) initialTab = i;
+          });
+
+          // Re-initialize logic after Starlight page transitions
+          window.addEventListener('astro:after-swap', () => {
+            const tabs = this.querySelectorAll<HTMLElement>('[role="tab"]');
+            Array.prototype.forEach.call(tabs, (tab: HTMLElement, i: number) => {
+              const index = Array.prototype.indexOf.call(tabs, tab);
+              const dir = index;
+              if (dir !== null) {
                 if (tabs[dir]) this.switchTab(tabs[dir], dir);
               }
             });
@@ -272,7 +215,7 @@ By default, Starlight provides a vertical sidebar. For larger documentation site
     </style>
     ```
 
-4.  **Create the Custom Sidebar Component**
+3.  **Create the Custom Sidebar Component**
 
     This component overrides Starlight's default Sidebar. It uses the components from the previous step and assigns icons like "astro" and "starlight".
 
@@ -450,7 +393,7 @@ By default, Starlight provides a vertical sidebar. For larger documentation site
     </style>
     ```
 
-5.  **Configure Astro**
+4.  **Configure Astro**
 
     Finally, register your custom component and import the modular sidebar configs.
 
