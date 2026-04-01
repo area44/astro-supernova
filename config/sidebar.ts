@@ -1,12 +1,14 @@
 import type { StarlightUserConfig } from "@astrojs/starlight/types";
 
-import enLabels from "../src/content/nav/en";
+const enLabels = {
+  "astro.recipes": "Astro Recipes",
+  "starlight.recipes": "Starlight Recipes",
+} as const;
 
 type NavKey = keyof typeof enLabels;
 
 /**
- * Create a Starlight sidebar group config entry that uses labels from
- * `src/content/nav/*` files.
+ * Create a Starlight sidebar group config entry that uses the predefined labels.
  */
 export function group(key: NavKey, group: any): any {
   return {
