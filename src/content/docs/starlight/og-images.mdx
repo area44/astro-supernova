@@ -27,7 +27,7 @@ This guide will show one possible way to add OG images to Starlight.
 
     const pages = Object.fromEntries(entries.map(({ data, id }) => [id, { data }]));
 
-    export const { getStaticPaths, GET } = OGImageRoute({
+    export const { getStaticPaths, GET } = await OGImageRoute({
       pages,
       param: "route",
       getImageOptions: (_path, page: (typeof pages)[number]) => {
