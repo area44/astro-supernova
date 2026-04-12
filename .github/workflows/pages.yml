@@ -18,9 +18,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Run build
-        uses: area44/workflows/vite@fix-pnpm-ignored-builds-13253052856993210280
-        env:
-          VITE_SITE_URL: https://torn4dom4n.github.io
+        uses: area44/workflows/astro@fix/pnpm-v10-compatibility-15221981301253991891
 
   deploy:
     needs: build
