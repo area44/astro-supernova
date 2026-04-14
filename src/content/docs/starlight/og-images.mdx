@@ -17,6 +17,8 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
 
 2.  **Create the image endpoint with this code**
 
+    You can fully customize the template below, including layout, colors, fonts, and content, to match your project’s branding, see [Takumi Docs](https://takumi.kane.tw/docs/templates)
+
     ```ts
     // src/pages/og/[...route].ts
     import type { APIRoute } from "astro";
@@ -55,9 +57,6 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
           <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 12px; background: linear-gradient(to bottom, #6366f1, #a855f7);"></div>
           <div style="display: flex; flex-direction: column; height: 100%; justify-content: center; position: relative; z-index: 10;">
             <div style="display: flex; align-items: center; margin-bottom: 32px;">
-              <div style="background: linear-gradient(135deg, #6366f1, #a855f7); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 24px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);">
-                <span style="color: white; font-size: 32px; font-weight: 800;">S</span>
-              </div>
               <span style="color: #94a3b8; font-size: 24px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">
                 Your Project Docs
               </span>
@@ -122,5 +121,5 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
 
 ## Resources
 
-1. [takumi-js GitHub](https://github.com/takumi-js/takumi-js)
+1. [Takumi](https://takumi.kane.tw)
 2. [Add Open Graph images to Starlight - HiDeoo](https://hideoo.dev/notes/starlight-og-images)
