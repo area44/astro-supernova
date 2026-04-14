@@ -6,42 +6,70 @@ description: Guide to adding OG Images to your Starlight-powered Astro site.
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guide will show one possible way to add OG images to Starlight.
+This guide will show how to add OG images to Starlight using `takumi-js`, a fast HTML-to-image generator powered by Rust.
 
 ## Step-by-step Guide
 
 <Steps>
-1.  **Start by installing the required packages**
+1.  **Start by installing the required package**
     
-    <PackageManagerCommand command="add astro-og-canvas canvaskit-wasm"/>
+    <PackageManagerCommand command="add takumi-js"/>
 
 2.  **Create the image endpoint with this code**
 
     ```ts
     // src/pages/og/[...route].ts
-
+    import type { APIRoute } from "astro";
     import { getCollection } from "astro:content";
-    import { OGImageRoute } from "astro-og-canvas";
+    import fs from "node:fs";
+    import path from "node:path";
+    import { ImageResponse } from "takumi-js/response";
 
-    const entries = await getCollection("docs");
+    export async function getStaticPaths() {
+      const entries = await getCollection("docs");
+      return entries.map((entry) => ({
+        params: { route: `${entry.id || "index"}.png` },
+        props: { title: entry.data.title, description: entry.data.description },
+      }));
+    }
 
-    const pages = Object.fromEntries(entries.map(({ data, id }) => [id, { data }]));
+    export const GET: APIRoute = async ({ props }) => {
+      const { title, description } = props;
 
-    export const { getStaticPaths, GET } = OGImageRoute({
-      pages,
-      param: "route",
-      getImageOptions: (_path, page: (typeof pages)[number]) => {
-        return {
-          title: page.data.title,
-          description: page.data.description,
-          border: { width: 32, side: "inline-start" },
-          padding: 80,
-          bgImage: {
-            path: "./src/pages/og/_background-image.png",
-          },
-        };
-      },
-    });
+      const bgImagePath = path.resolve("./src/pages/og/_background-image.png");
+      const bgImageBuffer = fs.readFileSync(bgImagePath);
+      const bgImageBase64 = `data:image/png;base64,${bgImageBuffer.toString("base64")}`;
+
+      const template = `
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            width: 1200px;
+            height: 630px;
+            background-image: url('${bgImageBase64}');
+            background-size: cover;
+            padding: 80px;
+            border-left: 32px solid #6366f1;
+            justify-content: center;
+            font-family: sans-serif;
+          "
+        >
+          <div style="display: flex; flex-direction: column;">
+            <h1 style="font-size: 84px; font-weight: 900; color: white; margin-bottom: 24px; line-height: 1.1; display: flex;">
+              ${title}
+            </h1>
+            ${description ? `<p style="font-size: 48px; color: #d1d5db; line-height: 1.4; margin: 0; display: flex;">${description}</p>` : ""}
+          </div>
+        </div>
+      `;
+
+      return new ImageResponse(template, {
+        width: 1200,
+        height: 630,
+        format: "png",
+      });
+    };
     ```
 
 3.  **Customize `head` route data**
@@ -52,17 +80,13 @@ This guide will show one possible way to add OG images to Starlight.
     import { defineRouteMiddleware } from "@astrojs/starlight/route-data"
 
     export const onRequest = defineRouteMiddleware((context) => {
-      // Get the URL of the generated image for the current page using its ID and
-      // append the `.png` file extension.
       const ogImageUrl = new URL(
         `/og/${context.locals.starlightRoute.id || "index"}.png`,
         context.site,
       )
 
-      // Get the array of all tags to include in the `<head>` of the current page.
       const { head } = context.locals.starlightRoute
 
-      // Add the `<meta/>` tags for the Open Graph images.
       head.push({
         tag: "meta",
         attrs: { property: "og:image", content: ogImageUrl.href },
@@ -90,8 +114,7 @@ This guide will show one possible way to add OG images to Starlight.
 
 </Steps>
 
-Up to you to customize the image using the various options provided by [`astro-og-canvas`](https://github.com/delucis/astro-og-canvas/tree/latest/packages/astro-og-canvas#image-options).
-
 ## Resources
 
-1. [Add Open Graph images to Starlight - HiDeoo](https://hideoo.dev/notes/starlight-og-images)
+1. [takumi-js GitHub](https://github.com/takumi-js/takumi-js)
+2. [Add Open Graph images to Starlight - HiDeoo](https://hideoo.dev/notes/starlight-og-images)
