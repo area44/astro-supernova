@@ -31,7 +31,7 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
         // Strip file extension from entry.id to match Starlight's route ID
         const id = entry.id.replace(/\.[^/.]+$/, "");
         return {
-          params: { route: \`\${id || "index"}.png\` },
+          params: { route: `${id || "index"}.png` },
           props: { title: entry.data.title, description: entry.data.description },
         };
       });
@@ -40,7 +40,7 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
     export const GET: APIRoute = async ({ props }) => {
       const { title, description } = props;
 
-      const template = \`
+      const template = `
         <div
           style="
             display: flex;
@@ -88,30 +88,30 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
                 display: flex;
               "
             >
-              \${title}
+              ${title}
             </h1>
 
-            \${
+            ${
               description
-                ? \`
-              <p
-                style="
-                  font-size: 42px;
-                  color: #94a3b8;
-                  line-height: 1.5;
-                  margin: 0;
-                  max-width: 900px;
-                  display: flex;
-                "
-              >
-                \${description}
-              </p>
-            \`
+                ? `
+          <p
+            style="
+              font-size: 42px;
+              color: #94a3b8;
+              line-height: 1.5;
+              margin: 0;
+              max-width: 900px;
+              display: flex;
+            "
+          >
+            ${description}
+          </p>
+        `
                 : ""
             }
           </div>
         </div>
-      \`;
+      `;
 
       return new ImageResponse(template, {
         width: 1200,
@@ -131,7 +131,7 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
       const { id } = context.locals.starlightRoute;
 
       const ogImageUrl = new URL(
-        \`\${import.meta.env.BASE_URL.replace(/\/$/, "")}/og/\${id || "index"}.png\`,
+        `${import.meta.env.BASE_URL.replace(/\/$/, "")}/og/${id || "index"}.png`,
         context.site ?? context.url.origin,
       );
 
