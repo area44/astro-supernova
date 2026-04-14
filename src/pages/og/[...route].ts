@@ -5,10 +5,14 @@ import { ImageResponse } from "takumi-js/response";
 
 export async function getStaticPaths() {
   const entries = await getCollection("docs");
-  return entries.map((entry) => ({
-    params: { route: `${entry.id || "index"}.png` },
-    props: { title: entry.data.title, description: entry.data.description },
-  }));
+  return entries.map((entry) => {
+    // Strip file extension from entry.id to match Starlight's route ID
+    const id = entry.id.replace(/\.[^/.]+$/, "");
+    return {
+      params: { route: `${id || "index"}.png` },
+      props: { title: entry.data.title, description: entry.data.description },
+    };
+  });
 }
 
 export const GET: APIRoute = async ({ props }) => {
