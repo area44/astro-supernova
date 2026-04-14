@@ -10,89 +10,91 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
 
 ## Step-by-step Guide
 
-### 1. Install the required package
+<Steps>
 
-<PackageManagerCommand command="add takumi-js" />
+1. **Start by installing the required package**
 
-### 2. Create the image endpoint
+   <PackageManagerCommand command="add takumi-js" />
 
-Create a file at `src/pages/og/[...route].ts`. You can fully customize the template below, including layout, colors, fonts, and content, to match your project’s branding. See [Takumi Docs](https://takumi.kane.tw/docs/templates) for more details.
+2. **Create the image endpoint with this code**
 
-```ts
-// src/pages/og/[...route].ts
-import type { APIRoute } from "astro";
-import { getCollection } from "astro:content";
-import { ImageResponse } from "takumi-js/response";
+   You can fully customize the template below, including layout, colors, fonts, and content, to match your project’s branding, see [Takumi Docs](https://takumi.kane.tw/docs/templates)
 
-export async function getStaticPaths() {
-  const entries = await getCollection("docs");
-  return entries.map((entry) => {
-    // Strip file extension from entry.id to match Starlight's route ID
-    const id = entry.id.replace(/\.[^/.]+$/, "");
-    return {
-      params: { route: `${id || "index"}.png` },
-      props: { title: entry.data.title, description: entry.data.description },
-    };
-  });
-}
+   ```ts
+   // src/pages/og/[...route].ts
+   import type { APIRoute } from "astro";
+   import { getCollection } from "astro:content";
+   import { ImageResponse } from "takumi-js/response";
 
-export const GET: APIRoute = async ({ props }) => {
-  const { title, description } = props;
+   export async function getStaticPaths() {
+     const entries = await getCollection("docs");
+     return entries.map((entry) => {
+       // Strip file extension from entry.id to match Starlight's route ID
+       const id = entry.id.replace(/\.[^/.]+$/, "");
+       return {
+         params: { route: `${id || "index"}.png` },
+         props: { title: entry.data.title, description: entry.data.description },
+       };
+     });
+   }
 
-  const template = `
-    <div
-      style="
-        display: flex;
-        flex-direction: column;
-        width: 1200px;
-        height: 630px;
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        padding: 80px;
-        position: relative;
-        overflow: hidden;
-        font-family: sans-serif;
-      "
-    >
-      <!-- Decorative background elements -->
-      <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
-      <div style="position: absolute; bottom: -50px; left: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+   export const GET: APIRoute = async ({ props }) => {
+     const { title, description } = props;
 
-      <!-- Accent line -->
-      <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 12px; background: linear-gradient(to bottom, #6366f1, #a855f7);"></div>
+     const template = `
+       <div
+         style="
+           display: flex;
+           flex-direction: column;
+           width: 1200px;
+           height: 630px;
+           background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+           padding: 80px;
+           position: relative;
+           overflow: hidden;
+           font-family: sans-serif;
+         "
+       >
+         <!-- Decorative background elements -->
+         <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+         <div style="position: absolute; bottom: -50px; left: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
 
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          justify-content: center;
-          position: relative;
-          z-index: 10;
-        "
-      >
-        <div style="display: flex; align-items: center; margin-bottom: 32px;">
-          <span style="color: #94a3b8; font-size: 24px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">
-            Supernova Docs
-          </span>
-        </div>
+         <!-- Accent line -->
+         <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 12px; background: linear-gradient(to bottom, #6366f1, #a855f7);"></div>
 
-        <h1
-          style="
-            font-size: 88px;
-            font-weight: 900;
-            color: white;
-            margin: 0 0 24px 0;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            display: flex;
-          "
-        >
-          ${title}
-        </h1>
+         <div
+           style="
+             display: flex;
+             flex-direction: column;
+             height: 100%;
+             justify-content: center;
+             position: relative;
+             z-index: 10;
+           "
+         >
+           <div style="display: flex; align-items: center; margin-bottom: 32px;">
+             <span style="color: #94a3b8; font-size: 24px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">
+               Supernova Docs
+             </span>
+           </div>
 
-        ${
-          description
-            ? `
+           <h1
+             style="
+               font-size: 88px;
+               font-weight: 900;
+               color: white;
+               margin: 0 0 24px 0;
+               line-height: 1.1;
+               letter-spacing: -0.02em;
+               display: flex;
+             "
+           >
+             ${title}
+           </h1>
+
+           ${
+             description
+               ? `
           <p
             style="
               font-size: 42px;
@@ -106,66 +108,64 @@ export const GET: APIRoute = async ({ props }) => {
             ${description}
           </p>
         `
-            : ""
-        }
-      </div>
-    </div>
-  `;
+               : ""
+           }
+         </div>
+       </div>
+     `;
 
-  return new ImageResponse(template, {
-    width: 1200,
-    height: 630,
-    format: "png",
-  });
-};
-```
+     return new ImageResponse(template, {
+       width: 1200,
+       height: 630,
+       format: "png",
+     });
+   };
+   ```
 
-### 3. Customize `head` route data
+3. **Customize `head` route data**
 
-Update your `src/routeData.ts` to include the OG image metadata.
+   ```ts
+   // src/routeData.ts
+   import { defineRouteMiddleware } from "@astrojs/starlight/route-data";
 
-```ts
-// src/routeData.ts
-import { defineRouteMiddleware } from "@astrojs/starlight/route-data";
+   export const onRequest = defineRouteMiddleware((context) => {
+     const { id } = context.locals.starlightRoute;
 
-export const onRequest = defineRouteMiddleware((context) => {
-  const { id } = context.locals.starlightRoute;
+     const ogImageUrl = new URL(
+       `${import.meta.env.BASE_URL.replace(/\/$/, "")}/og/${id || "index"}.png`,
+       context.site ?? context.url.origin,
+     );
 
-  const ogImageUrl = new URL(
-    `${import.meta.env.BASE_URL.replace(/\/$/, "")}/og/${id || "index"}.png`,
-    context.site ?? context.url.origin,
-  );
+     const { head } = context.locals.starlightRoute;
 
-  const { head } = context.locals.starlightRoute;
+     head.push({
+       tag: "meta",
+       attrs: { property: "og:image", content: ogImageUrl.href },
+     });
+     head.push({
+       tag: "meta",
+       attrs: { name: "twitter:image", content: ogImageUrl.href },
+     });
+   });
+   ```
 
-  head.push({
-    tag: "meta",
-    attrs: { property: "og:image", content: ogImageUrl.href },
-  });
-  head.push({
-    tag: "meta",
-    attrs: { name: "twitter:image", content: ogImageUrl.href },
-  });
-});
-```
+4. **Configure Starlight in the `astro.config.mjs` file**
 
-### 4. Configure Starlight
+   ```ts ins={6}
+   // astro.config.mjs
+   import { defineConfig } from "astro/config";
+   import starlight from "@astrojs/starlight";
 
-Register the middleware in your `astro.config.mjs` file.
+   export default defineConfig({
+     integrations: [
+       starlight({
+         routeMiddleware: "./src/routeData.ts",
+       }),
+     ],
+   });
+   ```
 
-```ts ins={7}
-// astro.config.mjs
-import { defineConfig } from "astro/config";
-import starlight from "@astrojs/starlight";
-
-export default defineConfig({
-  integrations: [
-    starlight({
-      routeMiddleware: "./src/routeData.ts",
-    }),
-  ],
-});
-```
+</Steps>
 
 ## Resources
 
