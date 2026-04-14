@@ -32,6 +32,13 @@ export const GET: APIRoute = async ({ props }) => {
         font-family: sans-serif;
       "
     >
+      <!-- Decorative background elements -->
+      <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+      <div style="position: absolute; bottom: -50px; left: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+
+      <!-- Accent line -->
+      <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 12px; background: linear-gradient(to bottom, #6366f1, #a855f7);"></div>
+
       <div
         style="
           display: flex;
@@ -42,6 +49,11 @@ export const GET: APIRoute = async ({ props }) => {
           z-index: 10;
         "
       >
+        <div style="display: flex; align-items: center; margin-bottom: 32px;">
+          <span style="color: #94a3b8; font-size: 24px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">
+            Supernova Docs
+          </span>
+        </div>
 
         <h1
           style="
