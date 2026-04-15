@@ -12,11 +12,11 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
 
 <Steps>
 
-1. **Start by installing the required package**
+1.  **Start by installing the required package**
 
-   <PackageManagerCommand command="add takumi-js" />
+    <PackageManagerCommand command="add takumi-js" />
 
-2. **Create the image endpoint with this code**
+2.  **Create the image endpoint with this code**
 
    You can fully customize the template below, including layout, colors, fonts, and content, to match your project’s branding, see [Takumi Docs](https://takumi.kane.tw/docs/templates)
 
@@ -32,7 +32,7 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
        // Strip file extension from entry.id to match Starlight's route ID
        const id = entry.id.replace(/\.[^/.]+$/, "");
        return {
-         params: { route: `\${id || "index"}.png` },
+         params: { route: `${id || "index"}.png` },
          props: { title: entry.data.title, description: entry.data.description },
        };
      });
@@ -58,10 +58,10 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
          <!-- Decorative background elements -->
          <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
          <div style="position: absolute; bottom: -50px; left: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
-   
+
          <!-- Accent line -->
          <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 12px; background: linear-gradient(to bottom, #6366f1, #a855f7);"></div>
-   
+
          <div
            style="
              display: flex;
@@ -74,10 +74,10 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
          >
            <div style="display: flex; align-items: center; margin-bottom: 32px;">
              <span style="color: #94a3b8; font-size: 24px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">
-               Supernova Docs
+               Your Project Docs
              </span>
            </div>
-   
+
            <h1
              style="
                font-size: 88px;
@@ -89,12 +89,12 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
                display: flex;
              "
            >
-             \${title}
+             ${title}
            </h1>
-   
-           \${
+
+           ${
              description
-               ? \`
+               ? `
              <p
                style="
                  font-size: 42px;
@@ -105,9 +105,9 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
                  display: flex;
                "
              >
-               \${description}
+               ${description}
              </p>
-           \`
+           `
                : ""
            }
          </div>
@@ -122,7 +122,7 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
    };
    ```
 
-3. **Customize `head` route data**
+3.  **Customize `head` route data**
 
    ```ts
    // src/routeData.ts
@@ -132,7 +132,7 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
      const { id } = context.locals.starlightRoute;
 
      const ogImageUrl = new URL(
-       \`\${import.meta.env.BASE_URL.replace(/\/$/, "")}/og/\${id || "index"}.png\`,
+       `${import.meta.env.BASE_URL.replace(/\/$/, "")}/og/${id || "index"}.png`,
        context.site ?? context.url.origin,
      );
 
@@ -149,9 +149,9 @@ This guide will show how to add OG images to Starlight using `takumi-js`, a fast
    });
    ```
 
-4. **Configure Starlight in the `astro.config.mjs` file**
+4.  **Configure Starlight in the `astro.config.mjs` file**
 
-   ```ts ins={6}
+   ```ts ins={8}
    // astro.config.mjs
    import { defineConfig } from "astro/config";
    import starlight from "@astrojs/starlight";
