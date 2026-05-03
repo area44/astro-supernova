@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.38.4",
-    "astro": "^6.1.9",
+    "astro": "^6.2.1",
     "astro-mermaid": "^2.0.1",
     "katex": "^0.16.45",
     "lite-youtube-embed": "^0.3.4",
@@ -23,14 +23,14 @@
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "sharp": "^0.34.5",
-    "starlight-links-validator": "^0.23.0",
+    "starlight-links-validator": "^0.24.0",
     "takumi-js": "^1.1.2"
   },
   "devDependencies": {
     "@types/hast": "^3.0.4",
     "@types/mdast": "^4.0.4",
-    "oxfmt": "^0.46.0",
-    "oxlint": "^1.61.0",
+    "oxfmt": "^0.47.0",
+    "oxlint": "^1.62.0",
     "typescript": "^6.0.3",
     "unified": "^11.0.5"
   }
