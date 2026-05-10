@@ -19,12 +19,12 @@ export function group(key: NavKey, group: any): any {
 
 export const astroSidebar = [
   group("astro.recipes", {
-    autogenerate: { directory: "astro" },
+    items: [{ autogenerate: { directory: "astro" } }],
   }),
 ] satisfies StarlightUserConfig["sidebar"];
 
 export const starlightSidebar = [
   group("starlight.recipes", {
-    autogenerate: { directory: "starlight" },
+    items: [{ autogenerate: { directory: "starlight" } }],
   }),
 ] satisfies StarlightUserConfig["sidebar"];
