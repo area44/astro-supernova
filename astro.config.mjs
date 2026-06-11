@@ -1,4 +1,5 @@
 // @ts-check
+import { unified } from "@astrojs/markdown-remark";
 import starlight from "@astrojs/starlight";
 import mermaid from "astro-mermaid";
 import { defineConfig } from "astro/config";
@@ -24,12 +25,14 @@ export default defineConfig({
   site,
   base,
   markdown: {
-    syntaxHighlight: {
-      type: "shiki",
-      excludeLangs: ["mermaid", "math"],
-    },
-    remarkPlugins: [remarkMath, remarkReadingTime],
-    rehypePlugins: [rehypeKatex, rehypeExternalLinks()],
+    processor: unified({
+      syntaxHighlight: {
+        type: "shiki",
+        excludeLangs: ["mermaid", "math"],
+      },
+      remarkPlugins: [remarkMath, remarkReadingTime],
+      rehypePlugins: [rehypeKatex, rehypeExternalLinks()],
+    }),
   },
   integrations: [
     mermaid(),
