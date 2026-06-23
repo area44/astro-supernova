@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.40.0",
-    "astro": "^6.4.8",
+    "astro": "^7.0.0",
     "astro-mermaid": "^2.0.4",
     "katex": "^0.17.0",
     "lite-youtube-embed": "^0.3.4",
