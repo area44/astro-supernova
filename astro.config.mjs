@@ -46,24 +46,6 @@ export default defineConfig({
         PageTitle: "./src/components/PageTitle.astro",
         Sidebar: "./src/components/Sidebar.astro",
       },
-      head: [
-        {
-          tag: "script",
-          attrs: { src: "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js" },
-        },
-        {
-          tag: "script",
-          content: `
-            document.addEventListener('astro:page-load', () => {
-              mermaid.initialize({ startOnLoad: false });
-              mermaid.run();
-            });
-            document.addEventListener('astro:after-swap', () => {
-              mermaid.run();
-            });
-          `,
-        },
-      ],
       social: [
         {
           icon: "github",

@@ -13,11 +13,13 @@ export const satteriMermaid = defineHastPlugin({
       const lang = (codeChild as any).data?.lang;
 
       if (lang === "mermaid") {
-        ctx.setProperty(node, "tagName", "div");
-        ctx.setProperty(node, "className", ["mermaid"]);
-
         const text = ctx.textContent(codeChild);
-        ctx.setProperty(node, "children", [{ type: "text", value: text }]);
+        ctx.replaceNode(node, {
+          type: "element",
+          tagName: "div",
+          properties: { className: ["mermaid"] },
+          children: [{ type: "text", value: text }],
+        } as any);
       }
     },
   },
