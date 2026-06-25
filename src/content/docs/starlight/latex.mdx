@@ -1,12 +1,16 @@
 ---
 title: Add LaTeX Rendering Support
-description: Add LaTeX rendering support to your Starlight site using KaTeX.
+description: Add LaTeX rendering support to your Starlight site using KaTeX and Satteri.
 ---
+
+:::caution
+This recipe requires **Astro v7** and **Starlight v0.41**.
+:::
 
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guide shows you how to render LaTeX math formulas in your Starlight project using [`remark-math`](https://github.com/remarkjs/remark-math) and [`rehype-katex`](https://github.com/rehypejs/rehype-katex).
+This guide shows you how to render LaTeX math formulas in your Starlight project using [`satteri`](https://satteri.dev) and [`katex`](https://katex.org/).
 
 ## Step-by-step Guide
 
@@ -14,24 +18,27 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
 
 1. **Install the required dependencies**
 
-   <PackageManagerCommand command="add katex rehype-katex remark-math" />
+   <PackageManagerCommand command="add katex" />
 
-2. **Configure Markdown plugins in `astro.config.mjs`**
+2. **Configure Satteri processor in `astro.config.mjs`**
 
-   Open your `astro.config.mjs` file and configure both the remark and rehype plugins:
+   Open your `astro.config.mjs` file and configure the Satteri processor with the `satteriKatex` plugin:
 
-   ```js ins={4-5, 15}
+   ```js ins={4, 10-15, 19}
    // astro.config.mjs
-
-   import { defineConfig } from "astro/config";
-   import remarkMath from "remark-math";
-   import rehypeKatex from "rehype-katex";
+   import { satteri } from "@astrojs/markdown-satteri";
    import starlight from "@astrojs/starlight";
+   import { satteriKatex } from "./src/plugins/satteri-katex";
+   import { defineConfig } from "astro/config";
 
    export default defineConfig({
      markdown: {
-       remarkPlugins: [remarkMath],
-       rehypePlugins: [rehypeKatex],
+       processor: satteri({
+         mdastPlugins: [satteriKatex],
+         features: {
+           math: true,
+         },
+       }),
      },
      integrations: [
        starlight({
@@ -65,6 +72,5 @@ $$
 
 ## Resources
 
-1. [remark-math](https://github.com/remarkjs/remark-math)
-2. [rehype-katex](https://github.com/rehypejs/rehype-katex)
-3. [KaTeX documentation](https://katex.org/)
+1. [Satteri documentation](https://satteri.dev)
+2. [KaTeX documentation](https://katex.org/)
