@@ -8,7 +8,7 @@ Supernova is a highly customized [Starlight](https://starlight.astro.build/) doc
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18 or higher)
+- [Node.js](https://nodejs.org/)
 - [pnpm](https://pnpm.io/)
 
 ### Installation
