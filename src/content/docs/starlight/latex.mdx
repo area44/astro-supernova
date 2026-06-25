@@ -1,6 +1,6 @@
 ---
 title: Add LaTeX Rendering Support
-description: Add LaTeX rendering support to your Starlight site using KaTeX and Satteri.
+description: Add LaTeX rendering support to your Starlight site using KaTeX and Sätteri.
 ---
 
 :::caution
@@ -10,7 +10,7 @@ This recipe requires **Astro v7**, **Starlight v0.41**, **satteri** and **@astro
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guide shows you how to render LaTeX math formulas in your Starlight project using [`satteri`](https://github.com/bruits/satteri) and [`katex`](https://katex.org/).
+This guide shows you how to render LaTeX math formulas in your Starlight project using [`satteri`](https://satteri.bruits.org) and [`katex`](https://katex.org/).
 
 ## Step-by-step Guide
 
@@ -20,7 +20,7 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
 
    <PackageManagerCommand command="add katex satteri @astrojs/markdown-satteri" />
 
-2. **Create the Satteri KaTeX plugin**
+2. **Create the Sätteri KaTeX plugin**
 
    Save the following code as `src/plugins/satteri-katex.ts`:
 
@@ -48,11 +48,11 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
    });
    ```
 
-3. **Configure Satteri processor in `astro.config.mjs`**
+3. **Configure Sätteri processor in `astro.config.mjs`**
 
-   Open your `astro.config.mjs` file and configure the Satteri processor with the `satteriKatex` plugin:
+   Open your `astro.config.mjs` file and configure the Sätteri processor with the `satteriKatex` plugin:
 
-   ```js ins={4, 10-15, 19, 23}
+   ```js ins={4, 10-14, 18}
    // astro.config.mjs
    import { satteri } from "@astrojs/markdown-satteri";
    import starlight from "@astrojs/starlight";
@@ -66,7 +66,6 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
          features: {
            math: true,
          },
-         syntaxHighlight: "shiki",
        }),
      },
      integrations: [
@@ -101,5 +100,5 @@ $$
 
 ## Resources
 
-1. [Satteri repository](https://github.com/bruits/satteri)
+1. [Sätteri documentation](https://satteri.bruits.org)
 2. [KaTeX documentation](https://katex.org/)

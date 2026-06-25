@@ -1,6 +1,6 @@
 ---
 title: Add Reading Time
-description: Guide to adding reading time to your Starlight-powered Astro site using Satteri.
+description: Guide to adding reading time to your Starlight-powered Astro site using Sätteri.
 ---
 
 :::caution
@@ -10,7 +10,7 @@ This recipe requires **Astro v7**, **Starlight v0.41**, **satteri** and **@astro
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This recipe shows one way to display an estimated reading time for each page in Starlight using Satteri.
+This recipe shows one way to display an estimated reading time for each page in Starlight using Sätteri.
 
 ## Step-by-step Guide
 
@@ -20,7 +20,7 @@ This recipe shows one way to display an estimated reading time for each page in 
 
    <PackageManagerCommand command="add reading-time satteri @astrojs/markdown-satteri" />
 
-2. **Create a Satteri plugin to calculate reading time**
+2. **Create a Sätteri plugin to calculate reading time**
 
    Save the file as `src/plugins/satteri-reading-time.ts`:
 
@@ -102,7 +102,7 @@ This recipe shows one way to display an estimated reading time for each page in 
 
 4. **Add the plugin to your config and tell Starlight to use your custom `PageTitle`**
 
-   ```js ins={3, 4, 10, 11, 17}
+   ```js ins={3, 4, 10, 16}
    // astro.config.mjs
    import { satteri } from "@astrojs/markdown-satteri";
    import { defineConfig } from "astro/config";
@@ -113,7 +113,6 @@ This recipe shows one way to display an estimated reading time for each page in 
      markdown: {
        processor: satteri({
          mdastPlugins: [satteriReadingTime],
-         syntaxHighlight: "shiki",
        }),
      },
      integrations: [
@@ -130,5 +129,5 @@ This recipe shows one way to display an estimated reading time for each page in 
 
 ## Resources
 
-1. [Satteri repository](https://github.com/bruits/satteri)
+1. [Sätteri documentation](https://satteri.bruits.org)
 2. [Add reading time - Astro Docs](https://docs.astro.build/en/recipes/reading-time/)

@@ -33,7 +33,6 @@ export default defineConfig({
       features: {
         math: true,
       },
-      syntaxHighlight: "shiki",
     }),
   },
   integrations: [

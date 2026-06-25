@@ -1,6 +1,6 @@
 ---
 title: Add Mermaid Diagrams
-description: Learn how to integrate Mermaid diagrams into your Starlight-powered Astro site using Satteri.
+description: Learn how to integrate Mermaid diagrams into your Starlight-powered Astro site using Sätteri.
 ---
 
 :::caution
@@ -14,7 +14,7 @@ import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 For the best experience, we recommend using [`astro-mermaid`](https://github.com/joesaby/astro-mermaid) to render Mermaid diagrams in Astro.
 :::
 
-This guide helps you add Mermaid diagrams to your Starlight documentation site using Satteri.
+This guide helps you add Mermaid diagrams to your Starlight documentation site using Sätteri.
 
 ## Step-by-step Guide
 
@@ -26,7 +26,7 @@ This guide helps you add Mermaid diagrams to your Starlight documentation site u
 
    <PackageManagerCommand command="add satteri @astrojs/markdown-satteri" />
 
-2. **Create the Satteri Mermaid plugin**
+2. **Create the Sätteri Mermaid plugin**
 
    Save the following code as `src/plugins/satteri-mermaid.ts`:
 
@@ -62,9 +62,9 @@ This guide helps you add Mermaid diagrams to your Starlight documentation site u
 
 3. **Configure Astro**
 
-   Update your `astro.config.mjs` to use the Satteri processor with the `satteriMermaid` plugin:
+   Update your `astro.config.mjs` to use the Sätteri processor with the `satteriMermaid` plugin:
 
-   ```js ins={3, 5, 13, 16, 20}
+   ```js ins={3, 5, 13, 16}
    // astro.config.mjs
    import { satteri } from "@astrojs/markdown-satteri";
    import { defineConfig } from "astro/config";
@@ -79,7 +79,6 @@ This guide helps you add Mermaid diagrams to your Starlight documentation site u
        },
        processor: satteri({
          hastPlugins: [satteriMermaid],
-         syntaxHighlight: "shiki",
        }),
      },
      integrations: [
@@ -112,5 +111,5 @@ The diagram above will render like this:
 
 ## Resources
 
-1. [Satteri repository](https://github.com/bruits/satteri)
+1. [Sätteri documentation](https://satteri.bruits.org)
 2. [Mermaid Diagrams in Markdown with Astro - Astro Digital Garden](https://astro-digital-garden.stereobooster.com/recipes/mermaid-diagrams-in-markdown)
