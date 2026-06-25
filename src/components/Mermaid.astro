@@ -1,0 +1,17 @@
+<script>
+  import mermaid from 'mermaid';
+  mermaid.initialize({ startOnLoad: false });
+
+  async function renderMermaid() {
+    const diagrams = document.querySelectorAll('.mermaid');
+    if (diagrams.length > 0) {
+      await mermaid.run();
+    }
+  }
+
+  // Initial load
+  renderMermaid();
+
+  // Re-run after page transitions (View Transitions)
+  document.addEventListener('astro:after-swap', renderMermaid);
+</script>
