@@ -1,15 +1,13 @@
-import { unified } from "@astrojs/markdown-remark";
+import { satteri } from "@astrojs/markdown-satteri";
 // @ts-check
 import starlight from "@astrojs/starlight";
-import mermaid from "astro-mermaid";
 import { defineConfig } from "astro/config";
-import rehypeKatex from "rehype-katex";
-import remarkMath from "remark-math";
-import starlightLinksValidator from "starlight-links-validator";
 
 import { astroSidebar, starlightSidebar } from "./config/sidebar";
-import { rehypeExternalLinks } from "./src/plugins/rehype-external-links";
-import { remarkReadingTime } from "./src/plugins/remark-reading-time";
+import { satteriExternalLinks } from "./src/plugins/satteri-external-links";
+import { satteriKatex } from "./src/plugins/satteri-katex";
+import { satteriMermaid } from "./src/plugins/satteri-mermaid";
+import { satteriReadingTime } from "./src/plugins/satteri-reading-time";
 
 // https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables
 const site = process.env.NETLIFY
@@ -29,13 +27,15 @@ export default defineConfig({
       type: "shiki",
       excludeLangs: ["mermaid", "math"],
     },
-    processor: unified({
-      remarkPlugins: [remarkMath, remarkReadingTime],
-      rehypePlugins: [rehypeKatex, rehypeExternalLinks()],
+    processor: satteri({
+      mdastPlugins: [satteriKatex, satteriReadingTime],
+      hastPlugins: [satteriMermaid, satteriExternalLinks],
+      features: {
+        math: true,
+      },
     }),
   },
   integrations: [
-    mermaid(),
     starlight({
       routeMiddleware: "./src/routeData.ts",
       title: "Supernova",
@@ -59,7 +59,6 @@ export default defineConfig({
       sidebar: [...astroSidebar, ...starlightSidebar],
       lastUpdated: true,
       credits: true,
-      plugins: [starlightLinksValidator()],
     }),
   ],
 });
