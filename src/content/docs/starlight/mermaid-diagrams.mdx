@@ -4,7 +4,7 @@ description: Learn how to integrate Mermaid diagrams into your Starlight-powered
 ---
 
 :::caution
-This recipe requires **Astro v7** and **Starlight v0.41**.
+This recipe requires **Astro v7**, **Starlight v0.41**, **satteri** and **@astrojs/markdown-satteri**.
 :::
 
 import { Steps } from "@astrojs/starlight/components";
@@ -22,15 +22,49 @@ This guide helps you add Mermaid diagrams to your Starlight documentation site u
 
 1. **Install dependencies**
 
-   First, install `satteri`:
+   Install `satteri` and `@astrojs/markdown-satteri`:
 
-   <PackageManagerCommand command="add satteri" />
+   <PackageManagerCommand command="add satteri @astrojs/markdown-satteri" />
 
-2. **Configure Astro**
+2. **Create the Satteri Mermaid plugin**
+
+   Save the following code as `src/plugins/satteri-mermaid.ts`:
+
+   ```ts
+   // src/plugins/satteri-mermaid.ts
+   import { defineHastPlugin } from "satteri";
+
+   export const satteriMermaid = defineHastPlugin({
+     name: "mermaid",
+     element: {
+       filter: ["pre"],
+       visit(node, ctx) {
+         const codeChild = node.children?.find(
+           (c) => c.type === "element" && (c as any).tagName === "code",
+         );
+         if (!codeChild || codeChild.type !== "element") return;
+
+         const lang = (codeChild as any).data?.lang;
+
+         if (lang === "mermaid") {
+           const text = ctx.textContent(codeChild);
+           ctx.replaceNode(node, {
+             type: "element",
+             tagName: "div",
+             properties: { className: ["mermaid"] },
+             children: [{ type: "text", value: text }],
+           } as any);
+         }
+       },
+     },
+   });
+   ```
+
+3. **Configure Astro**
 
    Update your `astro.config.mjs` to use the Satteri processor with the `satteriMermaid` plugin:
 
-   ```js ins={3, 5, 13, 17}
+   ```js ins={3, 5, 13, 16, 20}
    // astro.config.mjs
    import { satteri } from "@astrojs/markdown-satteri";
    import { defineConfig } from "astro/config";
@@ -45,6 +79,7 @@ This guide helps you add Mermaid diagrams to your Starlight documentation site u
        },
        processor: satteri({
          hastPlugins: [satteriMermaid],
+         syntaxHighlight: "shiki",
        }),
      },
      integrations: [
@@ -77,5 +112,5 @@ The diagram above will render like this:
 
 ## Resources
 
-1. [Satteri documentation](https://satteri.dev)
+1. [Satteri repository](https://github.com/bruits/satteri)
 2. [Mermaid Diagrams in Markdown with Astro - Astro Digital Garden](https://astro-digital-garden.stereobooster.com/recipes/mermaid-diagrams-in-markdown)

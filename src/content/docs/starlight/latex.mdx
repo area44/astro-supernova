@@ -4,13 +4,13 @@ description: Add LaTeX rendering support to your Starlight site using KaTeX and 
 ---
 
 :::caution
-This recipe requires **Astro v7** and **Starlight v0.41**.
+This recipe requires **Astro v7**, **Starlight v0.41**, **satteri** and **@astrojs/markdown-satteri**.
 :::
 
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guide shows you how to render LaTeX math formulas in your Starlight project using [`satteri`](https://satteri.dev) and [`katex`](https://katex.org/).
+This guide shows you how to render LaTeX math formulas in your Starlight project using [`satteri`](https://github.com/bruits/satteri) and [`katex`](https://katex.org/).
 
 ## Step-by-step Guide
 
@@ -18,13 +18,41 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
 
 1. **Install the required dependencies**
 
-   <PackageManagerCommand command="add katex" />
+   <PackageManagerCommand command="add katex satteri @astrojs/markdown-satteri" />
 
-2. **Configure Satteri processor in `astro.config.mjs`**
+2. **Create the Satteri KaTeX plugin**
+
+   Save the following code as `src/plugins/satteri-katex.ts`:
+
+   ```ts
+   // src/plugins/satteri-katex.ts
+   import katex from "katex";
+   import { defineMdastPlugin } from "satteri";
+
+   export const satteriKatex = defineMdastPlugin({
+     name: "katex",
+     math(node) {
+       const html = katex.renderToString(node.value, {
+         displayMode: true,
+         throwOnError: false,
+       });
+       return { rawHtml: html };
+     },
+     inlineMath(node) {
+       const html = katex.renderToString(node.value, {
+         displayMode: false,
+         throwOnError: false,
+       });
+       return { rawHtml: html };
+     },
+   });
+   ```
+
+3. **Configure Satteri processor in `astro.config.mjs`**
 
    Open your `astro.config.mjs` file and configure the Satteri processor with the `satteriKatex` plugin:
 
-   ```js ins={4, 10-15, 19}
+   ```js ins={4, 10-15, 19, 23}
    // astro.config.mjs
    import { satteri } from "@astrojs/markdown-satteri";
    import starlight from "@astrojs/starlight";
@@ -38,6 +66,7 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
          features: {
            math: true,
          },
+         syntaxHighlight: "shiki",
        }),
      },
      integrations: [
@@ -72,5 +101,5 @@ $$
 
 ## Resources
 
-1. [Satteri documentation](https://satteri.dev)
+1. [Satteri repository](https://github.com/bruits/satteri)
 2. [KaTeX documentation](https://katex.org/)
