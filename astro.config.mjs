@@ -1,6 +1,7 @@
 import { satteri } from "@astrojs/markdown-satteri";
 import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
+import starlightLinksValidatorPlugin from "starlight-links-validator";
 
 import { astroSidebar, starlightSidebar } from "./config/sidebar";
 import { satteriExternalLinks } from "./src/plugins/satteri-external-links";
@@ -58,6 +59,7 @@ export default defineConfig({
       sidebar: [...astroSidebar, ...starlightSidebar],
       lastUpdated: true,
       credits: true,
+      plugins: [starlightLinksValidatorPlugin()],
     }),
   ],
 });
