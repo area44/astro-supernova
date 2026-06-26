@@ -1,6 +1,6 @@
 ---
-title: Add LaTeX Rendering Support
-description: Add LaTeX rendering support to your Starlight site using KaTeX and Sätteri.
+title: Add LaTeX Math Support
+description: Add LaTeX math support to your Starlight site using Sätteri's built-in math parser.
 ---
 
 :::caution
@@ -10,7 +10,7 @@ This recipe requires **Astro v7**, **Starlight v0.41**, **Sätteri** and **@astr
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guide shows you how to render LaTeX math formulas in your Starlight project using [`Sätteri`](https://satteri.bruits.org) and [`katex`](https://katex.org/).
+This guide shows you how to render LaTeX math formulas in your Starlight project using the built-in math support in [`Sätteri`](https://satteri.bruits.org).
 
 ## Step-by-step Guide
 
@@ -18,63 +18,33 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
 
 1. **Install the required dependencies**
 
-   <PackageManagerCommand command="add katex satteri @astrojs/markdown-satteri" />
+   Ensure you have `satteri` and the Astro Sätteri integration installed:
 
-2. **Create the Sätteri KaTeX plugin**
+   <PackageManagerCommand command="add satteri @astrojs/markdown-satteri" />
 
-   Save the following code as `src/plugins/satteri-katex.ts`:
+2. **Configure Sätteri processor in `astro.config.mjs`**
 
-   ```ts
-   // src/plugins/satteri-katex.ts
-   import katex from "katex";
-   import { defineMdastPlugin } from "satteri";
-
-   export const satteriKatex = defineMdastPlugin({
-     name: "katex",
-     math(node) {
-       const html = katex.renderToString(node.value, {
-         displayMode: true,
-         throwOnError: false,
-       });
-       return { rawHtml: html };
-     },
-     inlineMath(node) {
-       const html = katex.renderToString(node.value, {
-         displayMode: false,
-         throwOnError: false,
-       });
-       return { rawHtml: html };
-     },
-   });
-   ```
-
-3. **Configure Sätteri processor in `astro.config.mjs`**
-
-   Open your `astro.config.mjs` file and configure the Sätteri processor with the `satteriKatex` plugin:
+   Open your `astro.config.mjs` file and enable the `math` feature in the Sätteri processor:
 
    ```js
    // astro.config.mjs
    import { satteri } from "@astrojs/markdown-satteri";
-   import starlight from "@astrojs/starlight";
-   import { satteriKatex } from "./src/plugins/satteri-katex";
    import { defineConfig } from "astro/config";
 
    export default defineConfig({
      markdown: {
        processor: satteri({
-         mdastPlugins: [satteriKatex],
          features: {
            math: true,
          },
        }),
      },
-     integrations: [
-       starlight({
-         customCss: ["katex/dist/katex.min.css"],
-       }),
-     ],
    });
    ```
+
+3. **Style the math output (Optional)**
+
+   By default, Sätteri renders inline math as `<code class="language-math math-inline">` and display math as `<pre><code class="language-math math-display">`. You can style these classes in your `src/styles/global.css` or use a client-side library like KaTeX or MathJax to render them into beautiful formulas.
 
 </Steps>
 
@@ -83,7 +53,7 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
 Create a file like `src/content/docs/example.mdx` and add:
 
 ```mdx
-When $a\ne0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
+When $a\ne0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
 
 $$
 x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
@@ -92,7 +62,7 @@ $$
 
 The code above generates the following on the page:
 
-When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
+When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
 
 $$
 x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
@@ -100,5 +70,5 @@ $$
 
 ## Resources
 
-1. [Sätteri](https://satteri.bruits.org)
-2. [KaTeX documentation](https://katex.org/)
+1. [Sätteri Documentation](https://satteri.bruits.org/docs/)
+2. [Sätteri Features: Math](https://satteri.bruits.org/docs/features/#math)

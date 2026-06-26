@@ -4,7 +4,6 @@ import { defineConfig } from "astro/config";
 
 import { astroSidebar, starlightSidebar } from "./config/sidebar";
 import { satteriExternalLinks } from "./src/plugins/satteri-external-links";
-import { satteriKatex } from "./src/plugins/satteri-katex";
 import { satteriMermaid } from "./src/plugins/satteri-mermaid";
 import { satteriReadingTime } from "./src/plugins/satteri-reading-time";
 
@@ -27,7 +26,7 @@ export default defineConfig({
       excludeLangs: ["mermaid", "math"],
     },
     processor: satteri({
-      mdastPlugins: [satteriKatex, satteriReadingTime],
+      mdastPlugins: [satteriReadingTime],
       hastPlugins: [satteriMermaid, satteriExternalLinks],
       features: {
         math: true,
@@ -39,7 +38,7 @@ export default defineConfig({
       routeMiddleware: "./src/routeData.ts",
       title: "Supernova",
       description: "Play with Astro",
-      customCss: ["./src/styles/global.css", "katex/dist/katex.min.css"],
+      customCss: ["./src/styles/global.css"],
       components: {
         Header: "./src/components/Header.astro",
         PageTitle: "./src/components/PageTitle.astro",
