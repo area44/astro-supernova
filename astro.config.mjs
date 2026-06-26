@@ -1,5 +1,4 @@
 import { satteri } from "@astrojs/markdown-satteri";
-// @ts-check
 import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
 

@@ -1,12 +1,16 @@
 ---
 title: Add Reading Time
-description: Guide to adding reading time to your Starlight-powered Astro site.
+description: Guide to adding reading time to your Starlight-powered Astro site using Sätteri.
 ---
+
+:::caution
+This recipe requires **Astro v7**, **Starlight v0.41**, **Sätteri** and **@astrojs/markdown-satteri**.
+:::
 
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This recipe shows one way to display an estimated reading time for each page in Starlight.
+This recipe shows one way to display an estimated reading time for each page in Starlight using Sätteri.
 
 ## Step-by-step Guide
 
@@ -14,37 +18,38 @@ This recipe shows one way to display an estimated reading time for each page in 
 
 1. **Install the required packages**
 
-   <PackageManagerCommand command="add reading-time mdast-util-to-string unified @types/mdast" />
+   <PackageManagerCommand command="add reading-time satteri @astrojs/markdown-satteri" />
 
-2. **Create a `remark` plugin to calculate reading time**
+2. **Create a Sätteri plugin to calculate reading time**
 
-   Save the file as `src/plugins/remark-reading-time.ts`:
+   Save the file as `src/plugins/satteri-reading-time.ts`:
 
    ```ts
-   // src/plugins/remark-reading-time.ts
-   import type { Root } from "mdast";
-   import { toString as mdToString } from "mdast-util-to-string";
+   // src/plugins/satteri-reading-time.ts
    import getReadingTime from "reading-time";
-   import type { Plugin } from "unified";
+   import { defineMdastPlugin } from "satteri";
 
-   interface AstroRemarkData {
-     astro: {
-       frontmatter: Record<string, unknown>;
-     };
-   }
+   export const satteriReadingTime = defineMdastPlugin({
+     name: "reading-time",
+     text(node, ctx) {
+       if (ctx.data.astro && (ctx.data.astro as any).frontmatter.minutesRead) {
+         return;
+       }
 
-   export const remarkReadingTime: Plugin<[], Root> = () => {
-     return (tree: Root, file) => {
-       const data = file.data as Partial<AstroRemarkData>;
-       if (!data.astro) data.astro = { frontmatter: {} };
-       if (!data.astro.frontmatter) data.astro.frontmatter = {};
+       let rootNode: any = node;
+       while (ctx.parent(rootNode)) {
+         rootNode = ctx.parent(rootNode);
+       }
 
-       const textOnPage = mdToString(tree);
+       const textOnPage = ctx.textContent(rootNode);
        const readingTime = getReadingTime(textOnPage);
 
-       data.astro.frontmatter.minutesRead = readingTime.text; // e.g. "3 min read"
-     };
-   };
+       if (!ctx.data.astro) (ctx.data as any).astro = { frontmatter: {} };
+       const astro = ctx.data.astro as any;
+       if (!astro.frontmatter) astro.frontmatter = {};
+       astro.frontmatter.minutesRead = readingTime.text; // e.g. "3 min read"
+     },
+   });
    ```
 
 3. **Override Starlight’s `PageTitle` component to display reading time**
@@ -54,11 +59,6 @@ This recipe shows one way to display an estimated reading time for each page in 
    ```astro
    // src/components/PageTitle.astro
    ---
-    /*
-    * Implement the source code according to Astro Docs:
-    * https://github.com/withastro/docs/blob/main/src/components/starlight/PageTitle.astro
-    */
-
     import { render } from "astro:content";
     import { Icon } from "@astrojs/starlight/components";
 
@@ -102,15 +102,18 @@ This recipe shows one way to display an estimated reading time for each page in 
 
 4. **Add the plugin to your config and tell Starlight to use your custom `PageTitle`**
 
-   ```js ins={4, 8, 13}
+   ```js
    // astro.config.mjs
+   import { satteri } from "@astrojs/markdown-satteri";
    import { defineConfig } from "astro/config";
    import starlight from "@astrojs/starlight";
-   import { remarkReadingTime } from "./src/plugins/remark-reading-time";
+   import { satteriReadingTime } from "./src/plugins/satteri-reading-time";
 
    export default defineConfig({
      markdown: {
-       remarkPlugins: [remarkReadingTime],
+       processor: satteri({
+         mdastPlugins: [satteriReadingTime],
+       }),
      },
      integrations: [
        starlight({
@@ -126,4 +129,5 @@ This recipe shows one way to display an estimated reading time for each page in 
 
 ## Resources
 
-1. [Add reading time - Astro Docs](https://docs.astro.build/en/recipes/reading-time/)
+1. [Sätteri](https://satteri.bruits.org)
+2. [Add reading time - Astro Docs](https://docs.astro.build/en/recipes/reading-time/)

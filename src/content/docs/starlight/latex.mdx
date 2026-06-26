@@ -1,12 +1,16 @@
 ---
 title: Add LaTeX Rendering Support
-description: Add LaTeX rendering support to your Starlight site using KaTeX.
+description: Add LaTeX rendering support to your Starlight site using KaTeX and Sätteri.
 ---
+
+:::caution
+This recipe requires **Astro v7**, **Starlight v0.41**, **Sätteri** and **@astrojs/markdown-satteri**.
+:::
 
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guide shows you how to render LaTeX math formulas in your Starlight project using [`remark-math`](https://github.com/remarkjs/remark-math) and [`rehype-katex`](https://github.com/rehypejs/rehype-katex).
+This guide shows you how to render LaTeX math formulas in your Starlight project using [`Sätteri`](https://satteri.bruits.org) and [`katex`](https://katex.org/).
 
 ## Step-by-step Guide
 
@@ -14,24 +18,55 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
 
 1. **Install the required dependencies**
 
-   <PackageManagerCommand command="add katex rehype-katex remark-math" />
+   <PackageManagerCommand command="add katex satteri @astrojs/markdown-satteri" />
 
-2. **Configure Markdown plugins in `astro.config.mjs`**
+2. **Create the Sätteri KaTeX plugin**
 
-   Open your `astro.config.mjs` file and configure both the remark and rehype plugins:
+   Save the following code as `src/plugins/satteri-katex.ts`:
 
-   ```js ins={4-5, 15}
+   ```ts
+   // src/plugins/satteri-katex.ts
+   import katex from "katex";
+   import { defineMdastPlugin } from "satteri";
+
+   export const satteriKatex = defineMdastPlugin({
+     name: "katex",
+     math(node) {
+       const html = katex.renderToString(node.value, {
+         displayMode: true,
+         throwOnError: false,
+       });
+       return { rawHtml: html };
+     },
+     inlineMath(node) {
+       const html = katex.renderToString(node.value, {
+         displayMode: false,
+         throwOnError: false,
+       });
+       return { rawHtml: html };
+     },
+   });
+   ```
+
+3. **Configure Sätteri processor in `astro.config.mjs`**
+
+   Open your `astro.config.mjs` file and configure the Sätteri processor with the `satteriKatex` plugin:
+
+   ```js
    // astro.config.mjs
-
-   import { defineConfig } from "astro/config";
-   import remarkMath from "remark-math";
-   import rehypeKatex from "rehype-katex";
+   import { satteri } from "@astrojs/markdown-satteri";
    import starlight from "@astrojs/starlight";
+   import { satteriKatex } from "./src/plugins/satteri-katex";
+   import { defineConfig } from "astro/config";
 
    export default defineConfig({
      markdown: {
-       remarkPlugins: [remarkMath],
-       rehypePlugins: [rehypeKatex],
+       processor: satteri({
+         mdastPlugins: [satteriKatex],
+         features: {
+           math: true,
+         },
+       }),
      },
      integrations: [
        starlight({
@@ -65,6 +100,5 @@ $$
 
 ## Resources
 
-1. [remark-math](https://github.com/remarkjs/remark-math)
-2. [rehype-katex](https://github.com/rehypejs/rehype-katex)
-3. [KaTeX documentation](https://katex.org/)
+1. [Sätteri](https://satteri.bruits.org)
+2. [KaTeX documentation](https://katex.org/)
