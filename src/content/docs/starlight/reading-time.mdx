@@ -4,7 +4,7 @@ description: Guide to adding reading time to your Starlight-powered Astro site u
 ---
 
 :::caution
-This recipe requires **Astro v7**, **Starlight v0.41**, **satteri** and **@astrojs/markdown-satteri**.
+This recipe requires **Astro v7**, **Starlight v0.41**, **Sätteri** and **@astrojs/markdown-satteri**.
 :::
 
 import { Steps } from "@astrojs/starlight/components";
@@ -102,7 +102,7 @@ This recipe shows one way to display an estimated reading time for each page in 
 
 4. **Add the plugin to your config and tell Starlight to use your custom `PageTitle`**
 
-   ```js ins={3, 4, 10, 16}
+   ```js
    // astro.config.mjs
    import { satteri } from "@astrojs/markdown-satteri";
    import { defineConfig } from "astro/config";
@@ -129,5 +129,5 @@ This recipe shows one way to display an estimated reading time for each page in 
 
 ## Resources
 
-1. [Sätteri documentation](https://satteri.bruits.org)
+1. [Sätteri](https://satteri.bruits.org)
 2. [Add reading time - Astro Docs](https://docs.astro.build/en/recipes/reading-time/)

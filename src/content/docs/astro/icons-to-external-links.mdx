@@ -4,13 +4,13 @@ description: Guide to adding icons to external links in your Astro site using S�
 ---
 
 :::caution
-This recipe requires **Astro v7**, **Starlight v0.41**, **satteri** and **@astrojs/markdown-satteri**.
+This recipe requires **Astro v7**, **Starlight v0.41**, **S채tteri** and **@astrojs/markdown-satteri**.
 :::
 
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guide shows how to append an icon to the end of each external link using [`satteri`](https://satteri.bruits.org), making it clear to users that the link will take them away from your site.
+This guide shows how to append an icon to the end of each external link using [`S채tteri`](https://satteri.bruits.org), making it clear to users that the link will take them away from your site.
 
 ## Step-by-Step Guide
 
@@ -98,7 +98,7 @@ This guide shows how to append an icon to the end of each external link using [`
 
    Open your `astro.config.mjs` and add the plugin to the S채tteri config:
 
-   ```js ins={3, 5, 10}
+   ```js
    // astro.config.mjs
    import { satteri } from "@astrojs/markdown-satteri";
    import { defineConfig } from "astro/config";
@@ -143,5 +143,5 @@ When rendered, the external link will include a small arrow icon at the end, whi
 
 ## Resources
 
-1. [S채tteri documentation](https://satteri.bruits.org)
+1. [S채tteri](https://satteri.bruits.org)
 2. [Add icons to external links - Astro Docs](https://docs.astro.build/en/recipes/external-links)
