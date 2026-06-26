@@ -33,13 +33,13 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0
       satteri:
-        specifier: ^0.9.2
+        specifier: 0.9.2
         version: 0.9.2
       sharp:
         specifier: ^0.35.2
         version: 0.35.2
       starlight-links-validator:
-        specifier: ^0.25.1
+        specifier: 0.25.1
         version: 0.25.1(@astrojs/starlight@0.41.0(@astrojs/markdown-remark@7.2.0)(astro@7.0.2(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.2)(rollup@4.62.2)(yaml@2.9.0))(typescript@6.0.3))(astro@7.0.2(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.2)(rollup@4.62.2)(yaml@2.9.0))
       takumi-js:
         specifier: ^1.8.6
