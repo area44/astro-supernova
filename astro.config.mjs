@@ -4,6 +4,7 @@ import { defineConfig } from "astro/config";
 
 import { astroSidebar, starlightSidebar } from "./config/sidebar";
 import { satteriExternalLinks } from "./src/plugins/satteri-external-links";
+import { satteriMath } from "./src/plugins/satteri-math-hast";
 import { satteriMermaid } from "./src/plugins/satteri-mermaid";
 import { satteriReadingTime } from "./src/plugins/satteri-reading-time";
 
@@ -27,7 +28,7 @@ export default defineConfig({
     },
     processor: satteri({
       mdastPlugins: [satteriReadingTime],
-      hastPlugins: [satteriMermaid, satteriExternalLinks],
+      hastPlugins: [satteriMath, satteriMermaid, satteriExternalLinks],
       features: {
         math: true,
       },

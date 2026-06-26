@@ -1,6 +1,6 @@
 ---
 title: Add LaTeX Math Support
-description: Add LaTeX math support to your Starlight site using Sätteri's built-in math parser.
+description: Add LaTeX math support to your Starlight site using Sätteri's built-in math parser and client-side rendering.
 ---
 
 :::caution
@@ -10,7 +10,7 @@ This recipe requires **Astro v7**, **Starlight v0.41**, **Sätteri** and **@astr
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-This guide shows you how to render LaTeX math formulas in your Starlight project using the built-in math support in [`Sätteri`](https://satteri.bruits.org).
+This guide shows you how to render LaTeX math formulas in your Starlight project using the built-in math support in [`Sätteri`](https://satteri.bruits.org) and client-side rendering with MathJax.
 
 ## Step-by-step Guide
 
@@ -22,14 +22,63 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
 
    <PackageManagerCommand command="add satteri @astrojs/markdown-satteri" />
 
-2. **Configure Sätteri processor in `astro.config.mjs`**
+2. **Create a HAST plugin to wrap math**
 
-   Open your `astro.config.mjs` file and enable the `math` feature in the Sätteri processor:
+   Sätteri's built-in math feature parses LaTeX into `<code>` blocks with `math-inline` or `math-display` classes. To render these with MathJax, we need to wrap them in a way MathJax can process.
+
+   Create `src/plugins/satteri-math-hast.ts`:
+
+   ```ts
+   // src/plugins/satteri-math-hast.ts
+   import { defineHastPlugin } from "satteri";
+
+   export const satteriMath = defineHastPlugin({
+     name: "math-hast",
+     element: {
+       filter: ["code", "pre"],
+       visit(node, ctx) {
+         if (node.tagName === "code") {
+           const classes = (node.properties?.className as string[]) || [];
+           if (classes.includes("math-inline")) {
+             const text = ctx.textContent(node);
+             ctx.replaceNode(node, {
+               type: "element",
+               tagName: "span",
+               properties: { className: ["tex2jax_process"] },
+               children: [{ type: "text", value: `$${text}$` }],
+             } as any);
+           }
+         } else if (node.tagName === "pre") {
+           const codeChild = node.children?.find(
+             (c) =>
+               c.type === "element" &&
+               (c as any).tagName === "code" &&
+               ((c as any).properties?.className as string[])?.includes("math-display"),
+           );
+           if (codeChild) {
+             const text = ctx.textContent(codeChild);
+             ctx.replaceNode(node, {
+               type: "element",
+               tagName: "div",
+               properties: { className: ["tex2jax_process"] },
+               children: [{ type: "text", value: `4670\n${text}\n4670` }],
+             } as any);
+           }
+         }
+       },
+     },
+   });
+   ```
+
+3. **Configure Sätteri processor in `astro.config.mjs`**
+
+   Open your `astro.config.mjs` file, enable the `math` feature, and register the HAST plugin:
 
    ```js
    // astro.config.mjs
    import { satteri } from "@astrojs/markdown-satteri";
    import { defineConfig } from "astro/config";
+   import { satteriMath } from "./src/plugins/satteri-math-hast";
 
    export default defineConfig({
      markdown: {
@@ -37,14 +86,59 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
          features: {
            math: true,
          },
+         hastPlugins: [satteriMath],
        }),
      },
    });
    ```
 
-3. **Style the math output (Optional)**
+4. **Create a MathJax component**
 
-   By default, Sätteri renders inline math as `<code class="language-math math-inline">` and display math as `<pre><code class="language-math math-display">`. You can style these classes in your `src/styles/global.css` or use a client-side library like KaTeX or MathJax to render them into beautiful formulas.
+   Create `src/components/MathJax.astro` to handle client-side rendering:
+
+   ```astro
+   <!-- src/components/MathJax.astro -->
+   <script is:inline>
+     window.MathJax = {
+       tex: {
+         inlineMath: [['$', '$']],
+         displayMath: [['4670', '4670']],
+         processEscapes: true
+       },
+       options: {
+         ignoreHtmlClass: 'tex2jax_ignore',
+         processHtmlClass: 'tex2jax_process'
+       }
+     };
+   </script>
+   <script is:inline src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+
+   <script>
+     function renderMath() {
+       if ((window as any).MathJax && (window as any).MathJax.typesetPromise) {
+         (window as any).MathJax.typesetPromise().catch((err: any) => console.error('MathJax error:', err));
+       }
+     }
+
+     renderMath();
+     document.addEventListener('astro:after-swap', renderMath);
+   </script>
+   ```
+
+5. **Add the component to your layout**
+
+   Import and use the `MathJax` component in your layout or header override (e.g., `src/components/Header.astro`):
+
+   ```astro
+   ---
+   // src/components/Header.astro
+   import Default from "@astrojs/starlight/components/Header.astro";
+   import MathJax from "./MathJax.astro";
+   ---
+
+   <MathJax />
+   <Default {...Astro.props} />
+   ```
 
 </Steps>
 
@@ -53,22 +147,14 @@ This guide shows you how to render LaTeX math formulas in your Starlight project
 Create a file like `src/content/docs/example.mdx` and add:
 
 ```mdx
-When $a\ne0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
+When $a\\ne0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
 
 $$
-x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}
 $$
 ```
-
-The code above generates the following on the page:
-
-When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
-
-$$
-x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-$$
 
 ## Resources
 
 1. [Sätteri Documentation](https://satteri.bruits.org/docs/)
-2. [Sätteri Features: Math](https://satteri.bruits.org/docs/features/#math)
+2. [MathJax Documentation](https://www.mathjax.org/)

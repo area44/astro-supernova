@@ -1,0 +1,28 @@
+<script is:inline>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$']],
+      displayMath: [['$$', '$$']],
+      processEscapes: true
+    },
+    options: {
+      ignoreHtmlClass: 'tex2jax_ignore',
+      processHtmlClass: 'tex2jax_process'
+    }
+  };
+</script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+
+<script>
+  function renderMath() {
+    if ((window as any).MathJax && (window as any).MathJax.typesetPromise) {
+      (window as any).MathJax.typesetPromise().catch((err: any) => console.error('MathJax error:', err));
+    }
+  }
+
+  // Initial load
+  renderMath();
+
+  // Re-run after page transitions (View Transitions)
+  document.addEventListener('astro:after-swap', renderMath);
+</script>
