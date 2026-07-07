@@ -45,6 +45,7 @@ export default defineConfig({
         Header: "./src/components/Header.astro",
         PageTitle: "./src/components/PageTitle.astro",
         Sidebar: "./src/components/Sidebar.astro",
+        MobileMenuFooter: "./src/components/MobileMenuFooter.astro",
       },
       social: [
         {

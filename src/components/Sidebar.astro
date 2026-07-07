@@ -2,6 +2,7 @@
 import { Icon } from "@astrojs/starlight/components";
 import SidebarPersister from "@astrojs/starlight/components/SidebarPersister.astro";
 import SidebarSublist from "@astrojs/starlight/components/SidebarSublist.astro";
+import MobileMenuFooter from "./MobileMenuFooter.astro";
 import type { Props } from "@astrojs/starlight/props";
 
 import TabbedContent from "./tabs/TabbedContent.astro";
@@ -71,6 +72,9 @@ const isInitial = (entries: SidebarEntry[], index: number) =>
       ))
     }
   </TabbedContent>
+  <div class="md:sl-hidden">
+    <MobileMenuFooter {...Astro.props} />
+  </div>
 </SidebarPersister>
 
 <style>
