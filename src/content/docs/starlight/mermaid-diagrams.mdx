@@ -10,10 +10,6 @@ This recipe requires **Astro v7**, **Starlight v0.41**, **Sätteri** and **@astr
 import { Steps } from "@astrojs/starlight/components";
 import PackageManagerCommand from "@/components/PackageManagerCommand.astro";
 
-:::note
-For the best experience, we recommend using [`astro-mermaid`](https://github.com/joesaby/astro-mermaid) to render Mermaid diagrams in Astro.
-:::
-
 This guide helps you add Mermaid diagrams to your Starlight documentation site using Sätteri.
 
 ## Step-by-step Guide
@@ -22,9 +18,9 @@ This guide helps you add Mermaid diagrams to your Starlight documentation site u
 
 1. **Install dependencies**
 
-   Install `satteri` and `@astrojs/markdown-satteri`:
+   Install `mermaid`, `satteri`, and `@astrojs/markdown-satteri`:
 
-   <PackageManagerCommand command="add satteri @astrojs/markdown-satteri" />
+   <PackageManagerCommand command="add mermaid satteri @astrojs/markdown-satteri" />
 
 2. **Create the Sätteri Mermaid plugin**
 
