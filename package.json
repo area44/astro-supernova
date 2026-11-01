@@ -11,24 +11,24 @@
     "check": "oxlint && oxfmt"
   },
   "dependencies": {
-    "@astrojs/markdown-satteri": "^0.4.5",
-    "@astrojs/starlight": "^0.42.7",
-    "astro": "^7.4.2",
+    "@astrojs/markdown-satteri": "^0.4.6",
+    "@astrojs/starlight": "^0.42.8",
+    "astro": "^7.4.4",
     "katex": "^0.19.1",
     "lite-youtube-embed": "^0.3.4",
     "mermaid": "^12.2.0",
     "reading-time": "^1.5.0",
-    "satteri": "^0.10.5",
+    "satteri": "^0.11.6",
     "sharp": "^0.35.5",
     "starlight-links-validator": "^0.27.0",
-    "takumi-js": "^2.17.1"
+    "takumi-js": "^2.19.0"
   },
   "devDependencies": {
     "@types/hast": "^3.0.5",
     "@types/mdast": "^4.0.4",
-    "oxfmt": "^0.74.0",
-    "oxlint": "^1.89.0",
+    "oxfmt": "^0.75.0",
+    "oxlint": "^1.90.0",
     "typescript": "^7.0.2"
   },
-  "packageManager": "pnpm@12.15.0"
+  "packageManager": "pnpm@12.16.1"
 }
